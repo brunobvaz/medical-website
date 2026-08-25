@@ -1,5 +1,7 @@
+import { useEffect, useRef, useState } from 'react'
 import { Button } from '../componentes/ACTION/index.js'
 import { Section } from '../componentes/LAYOUT/index.js'
+import siteConfig from '../config/site.js'
 import { clinicIntroductionMedia } from '../data/homepage.js'
 import { useI18n } from '../i18n/I18nContext.jsx'
 import './ClinicIntroduction.css'
@@ -18,9 +20,36 @@ const SignatureMark = () => (
   </svg>
 )
 
+const SocialIcon = ({ id }) => {
+  const paths = {
+    instagram: <><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none" /></>,
+    facebook: <path d="M14.5 8H17V4.5h-2.5c-3 0-5 1.9-5 5.2V12H7v3.5h2.5V22H13v-6.5h3L16.5 12H13V9.8c0-1.2.5-1.8 1.5-1.8Z" />,
+    linkedin: <path d="M5 9v10M5 5.5v.1M10 19v-6c0-2.2 1.4-4 3.7-4 2.2 0 3.3 1.5 3.3 4v6M10 9v10" />,
+  }
+
+  return <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">{paths[id]}</svg>
+}
+
 export default function ClinicIntroduction() {
   const { t } = useI18n()
   const content = t.clinicIntroduction
+  const portraitRef = useRef(null)
+  const [showSocials, setShowSocials] = useState(false)
+
+  useEffect(() => {
+    const portrait = portraitRef.current
+    if (!portrait) return undefined
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setShowSocials(true)
+        observer.unobserve(entry.target)
+      }
+    }, { threshold: .35 })
+
+    observer.observe(portrait)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <Section className="clinic-introduction" id="sobre" aria-labelledby="clinic-introduction-title">
@@ -32,8 +61,15 @@ export default function ClinicIntroduction() {
         </Button>
       </div>
 
-      <div className="clinic-introduction__portrait">
+      <div className="clinic-introduction__portrait" ref={portraitRef}>
         <img src={clinicIntroductionMedia} alt={content.doctorAlt} />
+        <nav className={`clinic-introduction__social-ribbon ${showSocials ? 'clinic-introduction__social-ribbon--visible' : ''}`} aria-label={t.cta.followLabel}>
+          {siteConfig.socialLinks.map(({ id, label, href }) => (
+            <a href={href} key={id} target="_blank" rel="noreferrer" aria-label={label} title={label}>
+              <SocialIcon id={id} />
+            </a>
+          ))}
+        </nav>
       </div>
 
       <figure className="clinic-introduction__quote">

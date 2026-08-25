@@ -25,6 +25,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="treatments" element={<TreatmentsPage />} />
+          <Route path="cirurgia-oculoplastica" element={<TreatmentsPage />} />
           <Route path="treatments/:areaSlug/:procedureSlug" element={<ProcedureDetailPage />} />
           <Route path="treatments/:slug" element={<TreatmentDetailPage />} />
           <Route path="results" element={<ResultsPage />} />

@@ -35,7 +35,8 @@ export default function HeroSection({
   const backgroundStyle = { backgroundImage: `url(${currentSlide.image})` }
 
   return (
-    <Section className="medical-hero" aria-roledescription="carousel" aria-label={content.ariaLabel} style={backgroundStyle}>
+    <div className="medical-hero-block">
+      <Section className="medical-hero" aria-roledescription="carousel" aria-label={content.ariaLabel} style={backgroundStyle}>
       <div className="medical-hero__overlay" aria-hidden="true" />
 
       {hasMultipleSlides && (
@@ -49,23 +50,18 @@ export default function HeroSection({
 
       <div className="medical-hero__content" key={`${language}-${currentIndex}`} aria-live="polite">
         <p className="type-eyebrow">{currentSlide.eyebrow}</p>
-        <h1 className="type-page-title">{currentSlide.title}</h1>
+        <h1 className="type-page-title" aria-label={currentSlide.title}>
+          {(currentSlide.titleLines ?? [currentSlide.title]).map((line) => (
+            <span className="medical-hero__title-line" aria-hidden="true" key={line}>{line}</span>
+          ))}
+        </h1>
         <span className="medical-hero__rule" aria-hidden="true" />
         <p className="medical-hero__description type-body">{currentSlide.description}</p>
         <Button className="medical-hero__cta" href={currentSlide.buttonHref} to={currentSlide.buttonTo} size="small" variant="primary">
           {currentSlide.buttonLabel}
         </Button>
-      </div>
 
-      {hasMultipleSlides && (
-        <>
-          <ArrowButton
-            className="medical-hero__arrow medical-hero__arrow--next"
-            direction="right"
-            label={content.nextSlideLabel}
-            onClick={showNext}
-          />
-
+        {hasMultipleSlides && (
           <div className="medical-hero__indicators" aria-label={content.indicatorsLabel}>
             {safeSlides.map((slide, index) => (
               <button
@@ -78,8 +74,37 @@ export default function HeroSection({
               />
             ))}
           </div>
+        )}
+      </div>
+
+      {hasMultipleSlides && (
+        <>
+          <ArrowButton
+            className="medical-hero__arrow medical-hero__arrow--next"
+            direction="right"
+            label={content.nextSlideLabel}
+            onClick={showNext}
+          />
+
         </>
       )}
-    </Section>
+      </Section>
+
+      <aside className="medical-hero-stats" aria-label={content.statsLabel}>
+        <ul className="medical-hero-stats__list">
+          {content.stats.map((stat, index) => (
+            <li
+              className={`medical-hero-stat ${index % 2 === 0 ? 'medical-hero-stat--gold' : 'medical-hero-stat--grey'}`}
+              key={stat.label}
+            >
+              <span className={`medical-hero-stat__value ${stat.accessibleValue ? 'medical-hero-stat__value--stars' : ''}`} aria-label={stat.accessibleValue}>
+                {stat.value}
+              </span>
+              <span className="medical-hero-stat__label">{stat.label}</span>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    </div>
   )
 }

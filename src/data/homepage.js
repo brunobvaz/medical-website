@@ -18,7 +18,8 @@ export const getClinicalAreas = (language) => {
     ...content,
     items: content.items.map((item) => ({
       ...item,
-      image: siteMedia.clinicalAreas[item.slug],
+      image: siteMedia.clinicalAreas[item.slug].icon,
+      coverImage: siteMedia.clinicalAreas[item.slug].cover,
       to: `/treatments/${item.slug}`,
     })),
   }
@@ -28,6 +29,8 @@ export const getTestimonials = (content) => content.items.map((item, index) => (
   ...item,
   image: siteMedia.testimonials[index],
 }))
+
+export const testimonialsBackground = siteMedia.testimonialsBackground
 
 export const feedMedia = siteMedia.feed
 export const clinicIntroductionMedia = siteMedia.clinicIntroduction

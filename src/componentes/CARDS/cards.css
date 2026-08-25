@@ -139,6 +139,181 @@
 
 .clinical-area-card__link:hover svg { transform: translateX(.2rem); }
 
+.clinical-area-card--feature {
+  padding: clamp(.75rem, 1.4vw, 1.25rem);
+  align-items: stretch;
+  text-align: left;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--motion-duration-medium) var(--motion-ease-standard),
+    transform var(--motion-duration-medium) var(--motion-ease-standard);
+}
+
+.clinical-area-card--feature:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(calc(var(--space-2xs) * -.5));
+}
+
+.clinical-area-card__media {
+  aspect-ratio: 4 / 4.35;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--color-surface-alt);
+}
+
+.clinical-area-card__cover {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform .7s var(--motion-ease-standard),
+    filter .7s var(--motion-ease-standard);
+}
+
+.clinical-area-card__media-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(23, 26, 25, .04) 35%, rgba(23, 26, 25, .78) 100%);
+  opacity: 1;
+  transition: opacity var(--motion-duration-medium) var(--motion-ease-standard);
+}
+
+.clinical-area-card__frame {
+  position: absolute;
+  inset: var(--space-md);
+  z-index: 3;
+  border: 1px solid rgba(255, 255, 255, .9);
+  opacity: 0;
+  transform: scale(.92);
+  transition: opacity var(--motion-duration-medium) var(--motion-ease-standard),
+    transform var(--motion-duration-medium) var(--motion-ease-standard);
+}
+
+.clinical-area-card__more {
+  min-height: 2.25rem;
+  padding-inline: var(--space-sm);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-size: .7rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translate(-50%, calc(-50% + .75rem));
+  transition: color var(--motion-duration-fast) var(--motion-ease-standard),
+    background-color var(--motion-duration-fast) var(--motion-ease-standard),
+    opacity var(--motion-duration-medium) var(--motion-ease-standard),
+    transform var(--motion-duration-medium) var(--motion-ease-standard);
+  white-space: nowrap;
+}
+
+.clinical-area-card__body {
+  min-height: 6.5rem;
+  padding: var(--space-md) var(--space-xs) 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 3.5rem;
+  align-items: end;
+  gap: var(--space-sm);
+}
+
+.clinical-area-card__image-description {
+  max-width: 34rem;
+  position: absolute;
+  right: var(--space-lg);
+  bottom: var(--space-md);
+  left: var(--space-lg);
+  z-index: 2;
+  color: var(--color-text-light);
+  line-height: var(--lh-body);
+  transition: opacity var(--motion-duration-medium) var(--motion-ease-standard),
+    transform var(--motion-duration-medium) var(--motion-ease-standard);
+}
+
+.clinical-area-card__copy { min-width: 0; }
+
+.clinical-area-card--feature .clinical-area-card__eyebrow {
+  margin-bottom: var(--space-2xs);
+  color: var(--color-accent-hover);
+  font-weight: var(--fw-semibold);
+  letter-spacing: .07em;
+}
+
+.clinical-area-card--feature h3 {
+  max-width: none;
+  min-height: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-heading);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.clinical-area-card--feature .clinical-area-card__description {
+  max-width: none;
+  margin: var(--space-xs) 0 0;
+  line-height: var(--lh-body);
+}
+
+.clinical-area-card__icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  align-self: end;
+  object-fit: contain;
+  transform: rotate(0);
+  transition: transform .7s var(--motion-ease-standard);
+}
+
+@media (hover: hover) {
+  .clinical-area-card--feature:hover .clinical-area-card__cover,
+  .clinical-area-card__media:focus-visible .clinical-area-card__cover {
+    filter: saturate(.82);
+    transform: scale(1.09);
+  }
+
+  .clinical-area-card--feature:hover .clinical-area-card__media-shade,
+  .clinical-area-card--feature:hover .clinical-area-card__frame,
+  .clinical-area-card--feature:hover .clinical-area-card__more,
+  .clinical-area-card__media:focus-visible .clinical-area-card__media-shade,
+  .clinical-area-card__media:focus-visible .clinical-area-card__frame,
+  .clinical-area-card__media:focus-visible .clinical-area-card__more { opacity: 1; }
+
+  .clinical-area-card--feature:hover .clinical-area-card__media-shade,
+  .clinical-area-card__media:focus-visible .clinical-area-card__media-shade {
+    background: rgba(23, 26, 25, .58);
+  }
+
+  .clinical-area-card--feature:hover .clinical-area-card__image-description,
+  .clinical-area-card__media:focus-visible .clinical-area-card__image-description {
+    opacity: 0;
+    transform: translateY(.5rem);
+  }
+
+  .clinical-area-card--feature:hover .clinical-area-card__frame,
+  .clinical-area-card__media:focus-visible .clinical-area-card__frame { transform: scale(1); }
+
+  .clinical-area-card--feature:hover .clinical-area-card__more,
+  .clinical-area-card__media:focus-visible .clinical-area-card__more { transform: translate(-50%, -50%); }
+
+  .clinical-area-card--feature:hover .clinical-area-card__icon { transform: rotate(360deg); }
+
+  .clinical-area-card__more:hover { color: var(--color-text-light); background: var(--color-accent-hover); }
+}
+
+.clinical-area-card__media:focus-visible {
+  outline: var(--button-focus-outline-width) solid var(--color-accent-hover);
+  outline-offset: var(--button-focus-outline-offset);
+}
+
 .clinical-area-card--vertical {
   min-height: clamp(25rem, 44vw, 34rem);
   padding-block: clamp(3.5rem, 7vw, 6rem);
@@ -188,10 +363,23 @@
     font-size: clamp(1rem, 4.6vw, 1.3rem);
     line-height: 1.55;
   }
+
+  .clinical-area-card--feature { padding: var(--space-xs); }
+  .clinical-area-card--feature .clinical-area-card__media-shade { opacity: 1; }
+  .clinical-area-card--feature .clinical-area-card__frame { opacity: .7; transform: none; }
+  .clinical-area-card--feature .clinical-area-card__more { opacity: 1; transform: translate(-50%, -50%); }
+  .clinical-area-card__body { min-height: 0; grid-template-columns: minmax(0, 1fr) 3.5rem; }
+  .clinical-area-card__icon { width: 3.5rem; height: 3.5rem; }
+  .clinical-area-card__image-description { right: var(--space-md); bottom: var(--space-sm); left: var(--space-md); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .clinical-area-card__link svg { transition: none; }
+  .clinical-area-card__link svg,
+  .clinical-area-card--feature,
+  .clinical-area-card__cover,
+  .clinical-area-card__frame,
+  .clinical-area-card__more,
+  .clinical-area-card__icon { transition: none; }
 }
 
 .after-before-card {

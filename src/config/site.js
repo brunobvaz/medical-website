@@ -8,6 +8,7 @@ const siteConfig = {
     home: '/',
     about: '/about',
     treatments: '/treatments',
+    oculoplasticSurgery: '/cirurgia-oculoplastica',
     results: '/results',
     components: '/components',
     booking: '/booking',

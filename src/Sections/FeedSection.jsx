@@ -25,15 +25,17 @@ export default function FeedSection() {
             </Button>
           </div>
 
-          <figure className="feed-section__featured">
+          <figure className="feed-section__featured" tabIndex={0}>
             <img src={feedMedia.featured} alt={`${content.imageAlt} 1`} loading="lazy" />
+            <figcaption>{`${content.imageAlt} 1`}</figcaption>
           </figure>
         </div>
 
         <div className="feed-section__grid">
           {feedMedia.gallery.map((image, index) => (
-            <figure className="feed-section__item" key={image}>
+            <figure className="feed-section__item" key={image} tabIndex={0}>
               <img src={image} alt={`${content.imageAlt} ${index + 2}`} loading="lazy" />
+              <figcaption>{`${content.imageAlt} ${index + 2}`}</figcaption>
             </figure>
           ))}
         </div>

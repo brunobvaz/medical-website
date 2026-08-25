@@ -1,3 +1,8 @@
+.medical-hero-block {
+  position: relative;
+  background: var(--color-bg);
+}
+
 .medical-hero {
   width: 100%;
   max-width: none;
@@ -13,6 +18,71 @@
   background-repeat: no-repeat;
   background-size: cover;
   isolation: isolate;
+}
+
+.medical-hero-stats {
+  width: min(calc(100% - (2 * var(--page-padding-inline))), var(--layout-narrow-width));
+  margin: -3.25rem auto 0;
+  position: relative;
+  z-index: 2;
+}
+
+.medical-hero-stats__list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  box-shadow: var(--shadow-md);
+}
+
+.medical-hero-stat {
+  min-height: 7.5rem;
+  padding: var(--space-md) var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  text-align: center;
+  transition: color var(--motion-duration-medium) var(--motion-ease-standard),
+    background-color var(--motion-duration-medium) var(--motion-ease-standard),
+    transform var(--motion-duration-medium) var(--motion-ease-standard),
+    box-shadow var(--motion-duration-medium) var(--motion-ease-standard);
+}
+
+.medical-hero-stat--gold { background: var(--color-accent-soft); }
+.medical-hero-stat--grey { background: var(--color-surface-alt); }
+
+.medical-hero-stat__value {
+  color: var(--color-accent-hover);
+  font-family: var(--font-family-heading);
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: var(--fw-medium);
+  line-height: 1;
+}
+
+.medical-hero-stat__value--stars {
+  font-family: var(--font-family-base);
+  font-size: clamp(1.1rem, 1.7vw, 1.5rem);
+  letter-spacing: .08em;
+}
+
+.medical-hero-stat__label {
+  color: var(--color-text-muted);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  letter-spacing: .04em;
+}
+
+@media (hover: hover) {
+  .medical-hero-stat:hover {
+    z-index: 1;
+    color: var(--color-text-light);
+    background: var(--color-accent-hover);
+    box-shadow: 0 14px 32px rgba(38, 51, 48, .2);
+    transform: translateY(-.5rem);
+  }
+
+  .medical-hero-stat:hover .medical-hero-stat__value,
+  .medical-hero-stat:hover .medical-hero-stat__label { color: inherit; }
 }
 
 .medical-hero__overlay {
@@ -53,9 +123,15 @@
 .medical-hero__content > :nth-child(3) { animation-delay: 240ms; }
 .medical-hero__content > :nth-child(4) { animation-delay: 320ms; }
 .medical-hero__content > :nth-child(5) { animation-delay: 400ms; }
+.medical-hero__content > :nth-child(6) { animation-delay: 480ms; }
 
 .medical-hero h1 {
-  max-width: 18ch;
+  max-width: none;
+}
+
+.medical-hero__title-line {
+  display: block;
+  white-space: nowrap;
 }
 
 .medical-hero__rule {
@@ -97,13 +173,10 @@
 .medical-hero__arrow--next { right: clamp(1.5rem, 3vw, 3rem); }
 
 .medical-hero__indicators {
-  position: absolute;
-  bottom: var(--space-md);
-  left: 50%;
+  margin-top: var(--space-md);
   display: flex;
   align-items: center;
   gap: var(--space-2xs);
-  transform: translateX(-50%);
 }
 
 .medical-hero__indicator {
@@ -125,6 +198,12 @@
   outline-offset: var(--button-focus-outline-offset);
 }
 
+@media (min-width: 1024px) {
+  .medical-hero {
+    min-height: calc(90svh - var(--navbar-height));
+  }
+}
+
 @media (max-width: 1023px) {
   .medical-hero {
     min-height: clamp(32rem, 80vw, 42rem);
@@ -135,6 +214,18 @@
 }
 
 @media (max-width: 767px) {
+  .medical-hero-stats {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .medical-hero-stats__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    box-shadow: none;
+  }
+
+  .medical-hero-stat { min-height: 7rem; }
+
   .medical-hero {
     width: 100%;
     min-height: calc(100svh - var(--navbar-height) - (2 * var(--page-padding-block)));
@@ -143,17 +234,28 @@
 
   .medical-hero__overlay { background: linear-gradient(180deg, color-mix(in srgb, var(--color-text) 24%, transparent), color-mix(in srgb, var(--color-text) 72%, transparent)); }
   .medical-hero__content { width: calc(100% - (2 * var(--space-lg))); }
-  .medical-hero h1 { font-size: var(--fs-h2); }
-  .medical-hero__arrow { top: auto; bottom: var(--space-sm); transform: scale(.78); }
-  .medical-hero__arrow--previous { left: var(--space-md); }
-  .medical-hero__arrow--next { right: var(--space-md); }
-  .medical-hero__indicators { bottom: var(--space-lg); }
+  .medical-hero h1 { font-size: clamp(1.65rem, 7.5vw, 2.35rem); }
+  .medical-hero .medical-hero__arrow {
+    width: 3rem;
+    height: 4rem;
+    top: auto;
+    bottom: var(--space-md);
+    transform: none;
+  }
+  .medical-hero__arrow .ui-arrow-button__chevron { width: 1.5rem; height: 2.5rem; }
+  .medical-hero__arrow--previous { left: var(--space-xs); }
+  .medical-hero__arrow--next { right: var(--space-xs); }
 }
 
 @media (max-width: 479px) {
   .medical-hero { min-height: 34rem; }
   .medical-hero__content { width: calc(100% - (2 * var(--space-md))); }
+  .medical-hero h1 { font-size: clamp(1.35rem, 6.8vw, 1.65rem); }
   .medical-hero__cta { width: 100%; min-width: 0; }
+}
+
+@media (max-width: 359px) {
+  .medical-hero-stats__list { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
