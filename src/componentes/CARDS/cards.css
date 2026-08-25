@@ -1,0 +1,302 @@
+.service-card {
+  min-width: 0;
+  height: 100%;
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  transition: border-color var(--motion-duration-fast) var(--motion-ease-standard),
+    box-shadow var(--motion-duration-fast) var(--motion-ease-standard),
+    transform var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.service-card:hover {
+  border-color: var(--color-beige-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(calc(var(--space-2xs) * -.5));
+}
+
+.service-card__image-link {
+  aspect-ratio: 4 / 3;
+  display: block;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.service-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s var(--motion-ease-standard);
+}
+
+.service-card:hover .service-card__image { transform: scale(1.035); }
+
+.service-card__content {
+  padding: var(--space-md);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.service-card__eyebrow {
+  color: var(--eyebrow-color);
+}
+
+.service-card h3 {
+  font-family: var(--font-family-heading);
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-heading);
+}
+
+.service-card__description {
+  margin-block: var(--space-sm) var(--space-lg);
+  color: var(--color-text-muted);
+  font-size: var(--fs-small);
+  line-height: var(--lh-loose);
+}
+
+.service-card__button {
+  min-width: 0;
+  margin-top: auto;
+  padding-inline: 0;
+  border-width: 0 0 var(--button-border-width);
+}
+
+.service-card__button .ui-action__icon { transition: transform var(--motion-duration-fast) var(--motion-ease-standard); }
+.service-card__button:hover .ui-action__icon { transform: translateX(var(--space-2xs)); }
+
+.service-card__accessible-image-description {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .service-card__content { padding: var(--space-lg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card,
+  .service-card__image,
+  .service-card__button .ui-action__icon { transition: none; }
+}
+
+.clinical-area-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.clinical-area-card__image {
+  width: 5.25rem;
+  height: 5.25rem;
+  margin-bottom: var(--space-md);
+  display: block;
+  object-fit: contain;
+}
+
+.clinical-area-card h3 {
+  max-width: 15rem;
+  min-height: 2.75em;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-semibold);
+  line-height: 1.45;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.clinical-area-card__description {
+  max-width: 17rem;
+  margin-block: var(--space-xs) var(--space-sm);
+}
+
+.clinical-area-card__link {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  color: var(--color-accent);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-medium);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.clinical-area-card__link svg {
+  width: 1rem;
+  height: 1rem;
+  transition: transform var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.clinical-area-card__link:hover svg { transform: translateX(.2rem); }
+
+.clinical-area-card--vertical {
+  min-height: clamp(25rem, 44vw, 34rem);
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+  border-bottom: var(--border-width) solid var(--color-border-accent);
+  justify-content: center;
+}
+
+.clinical-area-card--vertical .clinical-area-card__image {
+  width: clamp(6rem, 10vw, 8.5rem);
+  height: clamp(6rem, 10vw, 8.5rem);
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.clinical-area-card--vertical h3 {
+  min-height: 0;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+}
+
+.clinical-area-card--vertical .clinical-area-card__description {
+  max-width: 30rem;
+  margin: var(--space-md) auto var(--space-lg);
+}
+
+.clinical-area-card--vertical .clinical-area-card__link {
+  margin-top: 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .clinical-area-card h3 { min-height: 0; }
+
+  .clinical-area-card--vertical {
+    min-height: clamp(25rem, 118vw, 31rem);
+    padding: 3.5rem var(--space-sm);
+  }
+
+  .clinical-area-card--vertical .clinical-area-card__image {
+    width: 5.5rem;
+    height: 5.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .clinical-area-card--vertical h3 { font-size: 1.05rem; }
+
+  .clinical-area-card--vertical .clinical-area-card__description {
+    max-width: 27rem;
+    font-size: clamp(1rem, 4.6vw, 1.3rem);
+    line-height: 1.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clinical-area-card__link svg { transition: none; }
+}
+
+.after-before-card {
+  width: 100%;
+  margin: 0;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.after-before-card__viewport {
+  aspect-ratio: 3 / 2;
+  position: relative;
+  overflow: hidden;
+}
+
+.after-before-card__image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  user-select: none;
+  pointer-events: none;
+}
+
+.after-before-card__after {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 calc(100% - var(--comparison-position)) 0 0);
+}
+
+.after-before-card__label {
+  position: absolute;
+  top: var(--space-sm);
+  z-index: 2;
+  padding: var(--space-2xs) var(--space-xs);
+  color: var(--color-text-light);
+  background: color-mix(in srgb, var(--color-text) 62%, transparent);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+}
+
+.after-before-card__label--before { right: var(--space-sm); }
+.after-before-card__label--after { left: var(--space-sm); }
+
+.after-before-card__divider {
+  width: 1px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--comparison-position);
+  z-index: 3;
+  background: var(--color-text-light);
+  box-shadow: var(--shadow-sm);
+  pointer-events: none;
+}
+
+.after-before-card__handle {
+  width: var(--button-height-md);
+  height: var(--button-height-md);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: var(--button-border-width) var(--button-border-style) var(--color-text-light);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--color-text);
+  background: var(--color-bg);
+  box-shadow: var(--shadow-md);
+  transform: translate(-50%, -50%);
+}
+
+.after-before-card__handle svg { width: var(--space-md); height: var(--space-md); }
+
+.after-before-card__slider {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  cursor: ew-resize;
+  opacity: 0;
+}
+
+.after-before-card__slider-label {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.after-before-card__viewport:focus-within .after-before-card__handle {
+  outline: var(--button-focus-outline-width) solid var(--button-focus-outline-color);
+  outline-offset: var(--button-focus-outline-offset);
+}
+
+@media (max-width: 767px) {
+  .after-before-card__handle { width: var(--button-height-sm); height: var(--button-height-sm); }
+  .after-before-card__label { top: var(--space-xs); padding: var(--space-2xs); }
+  .after-before-card__label--before { right: var(--space-xs); }
+  .after-before-card__label--after { left: var(--space-xs); }
+}

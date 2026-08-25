@@ -1,0 +1,50 @@
+.procedure-detail { background: var(--color-bg); }
+
+.procedure-detail__hero {
+  min-height: clamp(23rem, 42vw, 38rem);
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: var(--color-text-light);
+  background: var(--color-surface-dark);
+  isolation: isolate;
+}
+
+.procedure-detail__hero > img,
+.procedure-detail__hero-overlay { position: absolute; inset: 0; }
+
+.procedure-detail__hero > img {
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  object-fit: cover;
+}
+
+.procedure-detail__hero-overlay {
+  z-index: -1;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--color-surface-darker) 90%, transparent), color-mix(in srgb, var(--color-surface-darker) 45%, transparent) 46%, transparent 72%);
+}
+
+.procedure-detail__hero-content { padding: var(--section-padding-block) var(--page-padding-inline); }
+.procedure-detail__hero-content > * { max-width: 34rem; }
+.procedure-detail__hero-content .ui-breadcrumbs { margin-bottom: var(--space-xs); color: var(--color-border-accent); }
+.procedure-detail__hero-content h1 { margin-bottom: var(--space-md); }
+
+.procedure-detail__information {
+  min-height: 38rem;
+  padding: 0 var(--page-padding-inline) var(--section-padding-block);
+  background: var(--color-surface-warm);
+}
+
+.procedure-detail__image { aspect-ratio: 4 / 3; overflow: hidden; background: var(--color-surface); }
+.procedure-detail__image img { width: 100%; height: 100%; object-fit: cover; object-position: 75% center; }
+.procedure-detail__booking { min-width: 12rem; margin-top: var(--space-xl); }
+
+@media (max-width: 767px) {
+  .procedure-detail__hero { min-height: 29rem; align-items: flex-end; }
+  .procedure-detail__hero > img { object-position: 66% center; }
+  .procedure-detail__hero-overlay { background: linear-gradient(0deg, color-mix(in srgb, var(--color-surface-darker) 88%, transparent), transparent 78%); }
+  .procedure-detail__hero-content { padding-bottom: var(--space-2xl); }
+  .procedure-detail__booking { width: 100%; }
+}

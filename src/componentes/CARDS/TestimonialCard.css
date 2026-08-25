@@ -1,0 +1,83 @@
+.testimonial-card {
+  min-height: 25rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid color-mix(in srgb, var(--color-accent-hover) 16%, transparent);
+  display: flex;
+  flex-direction: column;
+  background: var(--color-overlay-light);
+  transition: border-color var(--motion-duration-fast),
+    transform var(--motion-duration-fast),
+    box-shadow var(--motion-duration-fast);
+}
+
+.testimonial-card:hover {
+  border-color: color-mix(in srgb, var(--color-accent-hover) 36%, transparent);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-3px);
+}
+
+.testimonial-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.testimonial-card__stars { display: flex; gap: .25rem; }
+.testimonial-card__stars svg { width: .9rem; height: .9rem; fill: var(--color-accent); }
+.testimonial-card__quote { width: 2.25rem; height: auto; fill: color-mix(in srgb, var(--color-accent) 20%, transparent); }
+
+.testimonial-card blockquote {
+  margin-block: clamp(2rem, 4vw, 3.25rem);
+  color: var(--color-primary);
+  font-family: var(--font-family-heading);
+  font-size: clamp(1.45rem, 1.2rem + .65vw, 2rem);
+  font-weight: var(--fw-medium);
+  line-height: 1.35;
+}
+
+.testimonial-card__author {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.testimonial-card__avatar {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--color-text-light);
+  background: var(--color-accent-hover);
+  font-size: .7rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: .08em;
+}
+
+.testimonial-card__author cite {
+  display: block;
+  color: var(--color-text);
+  font-size: var(--fs-small);
+  font-style: normal;
+  font-weight: var(--fw-semibold);
+}
+
+.testimonial-card__author p {
+  margin-top: .2rem;
+  color: var(--color-text-muted);
+  font-size: var(--fs-caption);
+}
+
+@media (max-width: 767px) {
+  .testimonial-card { min-height: 0; }
+}
+
+@media (max-width: 479px) {
+  .testimonial-card blockquote { margin-block: var(--space-xl); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-card { transition: none; }
+}

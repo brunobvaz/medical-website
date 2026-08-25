@@ -1,0 +1,35 @@
+.ui-field { width: 100%; display: grid; gap: .45rem; color: var(--color-text); }
+.ui-field__label span { color: var(--color-accent-hover); }
+.ui-field__control { position: relative; min-height: 3rem; border: 1px solid var(--color-border); display: flex; align-items: center; color: var(--color-text); background: var(--color-bg); transition: border-color var(--motion-duration-fast), box-shadow var(--motion-duration-fast); }
+.ui-field__control:focus-within { border-color: var(--color-accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 12%, transparent); }
+.ui-field__input { width: 100%; min-width: 0; padding: .82rem .9rem; border: 0; color: inherit; background: transparent; }
+.ui-field__input::placeholder { color: var(--color-text-subtle); opacity: 1; }
+.ui-field__input:disabled { cursor: not-allowed; color: var(--color-text-subtle); background: var(--color-surface); }
+.ui-field__icon { width: 1rem; height: 1rem; position: absolute; z-index: 1; display: inline-flex; color: var(--color-text-muted); pointer-events: none; }
+.ui-field__icon svg { width: 100%; height: 100%; }
+.ui-field__icon--leading { left: .9rem; }
+.ui-field__icon--leading + .ui-field__input { padding-left: 2.5rem; }
+.ui-field__icon--trailing { right: .9rem; }
+.ui-field__input:has(+ .ui-field__icon--trailing) { padding-right: 2.5rem; }
+.ui-field__message { color: var(--color-text-muted); }
+.ui-field--error .ui-field__control { border-color: var(--color-danger); }
+.ui-field--error .ui-field__message { color: var(--color-danger); }
+
+.ui-field__control--select select { padding-right: 2.75rem; appearance: none; cursor: pointer; }
+.ui-field__select-icon { width: 1rem; position: absolute; right: .9rem; pointer-events: none; }
+.ui-field__control--date .ui-field__input { cursor: pointer; }
+.ui-field__control--date .ui-field__input::-webkit-calendar-picker-indicator { cursor: pointer; opacity: .65; }
+.ui-field__textarea { min-height: 7rem; }
+
+.ui-checkbox-field { display: grid; gap: .4rem; }
+.ui-checkbox { display: inline-flex; align-items: flex-start; gap: .7rem; cursor: pointer; }
+.ui-checkbox > input { width: 1px; height: 1px; position: absolute; opacity: 0; }
+.ui-checkbox__box { width: 1.15rem; height: 1.15rem; margin-top: .08rem; border: 1px solid var(--color-border); display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; color: var(--color-text-light); background: var(--color-bg); transition: border-color var(--motion-duration-fast), background-color var(--motion-duration-fast); }
+.ui-checkbox__box svg { width: .8rem; opacity: 0; transform: scale(.7); transition: opacity var(--motion-duration-fast), transform var(--motion-duration-fast); }
+.ui-checkbox > input:checked + .ui-checkbox__box { border-color: var(--color-accent); background: var(--color-accent); }
+.ui-checkbox > input:checked + .ui-checkbox__box svg { opacity: 1; transform: scale(1); }
+.ui-checkbox > input:focus-visible + .ui-checkbox__box { outline: var(--button-focus-outline-width) solid var(--button-focus-outline-color); outline-offset: var(--button-focus-outline-offset); }
+.ui-checkbox > input:disabled ~ * { cursor: not-allowed; opacity: var(--button-disabled-opacity); }
+.ui-checkbox__content { display: grid; gap: .2rem; }
+.ui-checkbox__content small { color: var(--color-text-muted); }
+.ui-checkbox-field--error .ui-checkbox__box { border-color: var(--color-danger); }

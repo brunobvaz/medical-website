@@ -1,0 +1,73 @@
+.ui-breadcrumbs {
+  margin-bottom: 0;
+  color: var(--color-accent-hover);
+}
+
+.ui-breadcrumbs ol {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+}
+
+.ui-breadcrumbs li { display: inline-flex; align-items: center; gap: var(--space-2xs); }
+.ui-breadcrumbs li:not(:last-child)::after { color: var(--color-border-accent); content: '/'; }
+.ui-breadcrumbs a { transition: color var(--motion-duration-fast) var(--motion-ease-standard); }
+.ui-breadcrumbs a:hover { color: var(--color-accent-hover); }
+.ui-breadcrumbs [aria-current='page'] { color: inherit; }
+
+.ui-tabs__list {
+  border-bottom: var(--border-width) solid var(--color-border);
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.ui-tabs__list::-webkit-scrollbar { display: none; }
+
+.ui-tabs__tab {
+  min-height: 3.5rem;
+  position: relative;
+  padding-inline: clamp(.8rem, 2vw, 1.5rem);
+  flex: 1 0 max-content;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  transition: color var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.ui-tabs__tab::after {
+  height: 2px;
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  background: var(--color-accent);
+  content: '';
+  opacity: 0;
+  transform: scaleX(.4);
+  transition: opacity var(--motion-duration-fast) var(--motion-ease-standard), transform var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.ui-tabs__tab:hover,
+.ui-tabs__tab--active { color: var(--color-accent-hover); }
+.ui-tabs__tab--active::after { opacity: 1; transform: scaleX(1); }
+.ui-tabs__tab:focus-visible,
+.ui-tabs__panel:focus-visible { outline: var(--button-focus-outline-width) solid var(--button-focus-outline-color); outline-offset: var(--button-focus-outline-offset); }
+
+.ui-tabs__content {
+  padding-top: clamp(2.5rem, 5vw, 4.5rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, .75fr);
+  align-items: start;
+  gap: clamp(2.5rem, 7vw, 7rem);
+}
+
+.ui-tabs__panel { min-width: 0; }
+.ui-tabs__panel h2 { max-width: 14ch; margin-bottom: var(--space-lg); }
+.ui-tabs__panel p { max-width: 42rem; }
+.ui-tabs__panel p + p { margin-top: var(--space-md); }
+.ui-tabs__aside { min-width: 0; }
+
+@media (max-width: 767px) {
+  .ui-tabs__content { grid-template-columns: 1fr; gap: var(--space-xl); }
+}

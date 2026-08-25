@@ -1,0 +1,64 @@
+.contacts-page {
+  min-height: calc(100svh - var(--navbar-height));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(24rem, 1fr);
+  background: var(--color-surface-warm);
+}
+
+.contacts-page__content {
+  padding: var(--section-padding-block) var(--page-padding-inline);
+  display: flex;
+  align-items: center;
+}
+
+.contacts-page__inner { width: min(100%, 38rem); margin-inline: auto; }
+.contacts-page__content > * { min-width: 0; }
+.contacts-page__content .type-eyebrow { color: var(--color-accent-hover); }
+.contacts-page__introduction { max-width: 34rem; margin-top: var(--space-md); }
+
+.contacts-page__details {
+  margin-top: var(--space-xl);
+  display: grid;
+  gap: var(--space-lg);
+  font-style: normal;
+}
+
+.contacts-page__detail {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-sm);
+}
+
+.contacts-page__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: var(--border-width) solid var(--color-border-accent);
+  display: grid;
+  place-items: center;
+  color: var(--color-accent);
+}
+
+.contacts-page__icon svg { width: 1.25rem; height: 1.25rem; }
+.contacts-page__detail h2 { margin-bottom: var(--space-2xs); color: var(--color-text); text-transform: uppercase; }
+.contacts-page__detail a { transition: color var(--motion-duration-fast) var(--motion-ease-standard); }
+.contacts-page__detail a:hover { color: var(--color-accent-hover); }
+
+.contacts-page__locations { display: grid; gap: var(--space-md); }
+.contacts-page__locations h3 { margin-bottom: .25rem; font-weight: var(--fw-semibold); }
+.contacts-page__locations p { white-space: pre-line; }
+
+.contacts-page__image { min-width: 0; min-height: 34rem; overflow: hidden; }
+.contacts-page__image img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+
+@media (max-width: 850px) {
+  .contacts-page { grid-template-columns: 1fr; }
+  .contacts-page__content { min-height: 38rem; }
+  .contacts-page__image { height: clamp(28rem, 90vw, 42rem); min-height: 0; }
+}
+
+@media (max-width: 479px) {
+  .contacts-page__content { min-height: 0; }
+  .contacts-page__detail { grid-template-columns: 2.25rem minmax(0, 1fr); }
+  .contacts-page__icon { width: 2.25rem; height: 2.25rem; }
+}

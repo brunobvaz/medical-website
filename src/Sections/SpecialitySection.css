@@ -1,0 +1,55 @@
+.speciality-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(26rem, 1fr);
+  align-items: center;
+  padding: clamp(3.5rem, 6vw, 5.5rem) clamp(2rem, 5vw, 6rem);
+  gap: clamp(2.5rem, 5vw, 5rem);
+  background: var(--color-bg);
+}
+
+.speciality-section__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.speciality-section__intro { width: min(100%, 43rem); }
+.speciality-section__intro .type-eyebrow { color: var(--color-accent-hover); }
+.speciality-section__intro h2 { max-width: none; font-size: clamp(2.6rem, 4.4vw, 4.5rem); }
+.speciality-section__intro h2 span { display: block; }
+.speciality-section__intro h2 span:first-child { white-space: nowrap; }
+.speciality-section__rule { width: 3.25rem; height: 2px; display: block; margin: clamp(1.75rem, 3vw, 2.75rem) 0; background: var(--color-accent); }
+.speciality-section__description { display: grid; gap: 1rem; color: var(--color-text-muted); }
+.speciality-section__description p { max-width: 42rem; line-height: 1.65; }
+
+.speciality-section__benefits { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: clamp(3rem, 5vw, 5rem) 0 0; padding: 0; list-style: none; }
+.speciality-section__benefits li { min-width: 0; padding: 0 clamp(.75rem, 1.5vw, 1.5rem); text-align: center; }
+.speciality-section__benefits li:first-child { padding-left: 0; }
+.speciality-section__benefits li + li { border-left: 1px solid var(--color-border); }
+.speciality-section__benefit-mark { height: 3.2rem; display: grid; place-items: center; color: var(--color-accent-hover); font-family: var(--font-family-heading); font-size: 2.6rem; line-height: 1; }
+.speciality-section__benefits p { max-width: 11rem; margin: 1rem auto 0; color: var(--color-text-muted); font-size: var(--fs-small); line-height: 1.45; text-wrap: balance; }
+
+.speciality-section__image { width: min(100%, 32rem); justify-self: center; min-width: 0; overflow: hidden; }
+.speciality-section__image img { width: 100%; height: auto; max-height: 38rem; aspect-ratio: 4 / 5; display: block; object-fit: cover; object-position: center; }
+
+@media (max-width: 1000px) {
+  .speciality-section { grid-template-columns: minmax(0, 1.15fr) minmax(18rem, .85fr); padding-inline: clamp(2rem, 4vw, 3.5rem); }
+  .speciality-section__image img { max-height: 34rem; }
+  .speciality-section__benefits { grid-template-columns: repeat(2, 1fr); gap: 2rem 0; }
+  .speciality-section__benefits li:nth-child(3) { border-left: 0; }
+}
+
+@media (max-width: 700px) {
+  .speciality-section { grid-template-columns: 1fr; padding: clamp(3.5rem, 12vw, 5rem) var(--page-padding-inline); }
+  .speciality-section__intro h2 { max-width: none; font-size: clamp(2.35rem, 11vw, 3.5rem); }
+  .speciality-section__benefits { margin-top: 3rem; }
+  .speciality-section__image { width: min(100%, 27rem); aspect-ratio: auto; }
+  .speciality-section__image img { max-height: none; aspect-ratio: 4 / 4.5; }
+}
+
+@media (max-width: 420px) {
+  .speciality-section__benefits { grid-template-columns: 1fr; gap: 0; }
+  .speciality-section__benefits li { padding: 1.5rem 0; }
+  .speciality-section__benefits li + li { border-left: 0; border-top: 1px solid var(--color-border); }
+  .speciality-section__benefits p { max-width: 15rem; }
+}
