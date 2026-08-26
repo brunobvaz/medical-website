@@ -408,7 +408,7 @@
 .after-before-card__after {
   position: absolute;
   inset: 0;
-  clip-path: inset(0 calc(100% - var(--comparison-position)) 0 0);
+  clip-path: inset(0 0 0 var(--comparison-position));
 }
 
 .after-before-card__label {
@@ -424,8 +424,8 @@
   text-transform: uppercase;
 }
 
-.after-before-card__label--before { right: var(--space-sm); }
-.after-before-card__label--after { left: var(--space-sm); }
+.after-before-card__label--before { left: var(--space-sm); }
+.after-before-card__label--after { right: var(--space-sm); }
 
 .after-before-card__divider {
   width: 1px;
@@ -485,6 +485,6 @@
 @media (max-width: 767px) {
   .after-before-card__handle { width: var(--button-height-sm); height: var(--button-height-sm); }
   .after-before-card__label { top: var(--space-xs); padding: var(--space-2xs); }
-  .after-before-card__label--before { right: var(--space-xs); }
-  .after-before-card__label--after { left: var(--space-xs); }
+  .after-before-card__label--before { left: var(--space-xs); }
+  .after-before-card__label--after { right: var(--space-xs); }
 }

@@ -15,6 +15,7 @@ export default function TestimonialCard({
   name,
   treatment,
   initials,
+  image,
   rating = 5,
   ratingLabel,
   className = '',
@@ -31,7 +32,9 @@ export default function TestimonialCard({
       <blockquote className="type-quote">“{quote}”</blockquote>
 
       <footer className="testimonial-card__author">
-        <span className="testimonial-card__avatar" aria-hidden="true">{initials}</span>
+        {image
+          ? <img className="testimonial-card__avatar" src={image} alt="" aria-hidden="true" loading="lazy" />
+          : <span className="testimonial-card__avatar" aria-hidden="true">{initials}</span>}
         <div>
           <cite className="type-small">{name}</cite>
           <p className="type-caption">{treatment}</p>

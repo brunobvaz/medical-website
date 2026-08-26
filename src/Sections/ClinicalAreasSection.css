@@ -1,72 +1,48 @@
-.clinical-areas-section {
-  min-height: 75vh;
-  min-height: 75svh;
-  padding: var(--section-padding-block) var(--page-padding-inline);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: var(--color-bg);
+.clinical-areas-section { padding: clamp(5rem, 8vw, 8rem) var(--page-padding-inline); overflow: hidden; background: var(--color-bg); }
+.clinical-areas-section__heading { min-height: clamp(20rem, 31vw, 29rem); position: relative; display: flex; align-items: flex-start; }
+.clinical-areas-section__heading-copy { max-width: 55rem; position: relative; z-index: 1; }
+.clinical-areas-section__eyebrow { color: var(--color-accent-hover); letter-spacing: .2em; }
+.clinical-areas-section__rule { width: 3.25rem; height: 1px; margin: 1.35rem 0 clamp(2.5rem, 4vw, 4rem); display: block; background: var(--color-accent); }
+.clinical-areas-section__heading h2 { font-family: var(--font-family-heading); font-size: clamp(3rem, 5vw, 5.3rem); font-weight: var(--fw-medium); line-height: .98; letter-spacing: -.025em; }
+.clinical-areas-section__heading h2 span,
+.clinical-areas-section__heading h2 em { display: block; }
+.clinical-areas-section__heading h2 em { color: var(--color-accent-hover); font-weight: inherit; }
+.clinical-areas-section__introduction { max-width: 44rem; margin-top: clamp(2rem, 3vw, 3rem); color: var(--color-text-muted); font-size: var(--fs-p); line-height: 1.65; text-wrap: balance; }
+.clinical-areas-section__identity { width: clamp(24rem, 38vw, 39rem); height: auto; position: absolute; top: -2rem; right: clamp(-10rem, -6vw, -4rem); opacity: .15; pointer-events: none; }
+
+.clinical-areas-section__list { margin: 0; padding: 0; list-style: none; }
+.clinical-areas-section__list li { min-height: 9rem; padding: clamp(1.5rem, 2.5vw, 2.5rem) .75rem; border-bottom: 1px solid var(--color-border); display: grid; grid-template-columns: 7.5rem 1px minmax(0, 1fr) auto; align-items: center; gap: clamp(1.5rem, 3vw, 3.5rem); }
+.clinical-areas-section__list li:first-child { border-top: 0; }
+.clinical-areas-section__number { color: var(--color-accent-hover); font-family: var(--font-family-heading); font-size: clamp(3.7rem, 5vw, 5.4rem); line-height: .8; }
+.clinical-areas-section__divider { width: 1px; height: 4.5rem; background: var(--color-border-accent); }
+.clinical-areas-section__item-copy h3 { font-family: var(--font-family-heading); font-size: clamp(2rem, 3vw, 3rem); font-weight: var(--fw-medium); line-height: 1; }
+.clinical-areas-section__item-copy p { margin-top: .9rem; color: var(--color-text-muted); font-size: var(--fs-small); line-height: 1.55; }
+.clinical-areas-section__link { min-width: 9rem; padding: .5rem 0 .7rem; border-bottom: 1px solid var(--color-border-accent); display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; color: var(--color-accent-hover); font-size: var(--fs-small); font-weight: var(--fw-medium); letter-spacing: .08em; text-transform: uppercase; transition: color var(--motion-duration-fast), border-color var(--motion-duration-fast); }
+.clinical-areas-section__link:hover { color: var(--color-accent); border-color: currentColor; }
+.clinical-areas-section__link:focus-visible { outline: var(--button-focus-outline-width) solid var(--button-focus-outline-color); outline-offset: var(--button-focus-outline-offset); }
+
+@media (max-width: 800px) {
+  .clinical-areas-section { padding-block: clamp(4.5rem, 13vw, 7rem); }
+  .clinical-areas-section__heading { min-height: clamp(28rem, 88vw, 39rem); }
+  .clinical-areas-section__heading-copy { max-width: 90%; }
+  .clinical-areas-section__heading h2 { font-size: clamp(2.8rem, 8vw, 4.4rem); }
+  .clinical-areas-section__introduction { max-width: 27rem; font-size: 1rem; line-height: 1.7; }
+  .clinical-areas-section__identity { width: clamp(20rem, 61vw, 32rem); top: 10rem; right: clamp(-12rem, -18vw, -7rem); }
+  .clinical-areas-section__list li { min-height: 15rem; padding: clamp(2.25rem, 6vw, 3.5rem) .25rem; grid-template-columns: clamp(6rem, 17vw, 8rem) 1px minmax(0, 1fr); align-items: start; gap: clamp(1.25rem, 4vw, 2.25rem); }
+  .clinical-areas-section__number { font-size: clamp(3.8rem, 11vw, 5.5rem); }
+  .clinical-areas-section__divider { height: 8rem; }
+  .clinical-areas-section__item-copy h3 { font-size: clamp(2rem, 6vw, 3rem); }
+  .clinical-areas-section__item-copy p { margin-top: 1.25rem; font-size: .94rem; line-height: 1.65; }
+  .clinical-areas-section__link { width: min(100%, 10.5rem); min-width: 0; margin-top: 1.75rem; grid-column: 3; }
 }
 
-.clinical-areas-section__heading {
-  margin-bottom: var(--section-heading-gap);
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: var(--space-sm);
-}
-
-.clinical-areas-section__title {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-sm);
-}
-
-.clinical-areas-section__title h2 { color: var(--color-accent); }
-
-.clinical-areas-section__title span {
-  width: var(--section-rule-size);
-  height: var(--border-width);
-  background: var(--color-border-accent);
-}
-
-.clinical-areas-section__controls {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-}
-
-.clinical-areas-section__controls .ui-arrow-button {
-  border: var(--border-width) solid var(--color-border-accent);
-  color: var(--color-accent-hover);
-}
-
-.clinical-areas-section__carousel {
-  --carousel-gap: 2%;
-  padding-block: var(--space-2xs) var(--space-md);
-  display: flex;
-  gap: var(--carousel-gap);
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
-  scroll-behavior: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-}
-
-.clinical-areas-section__carousel::-webkit-scrollbar { display: none; }
-
-.clinical-areas-section__carousel > * {
-  flex: 0 0 32%;
-  scroll-snap-align: start;
-}
-
-@media (max-width: 767px) {
-  .clinical-areas-section {
-    min-height: 0;
-    padding-block: var(--section-padding-block);
-  }
-
-  .clinical-areas-section__heading { align-items: center; }
-  .clinical-areas-section__carousel > * { flex-basis: 86%; }
+@media (max-width: 480px) {
+  .clinical-areas-section__heading-copy { max-width: 100%; }
+  .clinical-areas-section__heading h2 { font-size: clamp(2.45rem, 11vw, 3.4rem); }
+  .clinical-areas-section__heading h2 em { max-width: 12ch; }
+  .clinical-areas-section__introduction { max-width: 78%; }
+  .clinical-areas-section__identity { width: 22rem; top: 12rem; right: -12rem; }
+  .clinical-areas-section__list li { grid-template-columns: 5.7rem 1px minmax(0, 1fr); gap: 1rem; }
+  .clinical-areas-section__number { font-size: 3.65rem; }
+  .clinical-areas-section__item-copy h3 { font-size: 1.95rem; }
 }

@@ -1,6 +1,5 @@
-import { useRef } from 'react'
-import { ArrowButton } from '../componentes/ACTION/index.js'
-import { ClinicalAreaCard } from '../componentes/CARDS/index.js'
+import { Link } from 'react-router-dom'
+import identityMark from '../assets/icons/igsite_gold_2x.png'
 import { Section, SectionContainer } from '../componentes/LAYOUT/index.js'
 import { getClinicalAreas } from '../data/homepage.js'
 import { useI18n } from '../i18n/I18nContext.jsx'
@@ -9,60 +8,38 @@ import './ClinicalAreasSection.css'
 export default function ClinicalAreasSection() {
   const { language } = useI18n()
   const content = getClinicalAreas(language)
-  const carouselRef = useRef(null)
-
-  const moveCarousel = (direction) => {
-    const carousel = carouselRef.current
-    const card = carousel?.firstElementChild
-    if (!carousel || !card) return
-
-    const gap = Number.parseFloat(getComputedStyle(carousel).columnGap) || 0
-    const distance = direction * (card.getBoundingClientRect().width + gap)
-    const start = carousel.scrollLeft
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const duration = reduceMotion ? 0 : 850
-    const startedAt = performance.now()
-
-    const animate = (now) => {
-      const progress = duration === 0 ? 1 : Math.min((now - startedAt) / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      carousel.scrollLeft = start + (distance * eased)
-      if (progress < 1) requestAnimationFrame(animate)
-    }
-
-    requestAnimationFrame(animate)
-  }
 
   return (
     <Section className="clinical-areas-section" id="areas-clinicas" aria-labelledby="clinical-areas-title">
-      <SectionContainer narrow>
+      <SectionContainer>
         <header className="clinical-areas-section__heading">
-          <div className="clinical-areas-section__title">
-            <h2 className="type-eyebrow" id="clinical-areas-title">{content.title}</h2>
-            <span aria-hidden="true" />
+          <div className="clinical-areas-section__heading-copy">
+            <p className="clinical-areas-section__eyebrow type-eyebrow">{content.title}</p>
+            <span className="clinical-areas-section__rule" aria-hidden="true" />
+            <h2 id="clinical-areas-title">
+              <span>{content.headingLineOne}</span>
+              <em>{content.headingLineTwo}</em>
+            </h2>
+            <p className="clinical-areas-section__introduction">{content.introduction}</p>
           </div>
-          <div className="clinical-areas-section__controls">
-            <ArrowButton direction="left" label={content.previousLabel} size="small" variant="dark" onClick={() => moveCarousel(-1)} />
-            <ArrowButton direction="right" label={content.nextLabel} size="small" variant="dark" onClick={() => moveCarousel(1)} />
-          </div>
+          <img className="clinical-areas-section__identity" src={identityMark} alt="" />
         </header>
 
-        <div className="clinical-areas-section__carousel" ref={carouselRef} role="region" aria-label={content.title} tabIndex={0}>
-          {content.items.map((area) => (
-            <ClinicalAreaCard
-              key={area.slug}
-              image={area.image}
-              imageAlt={area.imageAlt}
-              coverImage={area.coverImage}
-              coverAlt={area.coverAlt}
-              categoryLabel={content.categoryLabel}
-              title={area.title}
-              description={area.description}
-              linkLabel={content.linkLabel}
-              to={area.to}
-            />
+        <ol className="clinical-areas-section__list">
+          {content.items.map((area, index) => (
+            <li key={area.slug}>
+              <span className="clinical-areas-section__number">{String(index + 1).padStart(2, '0')}</span>
+              <span className="clinical-areas-section__divider" aria-hidden="true" />
+              <div className="clinical-areas-section__item-copy">
+                <h3>{area.title}</h3>
+                <p>{area.description}</p>
+              </div>
+              <Link className="clinical-areas-section__link" to={area.to}>
+                <span>{content.linkLabel}</span><span aria-hidden="true">→</span>
+              </Link>
+            </li>
           ))}
-        </div>
+        </ol>
       </SectionContainer>
     </Section>
   )

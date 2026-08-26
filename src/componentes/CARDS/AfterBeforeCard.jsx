@@ -45,7 +45,7 @@ export default function AfterBeforeCard({
           min="0"
           max="100"
           value={position}
-          aria-valuetext={`${position}% ${afterLabel}`}
+          aria-valuetext={`${100 - position}% ${afterLabel}`}
           onChange={(event) => setPosition(Number(event.target.value))}
         />
       </div>

@@ -48,12 +48,14 @@
   height: 2.75rem;
   border-radius: 50%;
   display: grid;
+  flex: 0 0 auto;
   place-items: center;
   color: var(--color-text-light);
   background: var(--color-accent-hover);
   font-size: .7rem;
   font-weight: var(--fw-semibold);
   letter-spacing: .08em;
+  object-fit: cover;
 }
 
 .testimonial-card__author cite {

@@ -1,0 +1,56 @@
+.positioning-section {
+  min-height: clamp(46rem, 65vw, 57rem);
+  padding: clamp(4.5rem, 7vw, 6.5rem) var(--page-padding-inline) clamp(14rem, 23vw, 20rem);
+  position: relative;
+  overflow: hidden;
+  color: var(--color-text);
+  background: var(--color-surface-warm);
+  isolation: isolate;
+}
+
+.positioning-section::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(248, 245, 239, .97) 0%, rgba(248, 245, 239, .94) 58%, rgba(248, 245, 239, .5) 78%, rgba(248, 245, 239, .12) 100%);
+  content: '';
+}
+
+.positioning-section__image { width: 100%; height: 47%; position: absolute; right: 0; bottom: 0; z-index: -2; object-fit: cover; object-position: 72% 43%; filter: sepia(.32) saturate(.55) brightness(1.16); transform: scale(1.03); }
+.positioning-section__content { width: min(100%, 74rem); margin-inline: auto; position: relative; z-index: 1; text-align: center; }
+.positioning-section__eyebrow { color: var(--color-accent-hover); letter-spacing: .25em; }
+.positioning-section__eyebrow::after { width: 2rem; height: 1px; margin: 1.25rem auto 1.5rem; display: block; background: var(--color-accent); content: ''; }
+
+.positioning-section__title { width: min(100%, 62rem); margin-inline: auto; display: grid; grid-template-columns: 1fr clamp(2rem, 2.8vw, 3rem) 1fr; align-items: center; color: var(--color-text); font-family: var(--font-family-heading); font-size: clamp(3rem, 5.4vw, 5.4rem); font-weight: var(--fw-medium); line-height: .88; letter-spacing: -.025em; }
+.positioning-section__title-block { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.positioning-section__title-block:first-child { transform: translateX(clamp(1.5rem, 2.5vw, 2.5rem)); }
+.positioning-section__title-block:last-child { color: #8f7a62; }
+.positioning-section__title-block em { font-weight: inherit; }
+.positioning-section__cross { width: 2rem; height: 2rem; justify-self: center; position: relative; }
+.positioning-section__cross::before,
+.positioning-section__cross::after { width: 2.5rem; height: 1px; position: absolute; top: 50%; left: 50%; background: currentColor; content: ''; }
+.positioning-section__cross::before { transform: translate(-50%, -50%) rotate(45deg); }
+.positioning-section__cross::after { transform: translate(-50%, -50%) rotate(-45deg); }
+
+.positioning-section__introduction { max-width: 46rem; margin: 2.25rem auto 0; font-size: var(--fs-small); line-height: 1.65; text-wrap: balance; }
+.positioning-section__introduction span { display: block; }
+.positioning-section__divider { width: 1px; height: 1.6rem; margin: 1.5rem auto 2.5rem; display: block; background: var(--color-accent); }
+.positioning-section__pillars { width: min(100%, 58rem); margin-inline: auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 3rem); }
+.positioning-section__pillars li { display: flex; flex-direction: column; align-items: center; }
+.positioning-section__pillars h3 { margin-top: 1rem; font-size: .77rem; font-weight: var(--fw-medium); letter-spacing: .28em; text-transform: uppercase; }
+.positioning-section__pillar-rule { width: 1.2rem; height: 1px; margin: .85rem auto .8rem; background: var(--color-accent); }
+.positioning-section__pillars p { max-width: 17rem; color: var(--color-text-muted); font-size: .8rem; line-height: 1.55; text-wrap: balance; }
+
+.positioning-section__pillar-icon { width: clamp(4.5rem, 6vw, 5.5rem); height: clamp(4.5rem, 6vw, 5.5rem); display: block; object-fit: contain; }
+
+@media (max-width: 720px) {
+  .positioning-section { min-height: auto; padding-block: 4.5rem 14rem; }
+  .positioning-section__title { grid-template-columns: 1fr; gap: 1rem; line-height: .95; }
+  .positioning-section__title-block:first-child { transform: none; }
+  .positioning-section__cross { width: 1.4rem; height: 1.4rem; }
+  .positioning-section__pillars { grid-template-columns: 1fr; gap: 2.5rem; }
+  .positioning-section__pillars p { max-width: 20rem; }
+  .positioning-section__image { height: 13rem; object-position: 70% 48%; }
+  .positioning-section__introduction span { display: inline; }
+  .positioning-section__introduction span + span::before { content: ' '; }
+}

@@ -1,6 +1,8 @@
 import { Button } from '../componentes/ACTION/index.js'
+import { AfterBeforeCard } from '../componentes/CARDS/index.js'
 import { Section, SectionContainer, SectionHeader } from '../componentes/LAYOUT/index.js'
 import { feedMedia } from '../data/homepage.js'
+import { getResultsPage } from '../data/resultsPage.js'
 import { useI18n } from '../i18n/I18nContext.jsx'
 import './FeedSection.css'
 
@@ -11,8 +13,9 @@ const ArrowIcon = () => (
 )
 
 export default function FeedSection() {
-  const { t } = useI18n()
+  const { language, t } = useI18n()
   const content = t.feed
+  const results = getResultsPage(language)
 
   return (
     <Section className="feed-section" aria-labelledby="feed-title">
@@ -20,23 +23,29 @@ export default function FeedSection() {
         <div className="feed-section__intro">
           <SectionHeader className="feed-section__heading" eyebrow={content.eyebrow} title={content.title} description={content.description} titleId="feed-title" />
           <div className="feed-section__action">
-            <Button to="/treatments" variant="primary" size="small" trailingIcon={<ArrowIcon />}>
+            <Button to="/results" variant="primary" size="small" trailingIcon={<ArrowIcon />}>
               {content.buttonLabel}
             </Button>
           </div>
 
-          <figure className="feed-section__featured" tabIndex={0}>
-            <img src={feedMedia.featured} alt={`${content.imageAlt} 1`} loading="lazy" />
-            <figcaption>{`${content.imageAlt} 1`}</figcaption>
+          <figure className="feed-section__featured">
+            <img src={feedMedia.featured} alt={content.imageAlt} loading="lazy" />
           </figure>
         </div>
 
-        <div className="feed-section__grid">
-          {feedMedia.gallery.map((image, index) => (
-            <figure className="feed-section__item" key={image} tabIndex={0}>
-              <img src={image} alt={`${content.imageAlt} ${index + 2}`} loading="lazy" />
-              <figcaption>{`${content.imageAlt} ${index + 2}`}</figcaption>
-            </figure>
+        <div className="feed-section__comparisons">
+          {results.items.slice(0, 2).map((item) => (
+            <AfterBeforeCard
+              className="feed-section__comparison"
+              key={item.title}
+              beforeImage={item.beforeImage}
+              afterImage={item.afterImage}
+              beforeLabel={results.beforeLabel}
+              afterLabel={results.afterLabel}
+              beforeAlt={`${item.title}: ${results.beforeLabel}`}
+              afterAlt={`${item.title}: ${results.afterLabel}`}
+              sliderLabel={`${results.sliderLabel}: ${item.title}`}
+            />
           ))}
         </div>
       </SectionContainer>
