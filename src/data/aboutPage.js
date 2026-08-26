@@ -1,14 +1,14 @@
 const aboutPage = {
   pt: {
     eyebrow: 'Sobre',
-    title: 'Sobre a Dra. Ana Duarte',
+    title: 'Sobre a Dra. Anna Bonaparte',
     introduction: 'Oftalmologista especialista em Oculoplástica, com formação internacional e ampla experiência clínica e cirúrgica.',
-    portraitAlt: 'Dra. Ana Duarte, médica oftalmologista especialista em Oculoplástica',
+    portraitAlt: 'Dra. Anna Bonaparte, médica oftalmologista especialista em Oculoplástica',
     officeAlt: 'Consultório moderno e acolhedor da clínica',
     presentationTitle: 'Apresentação',
-    presentationAlt: 'Dra. Ana Duarte durante uma cirurgia',
+    presentationAlt: 'Dra. Anna Bonaparte durante uma cirurgia',
     presentationParagraphs: [
-      'Ana Duarte concluiu a licenciatura em Medicina na Faculdade de Medicina de Lisboa e o internato de Oftalmologia no Centro Hospitalar e Universitário de Lisboa Central. Posteriormente, especializou-se em Cirurgia Oculoplástica, Órbita e Vias Lacrimais, realizando dois fellowships nesta área, na Faculdade de Medicina de Ribeirão Preto (Universidade de São Paulo, Brasil) e em Buenos Aires, Argentina.',
+      'Anna Bonaparte concluiu a licenciatura em Medicina na Faculdade de Medicina de Lisboa e o internato de Oftalmologia no Centro Hospitalar e Universitário de Lisboa Central. Posteriormente, especializou-se em Cirurgia Oculoplástica, Órbita e Vias Lacrimais, realizando dois fellowships nesta área, na Faculdade de Medicina de Ribeirão Preto (Universidade de São Paulo, Brasil) e em Buenos Aires, Argentina.',
       'Exerce atividade clínica na MyFace Clinic, em Lisboa, e na The Ezra Clinic (152 Harley Street), em Londres, dedicando-se exclusivamente à Cirurgia Oculoplástica. Tem especial interesse em cirurgia de rejuvenescimento de pálpebras e sobrancelhas, bem como em cirurgia de órbita, com ênfase na Orbitopatia Tiroideia (doença de Graves).',
       'É primeira autora e coautora de diversas publicações científicas na área da Oculoplástica e Órbita, participando regularmente em congressos nacionais e internacionais e sendo frequentemente convidada para integrar atividades de formação dirigidas a Oftalmologistas e especialistas de outras áreas, onde partilha a sua experiência clínica e técnicas cirúrgicas.',
       'Atualmente frequenta o Programa de Doutoramento em Medicina da NOVA Medical School – Faculdade de Ciências Médicas da Universidade NOVA de Lisboa, onde desenvolve um projeto de investigação na área da fisiologia palpebral.',
@@ -27,7 +27,7 @@ const aboutPage = {
     focusAreas: ['Cirurgia das pálpebras', 'Doenças da órbita', 'Vias lacrimais', 'Estética e rejuvenescimento periocular'],
     quoteLabel: 'Filosofia clínica',
     quote: 'Acredito numa medicina próxima, rigorosa e personalizada, capaz de cuidar da função sem perder de vista o bem-estar de cada pessoa.',
-    quoteAuthor: 'Dra. Ana Duarte',
+    quoteAuthor: 'Dra. Anna Bonaparte',
     oculoplasticsEyebrow: 'Oculoplástica',
     oculoplasticsTitle: 'O que é a Cirurgia Oculoplástica?',
     oculoplasticsIntroduction: 'É uma subespecialidade de Oftalmologia centrada no diagnóstico e tratamento de alterações da área periocular, que engloba as pálpebras, órbita — região em redor do olho que inclui a gordura, músculos, glândula lacrimal e nervo óptico — e vias lacrimais.',
@@ -40,12 +40,12 @@ const aboutPage = {
     ],
     oculoplasticsDetailEnd: ', entre outras.',
     oculoplasticsCta: 'Se nota alterações nalguma destas áreas, não deixe de marcar consulta com um Oftalmologista especialista em Cirurgia Oculoplástica.',
-    tabsLabel: 'Informação sobre a Dra. Ana Duarte',
+    tabsLabel: 'Informação sobre a Dra. Anna Bonaparte',
     tabs: [
       {
         id: 'apresentacao', label: 'Apresentação', title: 'Apresentação',
         paragraphs: [
-          'A Dra. Ana Duarte dedica-se exclusivamente à Oculoplástica, área da Oftalmologia que aborda as condições funcionais e estéticas das pálpebras, órbita e vias lacrimais.',
+          'A Dra. Anna Bonaparte dedica-se exclusivamente à Oculoplástica, área da Oftalmologia que aborda as condições funcionais e estéticas das pálpebras, órbita e vias lacrimais.',
           'O seu compromisso é proporcionar cuidados de excelência, personalizados e seguros, com foco no bem-estar e na confiança de quem acompanha.',
         ],
       },
@@ -81,14 +81,14 @@ const aboutPage = {
   },
   en: {
     eyebrow: 'About',
-    title: 'About Dr Ana Duarte',
+    title: 'About Dr Anna Bonaparte',
     introduction: 'An ophthalmologist specialising in Oculoplastics, with international training and extensive clinical and surgical experience.',
-    portraitAlt: 'Dr Ana Duarte, ophthalmologist specialising in Oculoplastics',
+    portraitAlt: 'Dr Anna Bonaparte, ophthalmologist specialising in Oculoplastics',
     officeAlt: 'Modern and welcoming clinic consultation room',
     presentationTitle: 'Introduction',
-    presentationAlt: 'Dr Ana Duarte performing surgery',
+    presentationAlt: 'Dr Anna Bonaparte performing surgery',
     presentationParagraphs: [
-      'Ana Duarte graduated in Medicine from the Faculty of Medicine of Lisbon and completed her Ophthalmology residency at Centro Hospitalar e Universitário de Lisboa Central. She later specialised in Oculoplastic, Orbital and Lacrimal Surgery, completing two fellowships in this field at the Ribeirão Preto Medical School (University of São Paulo, Brazil) and in Buenos Aires, Argentina.',
+      'Anna Bonaparte graduated in Medicine from the Faculty of Medicine of Lisbon and completed her Ophthalmology residency at Centro Hospitalar e Universitário de Lisboa Central. She later specialised in Oculoplastic, Orbital and Lacrimal Surgery, completing two fellowships in this field at the Ribeirão Preto Medical School (University of São Paulo, Brazil) and in Buenos Aires, Argentina.',
       'She practises at MyFace Clinic in Lisbon and The Ezra Clinic (152 Harley Street) in London, working exclusively in Oculoplastic Surgery. She has a particular interest in eyelid and eyebrow rejuvenation surgery, as well as orbital surgery, with an emphasis on thyroid eye disease (Graves’ disease).',
       'She is the first author and co-author of several scientific publications in Oculoplastics and Orbital Surgery, regularly participates in national and international conferences, and is frequently invited to training activities for ophthalmologists and specialists from other fields, where she shares her clinical experience and surgical techniques.',
       'She is currently enrolled in the Doctoral Programme in Medicine at NOVA Medical School – Faculdade de Ciências Médicas da Universidade NOVA de Lisboa, where she is developing a research project in eyelid physiology.',
@@ -107,7 +107,7 @@ const aboutPage = {
     focusAreas: ['Eyelid surgery', 'Orbital conditions', 'Lacrimal system', 'Periocular aesthetics and rejuvenation'],
     quoteLabel: 'Clinical philosophy',
     quote: 'I believe in attentive, rigorous and personalised medicine that cares for function without losing sight of each person’s wellbeing.',
-    quoteAuthor: 'Dr Ana Duarte',
+    quoteAuthor: 'Dr Anna Bonaparte',
     oculoplasticsEyebrow: 'Oculoplastics',
     oculoplasticsTitle: 'What is Oculoplastic Surgery?',
     oculoplasticsIntroduction: 'It is a subspecialty of Ophthalmology focused on diagnosing and treating conditions of the periocular area, which includes the eyelids, orbit — the region surrounding the eye that contains fat, muscles, the lacrimal gland and optic nerve — and the lacrimal system.',
@@ -120,12 +120,12 @@ const aboutPage = {
     ],
     oculoplasticsDetailEnd: ', among others.',
     oculoplasticsCta: 'If you notice changes in any of these areas, arrange a consultation with an Ophthalmologist specialising in Oculoplastic Surgery.',
-    tabsLabel: 'Information about Dr Ana Duarte',
+    tabsLabel: 'Information about Dr Anna Bonaparte',
     tabs: [
       {
         id: 'introduction', label: 'Introduction', title: 'Introduction',
         paragraphs: [
-          'Dr Ana Duarte works exclusively in Oculoplastics, the field of Ophthalmology dedicated to functional and aesthetic conditions affecting the eyelids, orbit and lacrimal system.',
+          'Dr Anna Bonaparte works exclusively in Oculoplastics, the field of Ophthalmology dedicated to functional and aesthetic conditions affecting the eyelids, orbit and lacrimal system.',
           'Her commitment is to provide excellent, personalised and safe care, with a focus on each person’s wellbeing and confidence.',
         ],
       },

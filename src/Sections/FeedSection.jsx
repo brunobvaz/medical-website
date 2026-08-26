@@ -45,6 +45,7 @@ export default function FeedSection() {
               beforeAlt={`${item.title}: ${results.beforeLabel}`}
               afterAlt={`${item.title}: ${results.afterLabel}`}
               sliderLabel={`${results.sliderLabel}: ${item.title}`}
+              demoOnView
             />
           ))}
         </div>

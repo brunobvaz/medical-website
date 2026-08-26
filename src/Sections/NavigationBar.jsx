@@ -14,6 +14,7 @@ export default function NavigationBar({
   const { t, toggleLanguage } = useI18n()
   const { pathname } = useLocation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const firstLinkRef = useRef(null)
   const resolvedBrand = brand ?? siteConfig.brand
   const resolvedBookingLabel = bookingLabel ?? t.navigation.booking
@@ -50,8 +51,15 @@ export default function NavigationBar({
     }
   }, [isMenuOpen])
 
+  useEffect(() => {
+    const updateScrollState = () => setIsScrolled(window.scrollY > 24)
+    updateScrollState()
+    window.addEventListener('scroll', updateScrollState, { passive: true })
+    return () => window.removeEventListener('scroll', updateScrollState)
+  }, [])
+
   return (
-    <header className={`main-navigation ${isMenuOpen ? 'main-navigation--open' : ''}`}>
+    <header className={`main-navigation ${isMenuOpen ? 'main-navigation--open' : ''} ${isScrolled ? 'main-navigation--scrolled' : ''}`}>
       <Button className="main-navigation__booking" to={resolvedBookingHref} size="small">
         <span className="main-navigation__booking-full">{resolvedBookingLabel}</span>
         <span className="main-navigation__booking-short">{t.navigation.bookingShort}</span>

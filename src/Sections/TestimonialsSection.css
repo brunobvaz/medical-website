@@ -61,7 +61,7 @@
   background: var(--color-accent-hover);
 }
 
-.testimonials-section__viewport { overflow: hidden; }
+.testimonials-section__viewport { overflow: hidden; touch-action: pan-y; }
 
 .testimonials-section__track {
   --testimonial-gap: clamp(1rem, 2vw, 2rem);
@@ -125,11 +125,12 @@
 
 .testimonials-section__navigation {
   margin-top: var(--space-lg);
-  min-height: 3rem;
-  position: relative;
+  min-height: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: var(--space-md);
 }
 
 .testimonials-section__pagination {
@@ -139,8 +140,7 @@
 }
 
 .testimonials-section__navigation .testimonials-section__controls {
-  position: absolute;
-  right: 0;
+  position: static;
 }
 
 .testimonials-section__pagination button {
@@ -211,8 +211,6 @@
 
 @media (max-width: 479px) {
   .testimonials-section__header-row { align-items: stretch; flex-direction: column; gap: var(--space-md); }
-  .testimonials-section__navigation { justify-content: space-between; }
-  .testimonials-section__navigation .testimonials-section__controls { position: static; }
   .testimonials-section__pagination .is-active { width: 2.75rem; }
 }
 

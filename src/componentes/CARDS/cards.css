@@ -409,6 +409,7 @@
   position: absolute;
   inset: 0;
   clip-path: inset(0 0 0 var(--comparison-position));
+  transition: clip-path .65s var(--motion-ease-standard);
 }
 
 .after-before-card__label {
@@ -437,7 +438,11 @@
   background: var(--color-text-light);
   box-shadow: var(--shadow-sm);
   pointer-events: none;
+  transition: left .65s var(--motion-ease-standard);
 }
+
+.after-before-card__viewport:focus-within .after-before-card__after,
+.after-before-card__viewport:focus-within .after-before-card__divider { transition: none; }
 
 .after-before-card__handle {
   width: var(--button-height-md);
@@ -456,6 +461,24 @@
 }
 
 .after-before-card__handle svg { width: var(--space-md); height: var(--space-md); }
+
+.after-before-card--interactive-hint .after-before-card__handle {
+  animation: comparison-handle-hint 900ms var(--motion-ease-standard) 350ms 2;
+}
+
+@keyframes comparison-handle-hint {
+  50% {
+    box-shadow: 0 0 0 .45rem color-mix(in srgb, var(--color-bg) 28%, transparent);
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+}
+
+@media (hover: hover) {
+  .after-before-card__viewport:hover .after-before-card__handle {
+    box-shadow: 0 0 0 .3rem color-mix(in srgb, var(--color-bg) 22%, transparent);
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
 
 .after-before-card__slider {
   position: absolute;

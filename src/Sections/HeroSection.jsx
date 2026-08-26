@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ArrowButton, Button } from '../componentes/ACTION/index.js'
 import { Section } from '../componentes/LAYOUT/index.js'
 import { getHeroContent } from '../data/homepage.js'
@@ -13,6 +13,7 @@ export default function HeroSection({
 }) {
   const { language: activeLanguage } = useI18n()
   const [currentIndex, setCurrentIndex] = useState(0)
+  const heroRef = useRef(null)
   const language = languageOverride ?? activeLanguage
   const content = getHeroContent(language)
   const safeSlides = slides?.length > 0 ? slides : content.slides
@@ -34,9 +35,34 @@ export default function HeroSection({
   const showSlide = (index) => setCurrentIndex(index)
   const backgroundStyle = { backgroundImage: `url(${currentSlide.image})` }
 
+  useEffect(() => {
+    const hero = heroRef.current
+    if (!hero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
+
+    let frameId = null
+    const updateParallax = () => {
+      frameId = null
+      const bounds = hero.getBoundingClientRect()
+      const progress = Math.max(-1, Math.min(1, -bounds.top / Math.max(bounds.height, 1)))
+      hero.style.setProperty('--hero-parallax-y', `${progress * 34}px`)
+    }
+    const requestUpdate = () => {
+      if (frameId === null) frameId = window.requestAnimationFrame(updateParallax)
+    }
+
+    updateParallax()
+    window.addEventListener('scroll', requestUpdate, { passive: true })
+    window.addEventListener('resize', requestUpdate)
+    return () => {
+      window.removeEventListener('scroll', requestUpdate)
+      window.removeEventListener('resize', requestUpdate)
+      if (frameId !== null) window.cancelAnimationFrame(frameId)
+    }
+  }, [])
+
   return (
     <div className="medical-hero-block">
-      <Section className="medical-hero" aria-roledescription="carousel" aria-label={content.ariaLabel} style={backgroundStyle}>
+      <Section className="medical-hero" ref={heroRef} aria-roledescription="carousel" aria-label={content.ariaLabel} style={backgroundStyle}>
       <div className="medical-hero__overlay" aria-hidden="true" />
 
       {hasMultipleSlides && (

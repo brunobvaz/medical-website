@@ -98,15 +98,15 @@
   margin-top: var(--space-lg);
   align-self: center;
   align-items: center;
-  color: var(--color-accent);
+  color: var(--color-text-light);
   text-align: center;
 }
 
 .clinical-areas-section__card:focus-within { outline: 2px solid var(--color-text-light); outline-offset: -4px; }
 
-.clinical-areas-section__footer { margin-top: clamp(2rem, 4vw, 3.5rem); display: flex; justify-content: flex-end; }
-.clinical-areas-section__all { min-height: 3rem; padding-bottom: .65rem; border-bottom: 1px solid var(--color-border-accent); display: inline-flex; align-items: center; gap: clamp(2rem, 4vw, 4rem); color: var(--color-accent-hover); font-size: var(--fs-small); font-weight: var(--fw-semibold); letter-spacing: .1em; text-transform: uppercase; transition: color var(--motion-duration-fast), gap var(--motion-duration-fast); }
-.clinical-areas-section__all:hover { gap: clamp(2.5rem, 4.5vw, 4.5rem); color: var(--color-accent); }
+.clinical-areas-section__footer { margin-top: clamp(2rem, 4vw, 3.5rem); display: flex; justify-content: center; }
+.clinical-areas-section__all { min-height: var(--button-height-sm); padding: .7rem var(--button-padding-inline-sm); border: 0; display: inline-flex; align-items: center; justify-content: center; gap: 1rem; color: var(--color-text-light); background: var(--color-accent); font-size: .75rem; font-weight: var(--fw-semibold); letter-spacing: .1em; text-transform: uppercase; transition: background-color var(--motion-duration-fast), gap var(--motion-duration-fast), transform var(--motion-duration-fast); }
+.clinical-areas-section__all:hover { gap: 1.3rem; color: var(--color-text-light); background: var(--color-accent-hover); transform: translateY(-1px); }
 .clinical-areas-section__all:focus-visible { outline: var(--button-focus-outline-width) solid var(--button-focus-outline-color); outline-offset: var(--button-focus-outline-offset); }
 
 @media (max-width: 900px) {
@@ -129,8 +129,7 @@
   .clinical-areas-section__card:not(.is-active) .clinical-areas-section__card-copy p { display: none; }
   .clinical-areas-section__card:not(.is-active) .clinical-areas-section__card-icon { width: 3.5rem; height: 3.5rem; }
   .clinical-areas-section__identity { width: 22rem; top: 12rem; right: -12rem; }
-  .clinical-areas-section__footer { justify-content: stretch; }
-  .clinical-areas-section__all { width: 100%; justify-content: space-between; }
+  .clinical-areas-section__all { width: auto; max-width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {

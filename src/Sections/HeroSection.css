@@ -14,7 +14,7 @@
   overflow: hidden;
   color: var(--color-text-light);
   background-color: var(--color-text);
-  background-position: center;
+  background-position: center calc(50% + var(--hero-parallax-y, 0px));
   background-repeat: no-repeat;
   background-size: cover;
   isolation: isolate;
@@ -207,7 +207,7 @@
 @media (max-width: 1023px) {
   .medical-hero {
     min-height: clamp(32rem, 80vw, 42rem);
-    background-position: 42% center;
+    background-position: 42% calc(50% + var(--hero-parallax-y, 0px));
   }
 
   .medical-hero__content { width: min(52rem, calc(100% - (2 * var(--space-2xl)))); }
@@ -229,7 +229,7 @@
   .medical-hero {
     width: 100%;
     min-height: calc(100svh - var(--navbar-height) - (2 * var(--page-padding-block)));
-    background-position: 40% center;
+    background-position: 40% calc(50% + var(--hero-parallax-y, 0px));
   }
 
   .medical-hero__overlay { background: linear-gradient(180deg, color-mix(in srgb, var(--color-text) 24%, transparent), color-mix(in srgb, var(--color-text) 72%, transparent)); }
@@ -259,6 +259,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .medical-hero { background-position-y: center; }
   .medical-hero__content > * {
     opacity: 1;
     animation: none;

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { IconButton } from '../componentes/ACTION/index.js'
 import { TestimonialCard } from '../componentes/CARDS/index.js'
 import { Section, SectionContainer } from '../componentes/LAYOUT/index.js'
@@ -26,6 +26,7 @@ export default function TestimonialsSection() {
   const { t } = useI18n()
   const [activePage, setActivePage] = useState(0)
   const [visibleCount, setVisibleCount] = useState(getVisibleCount)
+  const touchStartX = useRef(null)
   const originalTestimonials = getTestimonials(t.testimonials)
   const [titleLead, titleAccent] = t.testimonials.title.split(', ')
   const testimonials = useMemo(
@@ -61,7 +62,19 @@ export default function TestimonialsSection() {
           <img className="testimonials-section__mark" src={testimonialMark} alt="" aria-hidden="true" />
         </div>
 
-        <div className="testimonials-section__viewport" aria-live="polite">
+        <div
+          className="testimonials-section__viewport"
+          aria-live="polite"
+          onTouchStart={(event) => { touchStartX.current = event.touches[0].clientX }}
+          onTouchEnd={(event) => {
+            if (touchStartX.current === null) return
+            const distance = event.changedTouches[0].clientX - touchStartX.current
+            touchStartX.current = null
+            if (Math.abs(distance) < 45) return
+            if (distance < 0) showNext()
+            else showPrevious()
+          }}
+        >
           <div className="testimonials-section__track" style={{ '--active-page': activePage, '--visible-count': visibleCount }}>
             {testimonials.map((testimonial) => (
               <TestimonialCard

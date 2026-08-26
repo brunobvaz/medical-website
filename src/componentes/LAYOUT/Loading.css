@@ -23,7 +23,7 @@
 }
 
 .page-loading__logo {
-  width: clamp(10rem, 24vw, 18rem);
+  width: clamp(16rem, 34vw, 28rem);
   height: auto;
   position: relative;
   z-index: 1;
@@ -55,7 +55,7 @@
 }
 
 @media (max-width: 600px) {
-  .page-loading__logo { width: clamp(9rem, 46vw, 13rem); }
+  .page-loading__logo { width: clamp(15rem, 72vw, 22rem); }
 }
 
 @media (prefers-reduced-motion: reduce) {

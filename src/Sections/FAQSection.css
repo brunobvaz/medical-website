@@ -30,7 +30,8 @@
   box-shadow: var(--shadow-sm);
 }
 
-.faq-section__item summary {
+.faq-section__question {
+  width: 100%;
   min-height: 4.5rem;
   padding: var(--space-md);
   display: flex;
@@ -43,8 +44,6 @@
   line-height: var(--lh-body);
   list-style: none;
 }
-
-.faq-section__item summary::-webkit-details-marker { display: none; }
 
 .faq-section__toggle {
   width: 1rem;
@@ -67,12 +66,15 @@
 }
 
 .faq-section__toggle::after { transform: translate(-50%, -50%) rotate(90deg); }
-.faq-section__item[open] .faq-section__toggle::after { transform: translate(-50%, -50%) rotate(0); }
+.faq-section__item.is-open .faq-section__toggle::after { transform: translate(-50%, -50%) rotate(0); }
 
-.faq-section__answer { padding: 0 var(--space-md) var(--space-md); }
+.faq-section__answer-wrap { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .4s var(--motion-ease-standard), opacity .3s var(--motion-ease-standard); }
+.faq-section__item.is-open .faq-section__answer-wrap { grid-template-rows: 1fr; opacity: 1; }
+.faq-section__answer { min-height: 0; padding: 0 var(--space-md); overflow: hidden; transition: padding-bottom .4s var(--motion-ease-standard); }
+.faq-section__item.is-open .faq-section__answer { padding-bottom: var(--space-md); }
 .faq-section__answer p { max-width: 48rem; color: var(--color-text-muted); font-size: var(--fs-small); line-height: var(--lh-loose); }
 
-.faq-section__item summary:focus-visible {
+.faq-section__question:focus-visible {
   outline: var(--button-focus-outline-width) solid var(--button-focus-outline-color);
   outline-offset: var(--button-focus-outline-offset);
 }
@@ -84,11 +86,14 @@
 
 @media (max-width: 479px) {
   .faq-section { padding-block: var(--section-padding-block); }
-  .faq-section__item summary { min-height: 4rem; padding: var(--space-sm); }
-  .faq-section__answer { padding: 0 var(--space-sm) var(--space-sm); }
+  .faq-section__question { min-height: 4rem; padding: var(--space-sm); }
+  .faq-section__answer { padding-inline: var(--space-sm); }
+  .faq-section__item.is-open .faq-section__answer { padding-bottom: var(--space-sm); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .faq-section__toggle::before,
-  .faq-section__toggle::after { transition: none; }
+  .faq-section__toggle::after,
+  .faq-section__answer-wrap,
+  .faq-section__answer { transition: none; }
 }

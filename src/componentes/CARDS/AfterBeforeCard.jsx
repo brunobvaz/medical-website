@@ -1,4 +1,4 @@
-import { useId, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import './cards.css'
 
 export default function AfterBeforeCard({
@@ -10,14 +10,36 @@ export default function AfterBeforeCard({
   afterAlt = '',
   sliderLabel = 'Comparar resultado antes e depois',
   initialPosition = 50,
+  demoOnView = false,
   className = '',
 }) {
   const sliderId = useId()
   const [position, setPosition] = useState(initialPosition)
+  const cardRef = useRef(null)
+  const hasInteracted = useRef(false)
+
+  useEffect(() => {
+    if (!demoOnView || !cardRef.current || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
+    const timers = []
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return
+      observer.disconnect()
+      if (hasInteracted.current) return
+      timers.push(window.setTimeout(() => setPosition(62), 350))
+      timers.push(window.setTimeout(() => setPosition(38), 1050))
+      timers.push(window.setTimeout(() => setPosition(initialPosition), 1750))
+    }, { threshold: .55 })
+    observer.observe(cardRef.current)
+    return () => {
+      observer.disconnect()
+      timers.forEach((timer) => window.clearTimeout(timer))
+    }
+  }, [demoOnView, initialPosition])
 
   return (
     <figure
-      className={`after-before-card ${className}`.trim()}
+      className={`after-before-card ${demoOnView ? 'after-before-card--interactive-hint' : ''} ${className}`.trim()}
+      ref={cardRef}
       style={{ '--comparison-position': `${position}%` }}
     >
       <div className="after-before-card__viewport">
@@ -46,7 +68,10 @@ export default function AfterBeforeCard({
           max="100"
           value={position}
           aria-valuetext={`${100 - position}% ${afterLabel}`}
-          onChange={(event) => setPosition(Number(event.target.value))}
+          onChange={(event) => {
+            hasInteracted.current = true
+            setPosition(Number(event.target.value))
+          }}
         />
       </div>
     </figure>

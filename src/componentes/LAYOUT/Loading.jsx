@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import logo from '../../assets/optimized/logo.png'
+import logo from '../../assets/icons/idsite_gold.png'
 import { useI18n } from '../../i18n/I18nContext.jsx'
 import './Loading.css'
 
