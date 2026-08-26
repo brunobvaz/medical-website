@@ -5,6 +5,7 @@ const clinicalAreas = {
     headingLineTwo: 'para cada região do olhar.',
     introduction: 'Uma abordagem personalizada e criteriosa, com foco na função, na saúde ocular e na harmonia facial.',
     linkLabel: 'Explorar',
+    allServicesLabel: 'Ver todos os serviços',
     items: [
       {
         slug: 'palpebras',
@@ -42,6 +43,7 @@ const clinicalAreas = {
     headingLineTwo: 'for every region of the eye.',
     introduction: 'A personalised and considered approach focused on function, eye health and facial harmony.',
     linkLabel: 'Explore',
+    allServicesLabel: 'View all services',
     items: [
       {
         slug: 'palpebras',

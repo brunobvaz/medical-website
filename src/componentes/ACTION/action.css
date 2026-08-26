@@ -119,3 +119,36 @@
   outline: var(--button-focus-outline-width) solid currentColor;
   outline-offset: var(--button-focus-outline-offset);
 }
+
+.ui-arrow-down-link {
+  min-width: 6.5rem;
+  min-height: 4.75rem;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: .85rem;
+  color: inherit;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  letter-spacing: .12em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.ui-arrow-down-link__label { max-width: 8ch; }
+
+.ui-arrow-down-link__arrow {
+  width: 3rem;
+  height: .75rem;
+  display: block;
+  transition: width var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.ui-arrow-down-link__arrow svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.ui-arrow-down-link:hover .ui-arrow-down-link__arrow { width: 3.65rem; }
+.ui-arrow-down-link:focus-visible { outline: var(--button-focus-outline-width) solid currentColor; outline-offset: var(--button-focus-outline-offset); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-arrow-down-link__arrow { transition: none; }
+}
