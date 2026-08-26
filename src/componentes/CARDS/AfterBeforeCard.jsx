@@ -20,11 +20,15 @@ export default function AfterBeforeCard({
 
   useEffect(() => {
     if (!demoOnView || !cardRef.current || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
-    const timers = []
+    let timers = []
+    const clearDemo = () => {
+      timers.forEach((timer) => window.clearTimeout(timer))
+      timers = []
+    }
     const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return
-      observer.disconnect()
-      if (hasInteracted.current) return
+      clearDemo()
+      if (!entry.isIntersecting || hasInteracted.current) return
+      setPosition(initialPosition)
       timers.push(window.setTimeout(() => setPosition(62), 350))
       timers.push(window.setTimeout(() => setPosition(38), 1050))
       timers.push(window.setTimeout(() => setPosition(initialPosition), 1750))
@@ -32,7 +36,7 @@ export default function AfterBeforeCard({
     observer.observe(cardRef.current)
     return () => {
       observer.disconnect()
-      timers.forEach((timer) => window.clearTimeout(timer))
+      clearDemo()
     }
   }, [demoOnView, initialPosition])
 
