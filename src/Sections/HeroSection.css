@@ -14,9 +14,6 @@
   overflow: hidden;
   color: var(--color-text-light);
   background-color: var(--color-text);
-  background-position: center calc(50% + var(--hero-parallax-y, 0px));
-  background-repeat: no-repeat;
-  background-size: cover;
   isolation: isolate;
 }
 
@@ -96,7 +93,37 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(180deg, color-mix(in srgb, var(--color-text) 12%, transparent), color-mix(in srgb, var(--color-text) 58%, transparent));
+  background:
+    radial-gradient(ellipse 68% 62% at 50% 48%, color-mix(in srgb, var(--color-text) 26%, transparent), transparent 78%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-text) 12%, transparent), color-mix(in srgb, var(--color-text) 58%, transparent));
+}
+
+.medical-hero--slide-0 .medical-hero__overlay {
+  background:
+    radial-gradient(ellipse 62% 64% at 43% 49%, color-mix(in srgb, var(--color-text) 34%, transparent), transparent 78%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-text) 10%, transparent), color-mix(in srgb, var(--color-text) 54%, transparent));
+}
+
+.medical-hero__background {
+  position: absolute;
+  inset: -2.5rem 0;
+  z-index: -2;
+  background-position: center calc(50% + var(--hero-parallax-y, 0px));
+  background-repeat: no-repeat;
+  background-size: cover;
+  pointer-events: none;
+  transform: scale(1.02);
+}
+
+.medical-hero__background--previous { transform: scale(1); }
+
+.medical-hero__background--enter {
+  animation: hero-background-in 650ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes hero-background-in {
+  from { opacity: 0; transform: scale(1.025); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .medical-hero__content {
@@ -150,6 +177,9 @@
 
 .medical-hero__description {
   max-width: 56rem;
+  min-height: 3.2em;
+  display: flex;
+  align-items: center;
   text-wrap: balance;
 }
 
@@ -186,24 +216,48 @@
 .medical-hero__arrow--previous { left: clamp(1.5rem, 3vw, 3rem); }
 .medical-hero__arrow--next { right: clamp(1.5rem, 3vw, 3rem); }
 
-.medical-hero__indicators {
+.medical-hero__progress {
   margin-top: var(--space-md);
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-2xs);
 }
 
+.medical-hero__progress-number {
+  min-width: 1.8rem;
+  font-size: .65rem;
+  font-weight: var(--fw-medium);
+  letter-spacing: .12em;
+  opacity: .72;
+}
+
+.medical-hero__indicators {
+  display: flex;
+  align-items: center;
+}
+
 .medical-hero__indicator {
-  width: var(--space-xs);
+  width: 2.75rem;
+  height: 2rem;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.medical-hero__indicator::before {
+  width: .75rem;
   height: 2px;
+  display: block;
   background: var(--color-text-light);
+  content: '';
   opacity: var(--button-disabled-opacity);
   transition: width var(--motion-duration-fast) var(--motion-ease-standard),
     opacity var(--motion-duration-fast) var(--motion-ease-standard);
 }
 
-.medical-hero__indicator--active {
-  width: var(--space-lg);
+.medical-hero__indicator--active::before {
+  width: 2rem;
   opacity: 1;
 }
 
@@ -221,8 +275,9 @@
 @media (max-width: 1023px) {
   .medical-hero {
     min-height: clamp(32rem, 80vw, 42rem);
-    background-position: 42% calc(50% + var(--hero-parallax-y, 0px));
   }
+
+  .medical-hero__background { background-position: 42% calc(50% + var(--hero-parallax-y, 0px)); }
 
   .medical-hero__content { width: min(52rem, calc(100% - (2 * var(--space-2xl)))); }
 }
@@ -248,15 +303,20 @@
     align-items: flex-start;
     justify-content: center;
     box-sizing: border-box;
-    background-position: var(--hero-mobile-x) calc(50% + var(--hero-parallax-y, 0px));
     touch-action: pan-y;
   }
+
+  .medical-hero__background { background-position: var(--hero-layer-mobile-x) calc(50% + var(--hero-parallax-y, 0px)); }
 
   .medical-hero.medical-hero--compact-mobile {
     min-height: clamp(29rem, 70svh, 34rem);
   }
 
-  .medical-hero__overlay { background: linear-gradient(180deg, color-mix(in srgb, var(--color-text) 24%, transparent), color-mix(in srgb, var(--color-text) 72%, transparent)); }
+  .medical-hero__overlay {
+    background:
+      radial-gradient(ellipse 92% 64% at 50% 34%, color-mix(in srgb, var(--color-text) 28%, transparent), transparent 82%),
+      linear-gradient(180deg, color-mix(in srgb, var(--color-text) 22%, transparent), color-mix(in srgb, var(--color-text) 72%, transparent));
+  }
   .medical-hero__content {
     width: min(calc(100% - (2 * var(--space-lg))), 35rem);
     padding-block: 0;
@@ -275,6 +335,7 @@
   .medical-hero__rule { margin-block: var(--space-sm); }
   .medical-hero__description {
     max-width: 35ch;
+    min-height: 0;
     font-size: clamp(1rem, 3.7vw, 1.125rem);
     line-height: 1.55;
   }
@@ -286,7 +347,7 @@
     border-color: color-mix(in srgb, var(--color-text-light) 58%, transparent);
   }
   .medical-hero .medical-hero__arrow {
-    width: 2.25rem;
+    width: 2.75rem;
     height: 2.75rem;
     top: auto;
     bottom: var(--space-sm);
@@ -303,7 +364,8 @@
   .medical-hero__arrow .ui-arrow-button__chevron { width: 1rem; height: 1.75rem; }
   .medical-hero__arrow--previous { left: var(--space-sm); }
   .medical-hero__arrow--next { right: var(--space-sm); }
-  .medical-hero__indicators { margin-top: var(--space-sm); }
+  .medical-hero__progress { margin-top: var(--space-sm); gap: 0; }
+  .medical-hero__progress-number { display: none; }
 }
 
 @media (max-width: 479px) {
@@ -342,7 +404,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .medical-hero { background-position-y: center; }
+  .medical-hero__background { background-position-y: center; transform: none; animation: none; }
   .medical-hero__content > * {
     opacity: 1;
     animation: none;

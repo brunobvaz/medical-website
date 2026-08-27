@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowButton, Button } from '../componentes/ACTION/index.js'
 import { Section } from '../componentes/LAYOUT/index.js'
 import { getHeroContent } from '../data/homepage.js'
@@ -13,27 +13,35 @@ export default function HeroSection({
 }) {
   const { language: activeLanguage } = useI18n()
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [previousIndex, setPreviousIndex] = useState(null)
   const heroRef = useRef(null)
   const swipeStartRef = useRef(null)
   const language = languageOverride ?? activeLanguage
-  const content = getHeroContent(language)
-  const safeSlides = slides?.length > 0 ? slides : content.slides
+  const content = useMemo(() => getHeroContent(language), [language])
+  const safeSlides = useMemo(() => (slides?.length > 0 ? slides : content.slides), [content.slides, slides])
   const currentSlide = safeSlides[currentIndex % safeSlides.length]
+  const previousSlide = previousIndex === null ? null : safeSlides[previousIndex % safeSlides.length]
   const hasMultipleSlides = safeSlides.length > 1
+
+  const changeSlide = (nextIndex) => {
+    if (nextIndex === currentIndex) return
+    setPreviousIndex(currentIndex)
+    setCurrentIndex(nextIndex)
+  }
 
   const showPrevious = () => {
     const nextIndex = currentIndex === 0 ? safeSlides.length - 1 : currentIndex - 1
-    setCurrentIndex(nextIndex)
+    changeSlide(nextIndex)
     onPrevious?.(nextIndex)
   }
 
   const showNext = () => {
     const nextIndex = (currentIndex + 1) % safeSlides.length
-    setCurrentIndex(nextIndex)
+    changeSlide(nextIndex)
     onNext?.(nextIndex)
   }
 
-  const showSlide = (index) => setCurrentIndex(index)
+  const showSlide = (index) => changeSlide(index)
   const handleKeyDown = (event) => {
     if (!hasMultipleSlides || event.currentTarget !== event.target) return
     if (event.key === 'ArrowLeft') {
@@ -60,10 +68,35 @@ export default function HeroSection({
     if (deltaX > 0) showPrevious()
     else showNext()
   }
-  const backgroundStyle = {
-    backgroundImage: `url(${currentSlide.image})`,
-    '--hero-mobile-x': currentSlide.mobileImagePosition ?? '62%',
-  }
+  const getBackgroundStyle = (slide) => ({
+    backgroundImage: `url(${slide.image})`,
+    '--hero-layer-mobile-x': slide.mobileImagePosition ?? '62%',
+  })
+
+  useEffect(() => {
+    if (previousIndex === null) return undefined
+    const timeoutId = window.setTimeout(() => setPreviousIndex(null), 700)
+    return () => window.clearTimeout(timeoutId)
+  }, [currentIndex, previousIndex])
+
+  useEffect(() => {
+    const preloadId = window.requestIdleCallback?.(() => {
+      safeSlides.slice(1).forEach((slide) => {
+        const image = new Image()
+        image.src = slide.image
+      })
+    }) ?? window.setTimeout(() => {
+      safeSlides.slice(1).forEach((slide) => {
+        const image = new Image()
+        image.src = slide.image
+      })
+    }, 700)
+
+    return () => {
+      if (window.cancelIdleCallback) window.cancelIdleCallback(preloadId)
+      else window.clearTimeout(preloadId)
+    }
+  }, [safeSlides])
 
   useEffect(() => {
     const hero = heroRef.current
@@ -93,18 +126,25 @@ export default function HeroSection({
   return (
     <div className="medical-hero-block">
       <Section
-        className={`medical-hero ${currentSlide.buttonTo === '/booking' ? 'medical-hero--compact-mobile' : ''}`}
+        className={`medical-hero medical-hero--slide-${currentIndex} ${currentSlide.buttonTo === '/booking' ? 'medical-hero--compact-mobile' : ''}`}
         ref={heroRef}
         aria-roledescription="carousel"
         aria-label={content.ariaLabel}
-        style={backgroundStyle}
         tabIndex={hasMultipleSlides ? 0 : undefined}
         onKeyDown={handleKeyDown}
         onPointerDown={handlePointerDown}
         onPointerUp={handlePointerUp}
         onPointerCancel={() => { swipeStartRef.current = null }}
       >
+      {previousSlide && (
+        <div className="medical-hero__background medical-hero__background--previous" style={getBackgroundStyle(previousSlide)} aria-hidden="true" />
+      )}
+      <div className={`medical-hero__background medical-hero__background--current ${previousSlide ? 'medical-hero__background--enter' : ''}`} key={`background-${currentIndex}`} style={getBackgroundStyle(currentSlide)} aria-hidden="true" />
       <div className="medical-hero__overlay" aria-hidden="true" />
+      <p className="type-sr-only">{language === 'en' ? 'Use the left and right arrow keys or swipe to change highlight.' : 'Use as setas esquerda e direita ou deslize para mudar de destaque.'}</p>
+      <p className="type-sr-only" role="status" aria-live="polite" aria-atomic="true">
+        {language === 'en' ? `Slide ${currentIndex + 1} of ${safeSlides.length}: ${currentSlide.title}` : `Slide ${currentIndex + 1} de ${safeSlides.length}: ${currentSlide.title}`}
+      </p>
 
       {hasMultipleSlides && (
         <ArrowButton
@@ -115,7 +155,7 @@ export default function HeroSection({
         />
       )}
 
-      <div className="medical-hero__content" key={`${language}-${currentIndex}`} aria-live="polite">
+      <div className="medical-hero__content" key={`${language}-${currentIndex}`}>
         <p className="type-eyebrow">{currentSlide.eyebrow}</p>
         <h1 className="type-page-title" aria-label={currentSlide.title}>
           {(currentSlide.titleLines ?? [currentSlide.title]).map((line) => (
@@ -140,17 +180,21 @@ export default function HeroSection({
         </div>
 
         {hasMultipleSlides && (
-          <div className="medical-hero__indicators" aria-label={content.indicatorsLabel}>
-            {safeSlides.map((slide, index) => (
-              <button
-                className={`medical-hero__indicator ${index === currentIndex ? 'medical-hero__indicator--active' : ''}`}
-                type="button"
-                aria-label={content.showSlideLabel(index, slide.title)}
-                aria-current={index === currentIndex ? 'true' : undefined}
-                key={slide.image}
-                onClick={() => showSlide(index)}
-              />
-            ))}
+          <div className="medical-hero__progress" aria-label={content.indicatorsLabel}>
+            <span className="medical-hero__progress-number" aria-hidden="true">{String(currentIndex + 1).padStart(2, '0')}</span>
+            <div className="medical-hero__indicators">
+              {safeSlides.map((slide, index) => (
+                <button
+                  className={`medical-hero__indicator ${index === currentIndex ? 'medical-hero__indicator--active' : ''}`}
+                  type="button"
+                  aria-label={content.showSlideLabel(index, slide.title)}
+                  aria-current={index === currentIndex ? 'true' : undefined}
+                  key={slide.image}
+                  onClick={() => showSlide(index)}
+                />
+              ))}
+            </div>
+            <span className="medical-hero__progress-number" aria-hidden="true">{String(safeSlides.length).padStart(2, '0')}</span>
           </div>
         )}
       </div>
