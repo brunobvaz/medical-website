@@ -20,6 +20,11 @@
   isolation: isolate;
 }
 
+.medical-hero:focus-visible {
+  outline: 1px solid color-mix(in srgb, var(--color-text-light) 62%, transparent);
+  outline-offset: -4px;
+}
+
 .medical-hero-stats {
   width: min(calc(100% - (2 * var(--page-padding-inline))), var(--layout-narrow-width));
   margin: -3.25rem auto 0;
@@ -244,6 +249,11 @@
     justify-content: center;
     box-sizing: border-box;
     background-position: var(--hero-mobile-x) calc(50% + var(--hero-parallax-y, 0px));
+    touch-action: pan-y;
+  }
+
+  .medical-hero.medical-hero--compact-mobile {
+    min-height: clamp(29rem, 70svh, 34rem);
   }
 
   .medical-hero__overlay { background: linear-gradient(180deg, color-mix(in srgb, var(--color-text) 24%, transparent), color-mix(in srgb, var(--color-text) 72%, transparent)); }
@@ -301,6 +311,7 @@
     min-height: clamp(31rem, 82svh, 35rem);
     padding-block: var(--space-lg) calc(var(--space-2xl) + var(--space-md));
   }
+  .medical-hero.medical-hero--compact-mobile { min-height: clamp(29rem, 72svh, 32rem); }
   .medical-hero__content { width: calc(100% - (2 * var(--space-md))); }
   .medical-hero h1 { font-size: clamp(2rem, 8.5vw, 2.55rem); }
   .medical-hero__actions {
