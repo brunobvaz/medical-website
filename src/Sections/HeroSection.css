@@ -72,6 +72,8 @@
   letter-spacing: .04em;
 }
 
+.medical-hero-stat__label-short { display: none; }
+
 @media (hover: hover) {
   .medical-hero-stat:hover {
     z-index: 1;
@@ -236,13 +238,18 @@
   .medical-hero {
     width: 100%;
     min-height: clamp(31rem, 78svh, 39rem);
-    background-position: 62% calc(50% + var(--hero-parallax-y, 0px));
+    padding-block: clamp(2rem, 7vw, 3.5rem) calc(var(--space-2xl) + var(--space-lg));
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    box-sizing: border-box;
+    background-position: var(--hero-mobile-x) calc(50% + var(--hero-parallax-y, 0px));
   }
 
   .medical-hero__overlay { background: linear-gradient(180deg, color-mix(in srgb, var(--color-text) 24%, transparent), color-mix(in srgb, var(--color-text) 72%, transparent)); }
   .medical-hero__content {
     width: min(calc(100% - (2 * var(--space-lg))), 35rem);
-    padding-block: var(--space-lg) calc(var(--space-2xl) + var(--space-md));
+    padding-block: 0;
   }
   .medical-hero .type-eyebrow {
     max-width: 34ch;
@@ -276,6 +283,12 @@
     opacity: .68;
     transform: none;
   }
+  .medical-hero .medical-hero__arrow:focus-visible {
+    border-radius: 999px;
+    outline-width: 1px;
+    outline-offset: -2px;
+    background: color-mix(in srgb, var(--color-text) 18%, transparent);
+  }
   .medical-hero__arrow .ui-arrow-button__chevron { width: 1rem; height: 1.75rem; }
   .medical-hero__arrow--previous { left: var(--space-sm); }
   .medical-hero__arrow--next { right: var(--space-sm); }
@@ -283,7 +296,10 @@
 }
 
 @media (max-width: 479px) {
-  .medical-hero { min-height: clamp(31rem, 82svh, 35rem); }
+  .medical-hero {
+    min-height: clamp(31rem, 82svh, 35rem);
+    padding-block: var(--space-lg) calc(var(--space-2xl) + var(--space-md));
+  }
   .medical-hero__content { width: calc(100% - (2 * var(--space-md))); }
   .medical-hero h1 { font-size: clamp(2rem, 8.5vw, 2.55rem); }
   .medical-hero__actions {
@@ -296,7 +312,10 @@
 }
 
 @media (max-width: 359px) {
-  .medical-hero { min-height: 32rem; }
+  .medical-hero {
+    min-height: 32rem;
+    padding-top: var(--space-md);
+  }
   .medical-hero__content { width: calc(100% - (2 * var(--space-sm))); }
   .medical-hero h1 { font-size: 2rem; }
   .medical-hero__description { font-size: 1rem; }
@@ -305,6 +324,8 @@
     padding-inline: var(--space-xs);
   }
   .medical-hero-stat__label { font-size: .72rem; }
+  .medical-hero-stat__label-full:has(+ .medical-hero-stat__label-short) { display: none; }
+  .medical-hero-stat__label-short { display: inline; }
 }
 
 @media (prefers-reduced-motion: reduce) {

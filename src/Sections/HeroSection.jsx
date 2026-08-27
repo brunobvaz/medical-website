@@ -33,7 +33,10 @@ export default function HeroSection({
   }
 
   const showSlide = (index) => setCurrentIndex(index)
-  const backgroundStyle = { backgroundImage: `url(${currentSlide.image})` }
+  const backgroundStyle = {
+    backgroundImage: `url(${currentSlide.image})`,
+    '--hero-mobile-x': currentSlide.mobileImagePosition ?? '62%',
+  }
 
   useEffect(() => {
     const hero = heroRef.current
@@ -131,7 +134,10 @@ export default function HeroSection({
               <span className={`medical-hero-stat__value ${stat.accessibleValue ? 'medical-hero-stat__value--stars' : ''}`} aria-label={stat.accessibleValue}>
                 {stat.value}
               </span>
-              <span className="medical-hero-stat__label">{stat.label}</span>
+              <span className="medical-hero-stat__label">
+                <span className="medical-hero-stat__label-full">{stat.label}</span>
+                {stat.shortLabel && <span className="medical-hero-stat__label-short">{stat.shortLabel}</span>}
+              </span>
             </li>
           ))}
         </ul>

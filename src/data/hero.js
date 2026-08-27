@@ -5,7 +5,7 @@ const heroContent = {
     stats: [
       { value: '15+', label: 'Anos de experiência' },
       { value: '5K+', label: 'Pacientes' },
-      { value: '3', label: 'Áreas de especialidade' },
+      { value: '3', label: 'Áreas de especialidade', shortLabel: 'Especialidades' },
       { value: '★★★★★', label: 'Cuidado ao paciente', accessibleValue: '5 estrelas' },
     ],
     previousSlideLabel: 'Slide anterior',
@@ -20,6 +20,7 @@ const heroContent = {
         description: 'Uma abordagem especializada e personalizada à saúde das pálpebras, órbita, vias lacrimais e região periocular.',
         buttonLabel: 'Conhecer a médica',
         buttonTo: '/about',
+        mobileImagePosition: '68%',
       },
       {
         eyebrow: 'Cirurgia Oculoplástica',
@@ -28,6 +29,7 @@ const heroContent = {
         description: 'Diagnóstico e tratamento das alterações das pálpebras, órbita e vias lacrimais, com soluções cirúrgicas e não cirúrgicas adaptadas a cada paciente.',
         buttonLabel: 'Conhecer a especialidade',
         buttonTo: '/cirurgia-oculoplastica',
+        mobileImagePosition: '50%',
       },
       {
         eyebrow: 'Saúde · Função · Harmonia',
@@ -36,6 +38,7 @@ const heroContent = {
         description: 'Conhecimento médico, precisão cirúrgica e sentido estético unidos para promover saúde ocular, conforto e harmonia facial.',
         buttonLabel: 'Marcar consulta',
         buttonTo: '/booking',
+        mobileImagePosition: '56%',
       },
     ],
   },
@@ -45,7 +48,7 @@ const heroContent = {
     stats: [
       { value: '15+', label: 'Years Experience' },
       { value: '5K+', label: 'Patients' },
-      { value: '3', label: 'Specialist Areas' },
+      { value: '3', label: 'Specialist Areas', shortLabel: 'Specialties' },
       { value: '★★★★★', label: 'Patient Care', accessibleValue: '5 stars' },
     ],
     previousSlideLabel: 'Previous slide',
@@ -60,6 +63,7 @@ const heroContent = {
         description: 'A specialist and personalised approach to the health of the eyelids, orbit, lacrimal system and periocular region.',
         buttonLabel: 'Meet the doctor',
         buttonTo: '/about',
+        mobileImagePosition: '68%',
       },
       {
         eyebrow: 'Oculoplastic Surgery',
@@ -68,6 +72,7 @@ const heroContent = {
         description: 'Diagnosis and treatment of conditions affecting the eyelids, orbit and lacrimal system, with surgical and non-surgical solutions tailored to each patient.',
         buttonLabel: 'Explore the specialty',
         buttonTo: '/cirurgia-oculoplastica',
+        mobileImagePosition: '50%',
       },
       {
         eyebrow: 'Health · Function · Harmony',
@@ -76,6 +81,7 @@ const heroContent = {
         description: 'Medical expertise, surgical precision and aesthetic sensitivity come together to promote eye health, comfort and facial harmony.',
         buttonLabel: 'Book an appointment',
         buttonTo: '/booking',
+        mobileImagePosition: '56%',
       },
     ],
   },
