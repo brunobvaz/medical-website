@@ -83,9 +83,14 @@ export default function HeroSection({
         </h1>
         <span className="medical-hero__rule" aria-hidden="true" />
         <p className="medical-hero__description type-body">{currentSlide.description}</p>
-        <Button className="medical-hero__cta" href={currentSlide.buttonHref} to={currentSlide.buttonTo} size="small" variant="primary">
-          {currentSlide.buttonLabel}
-        </Button>
+        <div className="medical-hero__actions">
+          <Button className="medical-hero__cta medical-hero__cta--booking" to="/booking" size="small" variant="primary">
+            {language === 'en' ? 'Book an appointment' : 'Marcar consulta'}
+          </Button>
+          <Button className="medical-hero__cta medical-hero__cta--slide" href={currentSlide.buttonHref} to={currentSlide.buttonTo} size="small" variant="primary">
+            {currentSlide.buttonLabel}
+          </Button>
+        </div>
 
         {hasMultipleSlides && (
           <div className="medical-hero__indicators" aria-label={content.indicatorsLabel}>
