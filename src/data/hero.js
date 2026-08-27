@@ -23,8 +23,8 @@ const heroContent = {
       },
       {
         eyebrow: 'Cirurgia Oculoplástica',
-        title: 'Especialização ao serviço da saúde do seu olhar',
-        titleLines: ['Especialização ao serviço', 'da saúde do seu olhar'],
+        title: 'Cuidado especializado para a saúde do seu olhar',
+        titleLines: ['Cuidado especializado', 'para a saúde do seu olhar'],
         description: 'Diagnóstico e tratamento das alterações das pálpebras, órbita e vias lacrimais, com soluções cirúrgicas e não cirúrgicas adaptadas a cada paciente.',
         buttonLabel: 'Conhecer a especialidade',
         buttonTo: '/cirurgia-oculoplastica',
