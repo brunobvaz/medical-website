@@ -1,8 +1,12 @@
-import beforeOne from '../assets/before_after/antes.jpeg'
-import beforeTwo from '../assets/before_after/antes2.jpeg'
+import beforeOne from '../assets/optimized/antes-result.webp'
+import beforeOneMobile from '../assets/optimized/antes-result-mobile.webp'
+import beforeTwo from '../assets/optimized/antes2-result.webp'
+import beforeTwoMobile from '../assets/optimized/antes2-result-mobile.webp'
 import beforeThree from '../assets/before_after/antes3.jpeg'
-import afterOne from '../assets/before_after/depois.jpeg'
-import afterTwo from '../assets/before_after/depois2.jpeg'
+import afterOne from '../assets/optimized/depois-result.webp'
+import afterOneMobile from '../assets/optimized/depois-result-mobile.webp'
+import afterTwo from '../assets/optimized/depois2-result.webp'
+import afterTwoMobile from '../assets/optimized/depois2-result-mobile.webp'
 import afterThree from '../assets/before_after/depois3.jpeg'
 
 const resultsPage = {
@@ -14,11 +18,12 @@ const resultsPage = {
     beforeLabel: 'Antes',
     afterLabel: 'Depois',
     sliderLabel: 'Deslize para comparar o resultado antes e depois',
+    sliderValueText: '{percentage}% da imagem {label} visível',
     bookingLabel: 'Marcar consulta',
     disclaimer: 'As imagens apresentadas são ilustrativas. Os resultados variam de pessoa para pessoa.',
     items: [
-      { title: 'Blefaroplastia Superior', beforeImage: beforeOne, afterImage: afterOne },
-      { title: 'Blefaroplastia Inferior', beforeImage: beforeTwo, afterImage: afterTwo },
+      { title: 'Blefaroplastia Superior', beforeImage: beforeOne, beforeMobileImage: beforeOneMobile, afterImage: afterOne, afterMobileImage: afterOneMobile, imageWidth: 1200, imageHeight: 800 },
+      { title: 'Blefaroplastia Inferior', beforeImage: beforeTwo, beforeMobileImage: beforeTwoMobile, afterImage: afterTwo, afterMobileImage: afterTwoMobile, imageWidth: 1200, imageHeight: 800 },
       { title: 'Ptose Palpebral', beforeImage: beforeThree, afterImage: afterThree },
     ],
   },
@@ -30,11 +35,12 @@ const resultsPage = {
     beforeLabel: 'Before',
     afterLabel: 'After',
     sliderLabel: 'Slide to compare the before and after result',
+    sliderValueText: '{percentage}% of the {label} image visible',
     bookingLabel: 'Book an appointment',
     disclaimer: 'Images are illustrative. Results vary from person to person.',
     items: [
-      { title: 'Upper Blepharoplasty', beforeImage: beforeOne, afterImage: afterOne },
-      { title: 'Lower Blepharoplasty', beforeImage: beforeTwo, afterImage: afterTwo },
+      { title: 'Upper Blepharoplasty', beforeImage: beforeOne, beforeMobileImage: beforeOneMobile, afterImage: afterOne, afterMobileImage: afterOneMobile, imageWidth: 1200, imageHeight: 800 },
+      { title: 'Lower Blepharoplasty', beforeImage: beforeTwo, beforeMobileImage: beforeTwoMobile, afterImage: afterTwo, afterMobileImage: afterTwoMobile, imageWidth: 1200, imageHeight: 800 },
       { title: 'Eyelid Ptosis', beforeImage: beforeThree, afterImage: afterThree },
     ],
   },

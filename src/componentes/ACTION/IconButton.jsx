@@ -4,7 +4,6 @@ export default function IconButton({
   icon,
   label,
   variant = 'ghost',
-  size = 'medium',
   href,
   className = '',
   type = 'button',
@@ -15,7 +14,7 @@ export default function IconButton({
   return (
     <Component
       aria-label={label}
-      className={`ui-icon-button ui-icon-button--${variant} ui-icon-button--${size} ${className}`.trim()}
+      className={`ui-icon-button ui-icon-button--${variant} ${className}`.trim()}
       href={href}
       title={label}
       type={href ? undefined : type}

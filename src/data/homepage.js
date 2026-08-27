@@ -7,7 +7,11 @@ export const getHeroContent = (language) => {
 
   return {
     ...content,
-    slides: content.slides.map((slide, index) => ({ ...slide, image: siteMedia.hero[index] })),
+    slides: content.slides.map((slide, index) => ({
+      ...slide,
+      image: siteMedia.hero[index],
+      mobileImage: siteMedia.heroMobile[index],
+    })),
   }
 }
 
@@ -16,12 +20,21 @@ export const getClinicalAreas = (language) => {
 
   return {
     ...content,
-    items: content.items.map((item) => ({
-      ...item,
-      image: siteMedia.clinicalAreas[item.slug].icon,
-      coverImage: siteMedia.clinicalAreas[item.slug].cover,
-      to: `/treatments/${item.slug}`,
-    })),
+    items: content.items.map((item) => {
+      const media = siteMedia.clinicalAreas[item.slug]
+
+      return {
+        ...item,
+        image: media.icon.src,
+        imageWidth: media.icon.width,
+        imageHeight: media.icon.height,
+        coverImage: media.cover.desktop,
+        coverMobileImage: media.cover.mobile,
+        coverWidth: media.cover.width,
+        coverHeight: media.cover.height,
+        to: `/treatments/${item.slug}`,
+      }
+    }),
   }
 }
 
@@ -29,8 +42,6 @@ export const getTestimonials = (content) => content.items.map((item, index) => (
   ...item,
   image: siteMedia.testimonials[index],
 }))
-
-export const testimonialsBackground = siteMedia.testimonialsBackground
 
 export const feedMedia = siteMedia.feed
 export const clinicIntroductionMedia = siteMedia.clinicIntroduction

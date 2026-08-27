@@ -96,49 +96,6 @@
   text-align: center;
 }
 
-.clinical-area-card__image {
-  width: 5.25rem;
-  height: 5.25rem;
-  margin-bottom: var(--space-md);
-  display: block;
-  object-fit: contain;
-}
-
-.clinical-area-card h3 {
-  max-width: 15rem;
-  min-height: 2.75em;
-  font-size: var(--fs-small);
-  font-weight: var(--fw-semibold);
-  line-height: 1.45;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-
-.clinical-area-card__description {
-  max-width: 17rem;
-  margin-block: var(--space-xs) var(--space-sm);
-}
-
-.clinical-area-card__link {
-  margin-top: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2xs);
-  color: var(--color-accent);
-  font-size: var(--fs-caption);
-  font-weight: var(--fw-medium);
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-
-.clinical-area-card__link svg {
-  width: 1rem;
-  height: 1rem;
-  transition: transform var(--motion-duration-fast) var(--motion-ease-standard);
-}
-
-.clinical-area-card__link:hover svg { transform: translateX(.2rem); }
-
 .clinical-area-card--feature {
   padding: clamp(.75rem, 1.4vw, 1.25rem);
   align-items: stretch;
@@ -161,6 +118,8 @@
   overflow: hidden;
   background: var(--color-surface-alt);
 }
+
+.clinical-area-card__media > picture { width: 100%; height: 100%; display: block; }
 
 .clinical-area-card__cover {
   width: 100%;
@@ -258,12 +217,6 @@
   text-transform: none;
 }
 
-.clinical-area-card--feature .clinical-area-card__description {
-  max-width: none;
-  margin: var(--space-xs) 0 0;
-  line-height: var(--lh-body);
-}
-
 .clinical-area-card__icon {
   width: 3.5rem;
   height: 3.5rem;
@@ -314,56 +267,7 @@
   outline-offset: var(--button-focus-outline-offset);
 }
 
-.clinical-area-card--vertical {
-  min-height: clamp(25rem, 44vw, 34rem);
-  padding-block: clamp(3.5rem, 7vw, 6rem);
-  border-bottom: var(--border-width) solid var(--color-border-accent);
-  justify-content: center;
-}
-
-.clinical-area-card--vertical .clinical-area-card__image {
-  width: clamp(6rem, 10vw, 8.5rem);
-  height: clamp(6rem, 10vw, 8.5rem);
-  margin-bottom: clamp(2rem, 4vw, 3.5rem);
-}
-
-.clinical-area-card--vertical h3 {
-  min-height: 0;
-  font-size: clamp(1rem, 1.4vw, 1.25rem);
-}
-
-.clinical-area-card--vertical .clinical-area-card__description {
-  max-width: 30rem;
-  margin: var(--space-md) auto var(--space-lg);
-}
-
-.clinical-area-card--vertical .clinical-area-card__link {
-  margin-top: 0;
-  white-space: nowrap;
-}
-
 @media (max-width: 767px) {
-  .clinical-area-card h3 { min-height: 0; }
-
-  .clinical-area-card--vertical {
-    min-height: clamp(25rem, 118vw, 31rem);
-    padding: 3.5rem var(--space-sm);
-  }
-
-  .clinical-area-card--vertical .clinical-area-card__image {
-    width: 5.5rem;
-    height: 5.5rem;
-    margin-bottom: 3rem;
-  }
-
-  .clinical-area-card--vertical h3 { font-size: 1.05rem; }
-
-  .clinical-area-card--vertical .clinical-area-card__description {
-    max-width: 27rem;
-    font-size: clamp(1rem, 4.6vw, 1.3rem);
-    line-height: 1.55;
-  }
-
   .clinical-area-card--feature { padding: var(--space-xs); }
   .clinical-area-card--feature .clinical-area-card__media-shade { opacity: 1; }
   .clinical-area-card--feature .clinical-area-card__frame { opacity: .7; transform: none; }
@@ -374,7 +278,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .clinical-area-card__link svg,
   .clinical-area-card--feature,
   .clinical-area-card__cover,
   .clinical-area-card__frame,
@@ -394,7 +297,10 @@
   aspect-ratio: 3 / 2;
   position: relative;
   overflow: hidden;
+  touch-action: pan-y;
 }
+
+.after-before-card__picture { width: 100%; height: 100%; display: block; }
 
 .after-before-card__image {
   width: 100%;
@@ -488,6 +394,13 @@
   height: 100%;
   cursor: ew-resize;
   opacity: 0;
+  touch-action: pan-y;
+}
+
+.after-before-card__caption {
+  padding: var(--space-sm);
+  color: var(--color-text);
+  font-size: var(--fs-small);
 }
 
 .after-before-card__slider-label {
@@ -510,4 +423,10 @@
   .after-before-card__label { top: var(--space-xs); padding: var(--space-2xs); }
   .after-before-card__label--before { left: var(--space-xs); }
   .after-before-card__label--after { right: var(--space-xs); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .after-before-card__after,
+  .after-before-card__divider,
+  .after-before-card__handle { transition: none; animation: none; }
 }

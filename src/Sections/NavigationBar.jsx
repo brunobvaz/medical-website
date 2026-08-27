@@ -16,6 +16,8 @@ export default function NavigationBar({
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const firstLinkRef = useRef(null)
+  const menuButtonRef = useRef(null)
+  const overlayRef = useRef(null)
   const resolvedBrand = brand ?? siteConfig.brand
   const resolvedBookingLabel = bookingLabel ?? t.navigation.booking
   const resolvedBookingHref = bookingHref ?? siteConfig.routes.booking
@@ -25,7 +27,6 @@ export default function NavigationBar({
     { label: t.navigation.links.treatments, to: siteConfig.routes.treatments },
     { label: t.navigation.links.team, to: siteConfig.routes.results },
     { label: t.navigation.links.contacts, to: siteConfig.routes.contacts },
-    { label: t.navigation.links.components, to: siteConfig.routes.components },
   ]
 
   const closeMenu = () => setIsMenuOpen(false)
@@ -37,17 +38,45 @@ export default function NavigationBar({
   useEffect(() => {
     if (!isMenuOpen) return undefined
 
+    const opener = menuButtonRef.current
+    const overlay = overlayRef.current
+    const previousOverflow = document.body.style.overflow
+    const menuElements = [...overlay.querySelectorAll('a[href], button:not([disabled])')]
+    const firstMenuElement = menuElements[0]
+    const lastMenuElement = menuElements.at(-1)
+
     const handleKeyDown = (event) => {
-      if (event.key === 'Escape') closeMenu()
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        closeMenu()
+        return
+      }
+
+      if (event.key !== 'Tab') return
+      if (event.shiftKey && document.activeElement === menuButtonRef.current) {
+        event.preventDefault()
+        lastMenuElement.focus()
+      } else if (event.shiftKey && document.activeElement === firstMenuElement) {
+        event.preventDefault()
+        menuButtonRef.current.focus()
+      } else if (!event.shiftKey && document.activeElement === menuButtonRef.current) {
+        event.preventDefault()
+        firstMenuElement.focus()
+      } else if (!event.shiftKey && document.activeElement === lastMenuElement) {
+        event.preventDefault()
+        menuButtonRef.current.focus()
+      }
     }
 
     document.body.style.overflow = 'hidden'
     document.addEventListener('keydown', handleKeyDown)
-    firstLinkRef.current?.focus()
+    const focusTimer = window.setTimeout(() => firstLinkRef.current?.focus(), 100)
 
     return () => {
-      document.body.style.overflow = ''
+      window.clearTimeout(focusTimer)
+      document.body.style.overflow = previousOverflow
       document.removeEventListener('keydown', handleKeyDown)
+      opener?.focus()
     }
   }, [isMenuOpen])
 
@@ -61,7 +90,7 @@ export default function NavigationBar({
   return (
     <header className={`main-navigation ${isMenuOpen ? 'main-navigation--open' : ''} ${isScrolled ? 'main-navigation--scrolled' : ''}`}>
       <Button className="main-navigation__booking" to={resolvedBookingHref} size="small">
-        <span className="main-navigation__booking-full">{resolvedBookingLabel}</span>
+        <span>{resolvedBookingLabel}</span>
         <span className="main-navigation__booking-short">{t.navigation.bookingShort}</span>
       </Button>
 
@@ -84,6 +113,7 @@ export default function NavigationBar({
 
         <button
           className={`main-navigation__menu ${isMenuOpen ? 'main-navigation__menu--open' : ''}`}
+          ref={menuButtonRef}
           type="button"
           aria-label={isMenuOpen ? t.navigation.closeMenuLabel : t.navigation.menuLabel}
           aria-expanded={isMenuOpen}
@@ -98,7 +128,10 @@ export default function NavigationBar({
 
       <div
         className={`navigation-overlay ${isMenuOpen ? 'navigation-overlay--open' : ''}`}
+        ref={overlayRef}
         id="main-navigation-overlay"
+        role="dialog"
+        aria-modal={isMenuOpen ? 'true' : undefined}
         aria-hidden={!isMenuOpen}
       >
         <nav className="navigation-overlay__nav" aria-label={t.navigation.menuNavigationLabel}>

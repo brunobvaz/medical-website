@@ -33,12 +33,17 @@ export default function ResultsPage() {
                   <AfterBeforeCard
                     className="results-page__comparison"
                     beforeImage={item.beforeImage}
+                    beforeMobileImage={item.beforeMobileImage}
                     afterImage={item.afterImage}
+                    afterMobileImage={item.afterMobileImage}
+                    imageWidth={item.imageWidth}
+                    imageHeight={item.imageHeight}
                     beforeLabel={content.beforeLabel}
                     afterLabel={content.afterLabel}
                     beforeAlt={`${item.title}: ${content.beforeLabel}`}
                     afterAlt={`${item.title}: ${content.afterLabel}`}
                     sliderLabel={`${content.sliderLabel}: ${item.title}`}
+                    sliderValueText={content.sliderValueText}
                   />
                 </article>
               ))}

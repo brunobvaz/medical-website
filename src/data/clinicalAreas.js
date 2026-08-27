@@ -5,6 +5,8 @@ const clinicalAreas = {
     headingLineTwo: 'para cada região do olhar.',
     introduction: 'Uma abordagem personalizada e criteriosa, com foco na função, na saúde ocular e na harmonia facial.',
     linkLabel: 'Explorar',
+    expandLabel: 'Mostrar detalhes',
+    collapseLabel: 'Ocultar detalhes',
     allServicesLabel: 'Ver todos os serviços',
     items: [
       {
@@ -43,6 +45,8 @@ const clinicalAreas = {
     headingLineTwo: 'for every region of the eye.',
     introduction: 'A personalised and considered approach focused on function, eye health and facial harmony.',
     linkLabel: 'Explore',
+    expandLabel: 'Show details',
+    collapseLabel: 'Hide details',
     allServicesLabel: 'View all services',
     items: [
       {

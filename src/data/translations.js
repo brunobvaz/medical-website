@@ -41,10 +41,8 @@ const translations = {
       titleLineOne: 'O que é a',
       titleLineTwo: 'Cirurgia',
       titleAccent: 'Oculoplástica?',
-      paragraphs: [
-        'A cirurgia oculoplástica é a especialidade da Oftalmologia que se dedica ao diagnóstico e tratamento cirúrgico e não cirúrgico das alterações que envolvem as pálpebras, a órbita, as vias lacrimais e a região periocular.',
-        'Combina conhecimento funcional e sentido estético para promover saúde ocular, conforto e harmonia facial.',
-      ],
+      description: 'A cirurgia oculoplástica é a especialidade da Oftalmologia que se dedica ao diagnóstico e tratamento cirúrgico e não cirúrgico das alterações que envolvem as pálpebras, a órbita, as vias lacrimais e a região periocular.',
+      callout: 'Combina conhecimento funcional e sentido estético para promover saúde ocular, conforto e harmonia facial.',
       imageAlt: 'Avaliação da região periocular para cirurgia oculoplástica',
     },
     positioning: {
@@ -120,11 +118,13 @@ const translations = {
     testimonials: {
       eyebrow: 'Testemunhos',
       title: 'Histórias reais, resultados que inspiram.',
+      titleLead: 'Histórias reais',
+      titleAccent: 'resultados que inspiram.',
       introduction: 'Cada testemunho reflete a confiança de quem escolheu um cuidado personalizado e humanizado.',
-      backgroundAlt: 'Consulta especializada de avaliação oftalmológica',
       ratingLabel: 'Avaliação de 5 em 5 estrelas',
       selectorLabel: 'Selecionar testemunho',
-      showLabel: 'Mostrar testemunho de',
+      pageButtonLabel: 'Mostrar página {page} dos testemunhos',
+      pageStatus: 'Página {current} de {total}: {names}',
       items: [
         { initials: 'AM', name: 'Ana Martins', treatment: 'Tratamento com Botox', quote: 'Desde a primeira consulta senti-me verdadeiramente ouvida. O resultado ficou muito natural e superou as minhas expectativas.' },
         { initials: 'CS', name: 'Carla Silva', treatment: 'Skinbooster', quote: 'Uma equipa atenciosa, rigorosa e muito transparente em todas as fases. A minha pele recuperou a luminosidade sem perder a naturalidade.' },
@@ -266,10 +266,8 @@ const translations = {
       titleLineOne: 'What is',
       titleLineTwo: 'Oculoplastic',
       titleAccent: 'Surgery?',
-      paragraphs: [
-        'Oculoplastic surgery is the field of Ophthalmology dedicated to the surgical and non-surgical diagnosis and treatment of conditions affecting the eyelids, orbit, lacrimal system and periocular region.',
-        'It combines functional expertise with aesthetic sensitivity to promote eye health, comfort and facial harmony.',
-      ],
+      description: 'Oculoplastic surgery is the field of Ophthalmology dedicated to the surgical and non-surgical diagnosis and treatment of conditions affecting the eyelids, orbit, lacrimal system and periocular region.',
+      callout: 'It combines functional expertise with aesthetic sensitivity to promote eye health, comfort and facial harmony.',
       imageAlt: 'Assessment of the periocular area for oculoplastic surgery',
     },
     positioning: {
@@ -345,11 +343,13 @@ const translations = {
     testimonials: {
       eyebrow: 'Testimonials',
       title: 'Real stories, inspiring results.',
+      titleLead: 'Real stories',
+      titleAccent: 'inspiring results.',
       introduction: 'Every testimonial reflects the trust of those who chose personalised, compassionate care.',
-      backgroundAlt: 'Specialist ophthalmology assessment',
       ratingLabel: '5 out of 5 star rating',
       selectorLabel: 'Select testimonial',
-      showLabel: 'Show testimonial from',
+      pageButtonLabel: 'Show testimonials page {page}',
+      pageStatus: 'Page {current} of {total}: {names}',
       items: [
         { initials: 'AM', name: 'Ana Martins', treatment: 'Botox treatment', quote: 'From the first consultation, I felt truly listened to. The result looks very natural and exceeded my expectations.' },
         { initials: 'CS', name: 'Carla Silva', treatment: 'Skinbooster', quote: 'An attentive, precise and transparent team throughout every stage. My skin regained its radiance without losing its natural look.' },

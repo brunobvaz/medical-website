@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import identityMark from '../assets/icons/igsite_gold_2x.png'
+import identityMark from '../assets/optimized/identity-mark.webp'
 import { ArrowDownLink } from '../componentes/ACTION/index.js'
 import { Section, SectionContainer } from '../componentes/LAYOUT/index.js'
 import { getClinicalAreas } from '../data/homepage.js'
@@ -25,7 +25,7 @@ export default function ClinicalAreasSection() {
             </h2>
             <p className="clinical-areas-section__introduction">{content.introduction}</p>
           </div>
-          <img className="clinical-areas-section__identity" src={identityMark} alt="" aria-hidden="true" />
+          <img className="clinical-areas-section__identity" src={identityMark} width="760" height="380" alt="" aria-hidden="true" loading="lazy" decoding="async" />
         </header>
 
         <div className="clinical-areas-section__cards">
@@ -33,16 +33,58 @@ export default function ClinicalAreasSection() {
             <article
               className={`clinical-areas-section__card${activeArea === index ? ' is-active' : ''}`}
               key={area.slug}
-              onFocus={() => setActiveArea(index)}
-              onMouseEnter={() => setActiveArea(index)}
+              onFocusCapture={(event) => {
+                if (event.target.closest('a')) setActiveArea(index)
+              }}
+              onPointerEnter={(event) => {
+                if (event.pointerType === 'mouse') setActiveArea(index)
+              }}
             >
-              <img className="clinical-areas-section__cover" src={area.coverImage} alt="" aria-hidden="true" />
+              {activeArea === index && (
+                <picture className="clinical-areas-section__cover-media" aria-hidden="true">
+                  <source media="(max-width: 600px)" srcSet={`${area.coverMobileImage} 640w`} sizes="calc(100vw - 2rem)" />
+                  <img
+                    className="clinical-areas-section__cover"
+                    src={area.coverImage}
+                    srcSet={`${area.coverImage} 1200w`}
+                    sizes="(max-width: 600px) calc(100vw - 2rem), (max-width: 900px) 50vw, 36vw"
+                    width={area.coverWidth}
+                    height={area.coverHeight}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              )}
               <span className="clinical-areas-section__shade" aria-hidden="true" />
               <span className="clinical-areas-section__card-number">{String(index + 1).padStart(2, '0')}</span>
-              <img className="clinical-areas-section__card-icon" src={area.image} alt="" aria-hidden="true" />
+              <img
+                className="clinical-areas-section__card-icon"
+                src={area.image}
+                width={area.imageWidth}
+                height={area.imageHeight}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
+              />
               <div className="clinical-areas-section__card-copy">
-                <h3>{area.title}</h3>
-                <p>{area.description}</p>
+                <h3>
+                  <button
+                    className="clinical-areas-section__card-toggle"
+                    type="button"
+                    aria-expanded={activeArea === index}
+                    aria-controls={`clinical-area-description-${area.slug}`}
+                    aria-label={`${activeArea === index ? content.collapseLabel : content.expandLabel}: ${area.title}`}
+                    onClick={() => setActiveArea((currentArea) => currentArea === index ? null : index)}
+                  >
+                    <span>{area.title}</span>
+                    <span className="clinical-areas-section__card-indicator" aria-hidden="true">
+                      {activeArea === index ? '−' : '+'}
+                    </span>
+                  </button>
+                </h3>
+                <p id={`clinical-area-description-${area.slug}`} hidden={activeArea !== index}>{area.description}</p>
               </div>
               <ArrowDownLink
                 aria-label={`${content.linkLabel}: ${area.title}`}

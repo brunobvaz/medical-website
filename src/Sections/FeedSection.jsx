@@ -27,28 +27,49 @@ export default function FeedSection() {
               {content.buttonLabel}
             </Button>
           </div>
-
-          <figure className="feed-section__featured">
-            <img src={feedMedia.featured} alt={content.imageAlt} loading="lazy" />
-          </figure>
         </div>
 
         <div className="feed-section__comparisons">
-          {results.items.slice(0, 2).map((item) => (
+          {results.items.slice(0, 2).map((item, index) => (
             <AfterBeforeCard
               className="feed-section__comparison"
               key={item.title}
+              title={item.title}
               beforeImage={item.beforeImage}
+              beforeMobileImage={item.beforeMobileImage}
               afterImage={item.afterImage}
+              afterMobileImage={item.afterMobileImage}
+              imageWidth={item.imageWidth}
+              imageHeight={item.imageHeight}
               beforeLabel={results.beforeLabel}
               afterLabel={results.afterLabel}
               beforeAlt={`${item.title}: ${results.beforeLabel}`}
               afterAlt={`${item.title}: ${results.afterLabel}`}
               sliderLabel={`${results.sliderLabel}: ${item.title}`}
+              sliderValueText={results.sliderValueText}
               demoOnView
+              demoDelay={index * 450}
             />
           ))}
         </div>
+
+        <figure className="feed-section__featured">
+          <picture>
+            <source media="(max-width: 700px)" srcSet={`${feedMedia.featured.mobile} 640w`} sizes="calc(100vw - 2rem)" />
+            <img
+              src={feedMedia.featured.desktop}
+              srcSet={`${feedMedia.featured.desktop} 1200w`}
+              sizes="(max-width: 1050px) calc(100vw - 2rem), 40vw"
+              width={feedMedia.featured.width}
+              height={feedMedia.featured.height}
+              alt={content.imageAlt}
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+        </figure>
+
+        <p className="feed-section__disclaimer">{results.disclaimer}</p>
       </SectionContainer>
     </Section>
   )

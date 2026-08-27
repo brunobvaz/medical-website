@@ -1,7 +1,8 @@
-import eyelidsImage from '../assets/eye.png'
-import functionIcon from '../assets/icons/positioning-function-icon.png'
-import harmonyIcon from '../assets/icons/positioning-harmony-icon.png'
-import precisionIcon from '../assets/icons/positioning-precision-icon.png'
+import eyelidsImage from '../assets/optimized/positioning-eye.webp'
+import eyelidsMobileImage from '../assets/optimized/positioning-eye-mobile.webp'
+import functionIcon from '../assets/optimized/positioning-function-icon.webp'
+import harmonyIcon from '../assets/optimized/positioning-harmony-icon.webp'
+import precisionIcon from '../assets/optimized/positioning-precision-icon.webp'
 import { Section } from '../componentes/LAYOUT/index.js'
 import { useI18n } from '../i18n/I18nContext.jsx'
 import './PositioningSection.css'
@@ -9,9 +10,15 @@ import './PositioningSection.css'
 const pillarIcons = [functionIcon, precisionIcon, harmonyIcon]
 
 const TitleBlock = ({ text }) => {
-  const [primary, accent] = text.split('\n')
+  const [primary = text, ...accentParts] = text.split('\n')
+  const accent = accentParts.join(' ').trim()
 
-  return <span className="positioning-section__title-block"><span>{primary}</span><em>{accent}</em></span>
+  return (
+    <span className="positioning-section__title-block">
+      <span>{primary}</span>
+      {accent && <em>{accent}</em>}
+    </span>
+  )
 }
 
 export default function PositioningSection() {
@@ -20,7 +27,22 @@ export default function PositioningSection() {
 
   return (
     <Section className="positioning-section" aria-labelledby="positioning-title">
-      <img className="positioning-section__image" src={eyelidsImage} alt="" loading="lazy" />
+      <div className="positioning-section__media" aria-hidden="true">
+        <picture>
+          <source media="(max-width: 820px)" srcSet={`${eyelidsMobileImage} 800w`} sizes="100vw" />
+          <img
+            className="positioning-section__image"
+            src={eyelidsImage}
+            srcSet={`${eyelidsImage} 1600w`}
+            sizes="100vw"
+            width="1600"
+            height="551"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+      </div>
 
       <div className="positioning-section__content">
         <p className="positioning-section__eyebrow type-eyebrow">{content.eyebrow}</p>
@@ -39,7 +61,15 @@ export default function PositioningSection() {
         <ul className="positioning-section__pillars">
           {content.pillars.map((pillar, index) => (
             <li key={pillar.title}>
-              <img className="positioning-section__pillar-icon" src={pillarIcons[index]} alt="" />
+              <img
+                className="positioning-section__pillar-icon"
+                src={pillarIcons[index]}
+                width="192"
+                height="192"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
               <h3>{pillar.title}</h3>
               <span className="positioning-section__pillar-rule" aria-hidden="true" />
               <p>{pillar.description}</p>

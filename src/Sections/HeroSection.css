@@ -105,15 +105,18 @@
 }
 
 .medical-hero__background {
+  width: 100%;
+  height: calc(100% + 5rem);
   position: absolute;
   inset: -2.5rem 0;
   z-index: -2;
-  background-position: center calc(50% + var(--hero-parallax-y, 0px));
-  background-repeat: no-repeat;
-  background-size: cover;
+  object-fit: cover;
+  object-position: center calc(50% + var(--hero-parallax-y, 0px));
   pointer-events: none;
   transform: scale(1.02);
 }
+
+.medical-hero__background-picture { display: contents; }
 
 .medical-hero__background--previous { transform: scale(1); }
 
@@ -123,7 +126,7 @@
 
 @keyframes hero-background-in {
   from { opacity: 0; transform: scale(1.025); }
-  to { opacity: 1; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.02); }
 }
 
 .medical-hero__content {
@@ -277,7 +280,7 @@
     min-height: clamp(32rem, 80vw, 42rem);
   }
 
-  .medical-hero__background { background-position: 42% calc(50% + var(--hero-parallax-y, 0px)); }
+  .medical-hero__background { object-position: 42% calc(50% + var(--hero-parallax-y, 0px)); }
 
   .medical-hero__content { width: min(52rem, calc(100% - (2 * var(--space-2xl)))); }
 }
@@ -298,15 +301,16 @@
   .medical-hero {
     width: 100%;
     min-height: clamp(31rem, 78svh, 39rem);
-    padding-block: clamp(2rem, 7vw, 3.5rem) calc(var(--space-2xl) + var(--space-lg));
+    padding-block: clamp(2rem, 7vw, 3.5rem) calc(clamp(2rem, 7vw, 3.5rem) + 3.25rem);
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     box-sizing: border-box;
     touch-action: pan-y;
   }
 
-  .medical-hero__background { background-position: var(--hero-layer-mobile-x) calc(50% + var(--hero-parallax-y, 0px)); }
+  .medical-hero__background { object-position: center; }
 
   .medical-hero.medical-hero--compact-mobile {
     min-height: clamp(29rem, 70svh, 34rem);
@@ -316,6 +320,11 @@
     background:
       radial-gradient(ellipse 92% 64% at 50% 34%, color-mix(in srgb, var(--color-text) 28%, transparent), transparent 82%),
       linear-gradient(180deg, color-mix(in srgb, var(--color-text) 22%, transparent), color-mix(in srgb, var(--color-text) 72%, transparent));
+  }
+  .medical-hero--slide-1 .medical-hero__overlay {
+    background:
+      radial-gradient(ellipse 92% 68% at 50% 34%, color-mix(in srgb, var(--color-text) 38%, transparent), transparent 82%),
+      linear-gradient(180deg, color-mix(in srgb, var(--color-text) 30%, transparent), color-mix(in srgb, var(--color-text) 78%, transparent));
   }
   .medical-hero__content {
     width: min(calc(100% - (2 * var(--space-lg))), 35rem);
@@ -328,16 +337,23 @@
     line-height: 1.45;
   }
   .medical-hero h1 {
-    max-width: 18ch;
-    font-size: clamp(2rem, 8vw, 3.25rem);
+    width: 100%;
+    max-width: 22ch;
+    font-size: clamp(1.75rem, 7.5vw, 3.25rem);
+    line-height: 1.05;
   }
-  .medical-hero__title-line { white-space: normal; }
+  .medical-hero__title-line {
+    display: inline;
+    white-space: normal;
+  }
+  .medical-hero__title-line:not(:last-child)::after { content: ' '; }
   .medical-hero__rule { margin-block: var(--space-sm); }
   .medical-hero__description {
-    max-width: 35ch;
+    max-width: 32ch;
     min-height: 0;
-    font-size: clamp(1rem, 3.7vw, 1.125rem);
-    line-height: 1.55;
+    color: color-mix(in srgb, var(--color-text-light) 82%, transparent);
+    font-size: clamp(.95rem, 3.4vw, 1.05rem);
+    line-height: 1.5;
   }
   .medical-hero__actions { margin-top: var(--space-md); }
   .medical-hero__cta--booking { display: inline-flex; }
@@ -371,11 +387,14 @@
 @media (max-width: 479px) {
   .medical-hero {
     min-height: clamp(31rem, 82svh, 35rem);
-    padding-block: var(--space-lg) calc(var(--space-2xl) + var(--space-md));
+    padding-block: var(--space-lg) calc(var(--space-lg) + 3.25rem);
   }
   .medical-hero.medical-hero--compact-mobile { min-height: clamp(29rem, 72svh, 32rem); }
   .medical-hero__content { width: calc(100% - (2 * var(--space-md))); }
-  .medical-hero h1 { font-size: clamp(2rem, 8.5vw, 2.55rem); }
+  .medical-hero h1 {
+    max-width: none;
+    font-size: clamp(1.7rem, 7.5vw, 2.25rem);
+  }
   .medical-hero__actions {
     width: 100%;
     flex-direction: column;
@@ -392,8 +411,8 @@
     padding-top: var(--space-md);
   }
   .medical-hero__content { width: calc(100% - (2 * var(--space-sm))); }
-  .medical-hero h1 { font-size: 2rem; }
-  .medical-hero__description { font-size: 1rem; }
+  .medical-hero h1 { font-size: clamp(1.5rem, 6.8vw, 1.8rem); }
+  .medical-hero__description { font-size: .9rem; }
   .medical-hero-stat {
     min-height: 6.5rem;
     padding-inline: var(--space-xs);
@@ -404,7 +423,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .medical-hero__background { background-position-y: center; transform: none; animation: none; }
+  .medical-hero__background { transform: none; animation: none; }
   .medical-hero__content > * {
     opacity: 1;
     animation: none;

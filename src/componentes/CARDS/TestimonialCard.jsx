@@ -18,10 +18,11 @@ export default function TestimonialCard({
   image,
   rating = 5,
   ratingLabel,
+  isVisible = true,
   className = '',
 }) {
   return (
-    <article className={`testimonial-card ${className}`.trim()}>
+    <article className={`testimonial-card ${className}`.trim()} aria-hidden={!isVisible} inert={isVisible ? undefined : true}>
       <div className="testimonial-card__top">
         <Stars rating={rating} label={ratingLabel} />
         <svg className="testimonial-card__quote" aria-hidden="true" viewBox="0 0 40 32">
@@ -33,7 +34,7 @@ export default function TestimonialCard({
 
       <footer className="testimonial-card__author">
         {image
-          ? <img className="testimonial-card__avatar" src={image} alt="" aria-hidden="true" loading="lazy" />
+          ? <img className="testimonial-card__avatar" src={image} width="128" height="128" alt="" aria-hidden="true" loading="lazy" decoding="async" />
           : <span className="testimonial-card__avatar" aria-hidden="true">{initials}</span>}
         <div>
           <cite className="type-small">{name}</cite>

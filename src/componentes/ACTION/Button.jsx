@@ -5,7 +5,6 @@ export default function Button({
   children,
   variant = 'primary',
   size = 'medium',
-  fullWidth = false,
   leadingIcon,
   trailingIcon,
   href,
@@ -19,7 +18,6 @@ export default function Button({
     'ui-button type-action',
     `ui-button--${variant}`,
     `ui-button--${size}`,
-    fullWidth ? 'ui-button--full' : '',
     className,
   ].filter(Boolean).join(' ')
 

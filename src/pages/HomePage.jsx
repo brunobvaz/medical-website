@@ -14,7 +14,7 @@ export default function HomePage() {
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const sections = [...document.querySelectorAll('#inicio > .site-section')]
-    const images = [...document.querySelectorAll('.clinic-introduction__portrait, .speciality-section__image')]
+    const images = [...document.querySelectorAll('.clinic-introduction__portrait')]
     const cards = [...document.querySelectorAll('.clinical-areas-section__card, .feed-section__comparison, .testimonials-section__card')]
 
     if (reduceMotion || !('IntersectionObserver' in window)) {
@@ -33,7 +33,9 @@ export default function HomePage() {
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        entry.target.classList.toggle('is-revealed', entry.isIntersecting)
+        if (!entry.isIntersecting) return
+        entry.target.classList.add('is-revealed')
+        observer.unobserve(entry.target)
       })
     }, { threshold: .12, rootMargin: '0px 0px -8% 0px' })
 

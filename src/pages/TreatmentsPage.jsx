@@ -29,6 +29,8 @@ export default function TreatmentsPage() {
               <ClinicalAreaCard
                 key={area.slug}
                 image={area.image}
+                imageWidth={area.imageWidth}
+                imageHeight={area.imageHeight}
                 imageAlt={area.imageAlt}
                 title={area.title}
                 description={area.description}

@@ -12,14 +12,15 @@ export default function HeroSection({
   onNext,
 }) {
   const { language: activeLanguage } = useI18n()
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [requestedIndex, setCurrentIndex] = useState(0)
   const [previousIndex, setPreviousIndex] = useState(null)
   const heroRef = useRef(null)
   const swipeStartRef = useRef(null)
   const language = languageOverride ?? activeLanguage
   const content = useMemo(() => getHeroContent(language), [language])
   const safeSlides = useMemo(() => (slides?.length > 0 ? slides : content.slides), [content.slides, slides])
-  const currentSlide = safeSlides[currentIndex % safeSlides.length]
+  const currentIndex = requestedIndex % safeSlides.length
+  const currentSlide = safeSlides[currentIndex]
   const previousSlide = previousIndex === null ? null : safeSlides[previousIndex % safeSlides.length]
   const hasMultipleSlides = safeSlides.length > 1
 
@@ -54,7 +55,7 @@ export default function HeroSection({
     }
   }
   const handlePointerDown = (event) => {
-    if (!event.isPrimary) return
+    if (!event.isPrimary || event.target.closest('a, button')) return
     swipeStartRef.current = { x: event.clientX, y: event.clientY }
   }
   const handlePointerUp = (event) => {
@@ -68,11 +69,6 @@ export default function HeroSection({
     if (deltaX > 0) showPrevious()
     else showNext()
   }
-  const getBackgroundStyle = (slide) => ({
-    backgroundImage: `url(${slide.image})`,
-    '--hero-layer-mobile-x': slide.mobileImagePosition ?? '62%',
-  })
-
   useEffect(() => {
     if (previousIndex === null) return undefined
     const timeoutId = window.setTimeout(() => setPreviousIndex(null), 700)
@@ -80,16 +76,17 @@ export default function HeroSection({
   }, [currentIndex, previousIndex])
 
   useEffect(() => {
+    const useMobileImages = window.matchMedia('(max-width: 767px)').matches
+    const preloadSlides = () => {
+      safeSlides.slice(1).forEach((slide) => {
+        const image = new Image()
+        image.src = useMobileImages ? slide.mobileImage ?? slide.image : slide.image
+      })
+    }
     const preloadId = window.requestIdleCallback?.(() => {
-      safeSlides.slice(1).forEach((slide) => {
-        const image = new Image()
-        image.src = slide.image
-      })
+      preloadSlides()
     }) ?? window.setTimeout(() => {
-      safeSlides.slice(1).forEach((slide) => {
-        const image = new Image()
-        image.src = slide.image
-      })
+      preloadSlides()
     }, 700)
 
     return () => {
@@ -100,7 +97,8 @@ export default function HeroSection({
 
   useEffect(() => {
     const hero = heroRef.current
-    if (!hero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
+    const disableParallax = window.matchMedia('(max-width: 767px), (prefers-reduced-motion: reduce)').matches
+    if (!hero || disableParallax) return undefined
 
     let frameId = null
     const updateParallax = () => {
@@ -128,7 +126,7 @@ export default function HeroSection({
       <Section
         className={`medical-hero medical-hero--slide-${currentIndex} ${currentSlide.buttonTo === '/booking' ? 'medical-hero--compact-mobile' : ''}`}
         ref={heroRef}
-        aria-roledescription="carousel"
+        aria-roledescription={language === 'en' ? 'carousel' : 'carrossel'}
         aria-label={content.ariaLabel}
         tabIndex={hasMultipleSlides ? 0 : undefined}
         onKeyDown={handleKeyDown}
@@ -137,9 +135,29 @@ export default function HeroSection({
         onPointerCancel={() => { swipeStartRef.current = null }}
       >
       {previousSlide && (
-        <div className="medical-hero__background medical-hero__background--previous" style={getBackgroundStyle(previousSlide)} aria-hidden="true" />
+        <picture className="medical-hero__background-picture">
+          {previousSlide.mobileImage && <source media="(max-width: 767px)" srcSet={previousSlide.mobileImage} />}
+          <img
+            className="medical-hero__background medical-hero__background--previous"
+            src={previousSlide.image}
+            alt=""
+            aria-hidden="true"
+            decoding="async"
+          />
+        </picture>
       )}
-      <div className={`medical-hero__background medical-hero__background--current ${previousSlide ? 'medical-hero__background--enter' : ''}`} key={`background-${currentIndex}`} style={getBackgroundStyle(currentSlide)} aria-hidden="true" />
+      <picture className="medical-hero__background-picture" key={`background-${currentIndex}`}>
+        {currentSlide.mobileImage && <source media="(max-width: 767px)" srcSet={currentSlide.mobileImage} />}
+        <img
+          className={`medical-hero__background medical-hero__background--current ${previousSlide ? 'medical-hero__background--enter' : ''}`}
+          src={currentSlide.image}
+          alt=""
+          aria-hidden="true"
+          decoding="async"
+          fetchPriority={currentIndex === 0 ? 'high' : 'auto'}
+          loading="eager"
+        />
+      </picture>
       <div className="medical-hero__overlay" aria-hidden="true" />
       <p className="type-sr-only">{language === 'en' ? 'Use the left and right arrow keys or swipe to change highlight.' : 'Use as setas esquerda e direita ou deslize para mudar de destaque.'}</p>
       <p className="type-sr-only" role="status" aria-live="polite" aria-atomic="true">
@@ -180,7 +198,7 @@ export default function HeroSection({
         </div>
 
         {hasMultipleSlides && (
-          <div className="medical-hero__progress" aria-label={content.indicatorsLabel}>
+          <div className="medical-hero__progress" role="group" aria-label={content.indicatorsLabel}>
             <span className="medical-hero__progress-number" aria-hidden="true">{String(currentIndex + 1).padStart(2, '0')}</span>
             <div className="medical-hero__indicators">
               {safeSlides.map((slide, index) => (
@@ -200,15 +218,12 @@ export default function HeroSection({
       </div>
 
       {hasMultipleSlides && (
-        <>
-          <ArrowButton
-            className="medical-hero__arrow medical-hero__arrow--next"
-            direction="right"
-            label={content.nextSlideLabel}
-            onClick={showNext}
-          />
-
-        </>
+        <ArrowButton
+          className="medical-hero__arrow medical-hero__arrow--next"
+          direction="right"
+          label={content.nextSlideLabel}
+          onClick={showNext}
+        />
       )}
       </Section>
 

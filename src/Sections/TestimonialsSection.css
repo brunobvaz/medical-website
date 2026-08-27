@@ -145,19 +145,32 @@
 
 .testimonials-section__pagination button {
   width: 2.75rem;
-  height: .25rem;
+  height: 2.75rem;
+  padding: 0;
   border: 0;
   border-radius: 0;
-  background: var(--color-border);
+  position: relative;
+  background: transparent;
   cursor: pointer;
+}
+
+.testimonials-section__pagination button::before {
+  width: 2.75rem;
+  height: .25rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: var(--color-border);
+  content: '';
+  transform: translate(-50%, -50%);
   transition: background-color var(--motion-duration-fast), width var(--motion-duration-fast);
 }
 
-.testimonials-section__pagination button:hover,
-.testimonials-section__pagination button:focus-visible,
-.testimonials-section__pagination .is-active { background: var(--color-accent); }
+.testimonials-section__pagination button:hover::before,
+.testimonials-section__pagination button:focus-visible::before,
+.testimonials-section__pagination .is-active::before { background: var(--color-accent); }
 
-.testimonials-section__pagination .is-active { width: 4rem; }
+.testimonials-section__pagination .is-active::before { width: 4rem; }
 
 .testimonials-section__closing {
   margin-top: clamp(3rem, 6vw, 5.5rem);
@@ -194,7 +207,17 @@
   line-height: 1.15;
 }
 
-.testimonials-section__closing p:last-child { color: var(--color-accent-hover); font-style: italic; }
+.testimonials-section__closing .testimonials-section__closing-accent { color: var(--color-accent-hover); font-style: italic; }
+
+.testimonials-section__closing .testimonials-section__disclaimer {
+  max-width: 38rem;
+  margin: var(--space-lg) auto 0;
+  color: var(--color-text-subtle);
+  font-family: var(--font-family-body);
+  font-size: var(--fs-caption);
+  font-style: normal;
+  line-height: 1.55;
+}
 
 @media (max-width: 639px) {
   .testimonials-section__header-row { align-items: flex-end; }
@@ -211,7 +234,7 @@
 
 @media (max-width: 479px) {
   .testimonials-section__header-row { align-items: stretch; flex-direction: column; gap: var(--space-md); }
-  .testimonials-section__pagination .is-active { width: 2.75rem; }
+  .testimonials-section__pagination .is-active::before { width: 2.75rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
