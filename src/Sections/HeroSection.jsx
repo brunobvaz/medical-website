@@ -90,7 +90,13 @@ export default function HeroSection({
           <Button className="medical-hero__cta medical-hero__cta--booking" to="/booking" size="small" variant="primary">
             {language === 'en' ? 'Book an appointment' : 'Marcar consulta'}
           </Button>
-          <Button className="medical-hero__cta medical-hero__cta--slide" href={currentSlide.buttonHref} to={currentSlide.buttonTo} size="small" variant="primary">
+          <Button
+            className={`medical-hero__cta medical-hero__cta--slide ${currentSlide.buttonTo === '/booking' ? 'medical-hero__cta--duplicate' : ''}`}
+            href={currentSlide.buttonHref}
+            to={currentSlide.buttonTo}
+            size="small"
+            variant="primary"
+          >
             {currentSlide.buttonLabel}
           </Button>
         </div>

@@ -20,7 +20,7 @@ const heroContent = {
         description: 'Uma abordagem especializada e personalizada à saúde das pálpebras, órbita, vias lacrimais e região periocular.',
         buttonLabel: 'Conhecer a médica',
         buttonTo: '/about',
-        mobileImagePosition: '68%',
+        mobileImagePosition: '74%',
       },
       {
         eyebrow: 'Cirurgia Oculoplástica',
@@ -63,7 +63,7 @@ const heroContent = {
         description: 'A specialist and personalised approach to the health of the eyelids, orbit, lacrimal system and periocular region.',
         buttonLabel: 'Meet the doctor',
         buttonTo: '/about',
-        mobileImagePosition: '68%',
+        mobileImagePosition: '74%',
       },
       {
         eyebrow: 'Oculoplastic Surgery',
