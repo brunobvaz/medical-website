@@ -1,4 +1,5 @@
-import oculoplasticsHero from '../assets/optimized/oculoplastics.jpg'
+import treatmentsHero from '../assets/optimized/treatments.png'
+import treatmentsHeroMobile from '../assets/optimized/treatments_mobile.png'
 import { Button } from '../componentes/ACTION/index.js'
 import { InformationCard } from '../componentes/CARDS/index.js'
 import { Section, SectionContainer } from '../componentes/LAYOUT/index.js'
@@ -15,24 +16,25 @@ export default function TreatmentsPage() {
   return (
     <main className="treatments-page">
       <Section className="treatments-page__hero" aria-labelledby="treatments-title">
+        <picture className="treatments-page__hero-media" aria-hidden="true">
+          <source media="(max-width: 767px)" srcSet={treatmentsHeroMobile} />
+          <img
+            className="treatments-page__hero-image"
+            src={treatmentsHero}
+            alt=""
+            width="1536"
+            height="1024"
+            fetchPriority="high"
+          />
+        </picture>
+        <span className="treatments-page__hero-overlay" aria-hidden="true" />
+
         <div className="treatments-page__hero-content">
           <p className="type-eyebrow type-eyebrow--wide">{content.hero.eyebrow}</p>
           <span className="treatments-page__hero-rule" aria-hidden="true" />
           <h1 className="type-page-title" id="treatments-title">{content.hero.title}</h1>
           <p className="type-body type-muted">{content.hero.description}</p>
         </div>
-
-        <figure className="treatments-page__hero-media">
-          <img
-            className="treatments-page__hero-image"
-            src={oculoplasticsHero}
-            alt={content.hero.imageAlt}
-            width="1122"
-            height="1402"
-            fetchPriority="high"
-          />
-          <span className="treatments-page__hero-overlay" aria-hidden="true" />
-        </figure>
       </Section>
 
       <Section className="treatments-page__areas" aria-labelledby="treatments-areas-title">
