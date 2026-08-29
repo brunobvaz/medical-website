@@ -124,10 +124,11 @@
     text-align: center;
   }
   .treatments-page__hero-content > * { width: min(100%, 32rem); }
+  .treatments-page__hero-rule { width: 3rem; }
   .treatments-page__hero-content h1 { max-width: 12ch; }
   .treatments-page__hero-content .type-body { max-width: var(--measure-narrow); }
   .treatments-page__hero-overlay {
-    background: color-mix(in srgb, var(--color-surface-warm) 76%, transparent);
+    background: color-mix(in srgb, var(--color-surface-warm) 62%, transparent);
   }
   .treatments-page__grid { gap: var(--space-sm); }
 }
