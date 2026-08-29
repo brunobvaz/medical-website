@@ -78,6 +78,97 @@
   white-space: nowrap;
 }
 
+.information-card {
+  min-width: 0;
+  height: 100%;
+  padding: var(--space-lg) var(--space-md);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--color-text);
+  background: var(--color-bg);
+  text-align: center;
+  transition: border-color var(--motion-duration-fast) var(--motion-ease-standard),
+    box-shadow var(--motion-duration-fast) var(--motion-ease-standard),
+    transform var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.information-card__icon-wrap {
+  width: clamp(4.5rem, 8vw, 5.5rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  background: var(--color-surface-alt);
+}
+
+.information-card__icon {
+  width: 56%;
+  height: 56%;
+  object-fit: contain;
+}
+
+.information-card__content {
+  min-width: 0;
+  margin-top: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.information-card__title {
+  max-width: 18ch;
+  color: var(--color-text);
+}
+
+.information-card__description {
+  max-width: var(--measure-narrow);
+  margin-top: var(--space-xs);
+  line-height: var(--lh-loose);
+  text-wrap: pretty;
+}
+
+.information-card__footer {
+  width: 100%;
+  margin-top: auto;
+  padding-top: var(--space-lg);
+}
+
+.information-card__link {
+  width: 100%;
+  min-height: var(--button-height-sm);
+  justify-content: space-between;
+  color: var(--color-accent-hover);
+  text-align: left;
+}
+
+.information-card__link .ui-action__icon {
+  transition: transform var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.information-card__arrow {
+  width: 100%;
+  height: 100%;
+}
+
+@media (hover: hover) {
+  .information-card:hover {
+    border-color: var(--color-border-accent);
+    box-shadow: var(--shadow-md);
+    transform: translateY(calc(var(--space-2xs) * -.5));
+  }
+
+  .information-card__link:hover .ui-action__icon {
+    transform: translateX(var(--space-2xs));
+  }
+}
+
+@media (min-width: 768px) {
+  .information-card { padding: var(--space-xl) var(--space-lg) var(--space-lg); }
+}
+
 @media (min-width: 768px) {
   .service-card__content { padding: var(--space-lg); }
 }
@@ -85,7 +176,9 @@
 @media (prefers-reduced-motion: reduce) {
   .service-card,
   .service-card__image,
-  .service-card__button .ui-action__icon { transition: none; }
+  .service-card__button .ui-action__icon,
+  .information-card,
+  .information-card__link .ui-action__icon { transition: none; }
 }
 
 .clinical-area-card {
