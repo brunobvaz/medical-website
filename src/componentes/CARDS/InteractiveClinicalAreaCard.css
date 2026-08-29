@@ -1,0 +1,200 @@
+.interactive-clinical-area-card {
+  min-width: 0;
+  padding: clamp(1.5rem, 2.4vw, 2.5rem);
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  color: var(--color-text-light);
+  background: #24322f;
+  transition: flex-grow .7s var(--motion-ease-standard), background-color .45s var(--motion-ease-standard);
+}
+
+.interactive-clinical-area-card.is-active { flex-grow: 1.65; }
+
+.interactive-clinical-area-card__cover-media,
+.interactive-clinical-area-card__cover,
+.interactive-clinical-area-card__shade {
+  position: absolute;
+  inset: 0;
+}
+
+.interactive-clinical-area-card__cover-media {
+  z-index: -2;
+  display: block;
+}
+
+.interactive-clinical-area-card__cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.07);
+  transition: opacity .55s var(--motion-ease-standard), transform .9s var(--motion-ease-standard);
+}
+
+.interactive-clinical-area-card__shade {
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(20, 31, 29, .28), rgba(20, 31, 29, .86));
+  opacity: 0;
+  transition: opacity .45s var(--motion-ease-standard);
+}
+
+.interactive-clinical-area-card.is-active .interactive-clinical-area-card__cover,
+.interactive-clinical-area-card.is-active .interactive-clinical-area-card__shade {
+  opacity: 1;
+}
+
+.interactive-clinical-area-card.is-active .interactive-clinical-area-card__cover {
+  transform: scale(1);
+}
+
+.interactive-clinical-area-card__number {
+  color: color-mix(in srgb, var(--color-text-light) 68%, transparent);
+  font-family: var(--font-family-heading);
+  font-size: var(--fs-h5);
+}
+
+.interactive-clinical-area-card__icon {
+  width: clamp(3.5rem, 5vw, 5rem);
+  height: clamp(3.5rem, 5vw, 5rem);
+  margin-top: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: .72;
+  transition: opacity .35s var(--motion-ease-standard), transform .55s var(--motion-ease-standard);
+}
+
+.interactive-clinical-area-card.is-active .interactive-clinical-area-card__icon {
+  opacity: 0;
+  transform: translateY(-1rem);
+}
+
+.interactive-clinical-area-card__copy { margin-top: var(--space-lg); }
+
+.interactive-clinical-area-card__copy h3 {
+  font-family: var(--font-family-heading);
+  font-size: clamp(1.65rem, 2.2vw, 2.5rem);
+  font-weight: var(--fw-medium);
+  line-height: 1.05;
+}
+
+.interactive-clinical-area-card__toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  text-align: left;
+  background: transparent;
+}
+
+.interactive-clinical-area-card__toggle:focus-visible {
+  outline: var(--button-focus-outline-width) solid currentColor;
+  outline-offset: .3rem;
+}
+
+.interactive-clinical-area-card__indicator {
+  display: none;
+  flex: 0 0 auto;
+  font-family: var(--font-family-base);
+  font-size: 1.2rem;
+  font-weight: var(--fw-normal);
+}
+
+.interactive-clinical-area-card__copy p {
+  max-width: 28rem;
+  max-height: 0;
+  margin-top: 0;
+  overflow: hidden;
+  color: color-mix(in srgb, var(--color-text-light) 82%, transparent);
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(.75rem);
+  transition: max-height .55s var(--motion-ease-standard), margin-top .55s var(--motion-ease-standard), opacity .4s var(--motion-ease-standard), transform .5s var(--motion-ease-standard);
+}
+
+.interactive-clinical-area-card.is-active .interactive-clinical-area-card__copy p {
+  max-height: 8rem;
+  margin-top: var(--space-sm);
+  opacity: 1;
+  transform: none;
+}
+
+.interactive-clinical-area-card__link {
+  margin-top: var(--space-lg);
+  align-self: center;
+  align-items: center;
+  color: var(--color-text-light);
+  text-align: center;
+}
+
+.interactive-clinical-area-card:focus-within {
+  outline: 2px solid var(--color-text-light);
+  outline-offset: -4px;
+}
+
+@media (max-width: 959px) {
+  .interactive-clinical-area-card { min-height: 22rem; }
+
+  .interactive-clinical-area-card.is-active .interactive-clinical-area-card__icon {
+    opacity: .72;
+    transform: none;
+  }
+
+  .interactive-clinical-area-card__indicator { display: inline; }
+}
+
+@media (max-width: 639px) {
+  .interactive-clinical-area-card {
+    min-height: 20rem;
+    padding: 1.25rem;
+  }
+
+  .interactive-clinical-area-card:not(.is-active) { min-height: 11.5rem; }
+
+  .interactive-clinical-area-card:not(.is-active) .interactive-clinical-area-card__icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-top: 1.25rem;
+  }
+
+  .interactive-clinical-area-card:not(.is-active) .interactive-clinical-area-card__copy {
+    margin-top: 1rem;
+    padding-right: 6.5rem;
+  }
+
+  .interactive-clinical-area-card.is-active .interactive-clinical-area-card__icon {
+    display: none;
+  }
+
+  .interactive-clinical-area-card.is-active .interactive-clinical-area-card__copy {
+    margin-top: auto;
+  }
+
+  .interactive-clinical-area-card__copy { padding-bottom: 3.25rem; }
+
+  .interactive-clinical-area-card__link {
+    position: absolute;
+    right: 1.25rem;
+    bottom: 1.1rem;
+    margin-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interactive-clinical-area-card,
+  .interactive-clinical-area-card__cover,
+  .interactive-clinical-area-card__shade,
+  .interactive-clinical-area-card__icon,
+  .interactive-clinical-area-card__copy p {
+    transition: none;
+  }
+
+  .interactive-clinical-area-card.is-active { flex-grow: 1.2; }
+}

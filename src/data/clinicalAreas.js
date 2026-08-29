@@ -1,8 +1,11 @@
 const clinicalAreas = {
   pt: {
     title: 'Os tratamentos',
-    headingLineOne: 'Soluções especializadas',
-    headingLineTwo: 'para cada região do olhar.',
+    heading: {
+      firstLine: 'Soluções especializadas',
+      secondLine: 'para cada região do olhar.',
+    },
+    headingLabel: 'Soluções especializadas para cada região do olhar.',
     introduction: 'Uma abordagem personalizada e criteriosa, com foco na função, na saúde ocular e na harmonia facial.',
     linkLabel: 'Explorar',
     expandLabel: 'Mostrar detalhes',
@@ -41,8 +44,11 @@ const clinicalAreas = {
   },
   en: {
     title: 'Treatments',
-    headingLineOne: 'Specialised solutions',
-    headingLineTwo: 'for every region of the eye.',
+    heading: {
+      firstLine: 'Specialised solutions',
+      secondLine: 'for every region of the eye.',
+    },
+    headingLabel: 'Specialised solutions for every region of the eye.',
     introduction: 'A personalised and considered approach focused on function, eye health and facial harmony.',
     linkLabel: 'Explore',
     expandLabel: 'Show details',

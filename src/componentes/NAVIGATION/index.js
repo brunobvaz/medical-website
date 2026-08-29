@@ -1,2 +1,6 @@
 export { default as Breadcrumbs } from './Breadcrumbs.jsx'
+export { default as Footer } from './Footer.jsx'
+export { default as FooterContent } from './FooterContent.jsx'
+export { default as Footer2 } from './Footer2.jsx'
+export { default as NavigationBar } from './NavigationBar.jsx'
 export { default as Tabs } from './Tabs.jsx'

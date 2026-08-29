@@ -1,0 +1,185 @@
+.speciality-section {
+  min-height: clamp(46rem, 67vw, 61rem);
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 56%) minmax(0, 44%);
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.speciality-section__content {
+  width: min(100%, 56rem);
+  padding: var(--section-space-md) clamp(2.5rem, 6vw, 7rem);
+  position: relative;
+  z-index: 2;
+  align-self: center;
+}
+
+.speciality-section__heading-rule {
+  width: 3.5rem;
+  height: 1px;
+  margin: 1.5rem 0 clamp(3.5rem, 6vw, 6rem);
+  display: block;
+  background: var(--color-accent);
+}
+
+.speciality-section h2 {
+  font-weight: var(--fw-medium);
+  line-height: 1.02;
+  letter-spacing: -.025em;
+}
+
+.speciality-section h2 span { display: block; }
+
+.speciality-section__description {
+  max-width: var(--measure-wide);
+  margin-top: clamp(2.5rem, 4vw, 4.5rem);
+  color: var(--color-text-muted);
+}
+
+.speciality-section__callout {
+  max-width: 43rem;
+  margin-top: clamp(3rem, 5vw, 5rem);
+  display: grid;
+  grid-template-columns: 4.75rem 1px 1fr;
+  align-items: center;
+  gap: clamp(1.25rem, 2vw, 2rem);
+}
+
+.speciality-section__callout img {
+  width: 4.75rem;
+  height: 4.75rem;
+  display: block;
+  object-fit: contain;
+}
+
+.speciality-section__callout > span {
+  width: 1px;
+  height: 4.75rem;
+  background: var(--color-border-accent);
+}
+
+.speciality-section__callout p {
+}
+
+.speciality-section__media {
+  min-width: 0;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  clip-path: ellipse(82% 76% at 84% 50%);
+  isolation: isolate;
+}
+
+.speciality-section__media::after {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: var(--color-bg);
+  content: '';
+  transform: scaleX(1);
+  transform-origin: right;
+  transition: transform var(--motion-duration-overlay) var(--motion-ease-emphasized) var(--motion-delay-overlay);
+  pointer-events: none;
+}
+
+.speciality-section.is-revealed .speciality-section__media::after {
+  transform: scaleX(0);
+}
+
+.speciality-section__image {
+  object-position: 48% 50%;
+  transform: scale(1.04);
+  transition: transform var(--motion-duration-media) var(--motion-ease-standard);
+}
+
+.speciality-section.is-revealed .speciality-section__image {
+  transform: scale(1);
+}
+
+@media (max-width: 959px) {
+  .speciality-section {
+    grid-template-columns: minmax(0, 58%) minmax(0, 42%);
+  }
+
+  .speciality-section__content {
+    padding-inline: clamp(2rem, 4vw, 3.5rem);
+  }
+
+}
+
+@media (max-width: 767px) {
+  .speciality-section {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .speciality-section__content {
+    width: 100%;
+    padding: var(--section-space-md) var(--page-padding-inline) var(--section-space-sm);
+    align-self: auto;
+  }
+
+  .speciality-section__heading-rule {
+    margin-bottom: clamp(2.25rem, 8vw, 3.5rem);
+  }
+
+  .speciality-section h2 {
+    max-width: 12ch;
+    line-height: 1.03;
+  }
+
+  .speciality-section h2 span:nth-child(2) { max-width: none; }
+  .speciality-section h2 em { display: inline; }
+
+  .speciality-section__description {
+    max-width: 34rem;
+    margin-top: clamp(2rem, 6vw, 3.25rem);
+  }
+
+  .speciality-section__callout {
+    width: 100%;
+    max-width: 32rem;
+    margin-top: clamp(2.5rem, 7vw, 4rem);
+    grid-template-columns: 3.5rem 1px 1fr;
+    gap: var(--space-sm);
+  }
+
+  .speciality-section__callout img {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .speciality-section__callout > span { height: 4.5rem; }
+
+  .speciality-section__media {
+    width: min(calc(100% - (2 * var(--page-padding-inline))), 30rem);
+    height: auto;
+    aspect-ratio: 4 / 5;
+    margin: 0 auto clamp(2.5rem, 7vw, 4rem);
+    position: relative;
+    top: auto;
+    right: auto;
+    flex: 0 0 auto;
+    clip-path: none;
+  }
+
+  .speciality-section__image { object-position: center; }
+}
+
+@media (max-width: 479px) {
+  .speciality-section__media {
+    width: min(calc(100% - (2 * var(--page-padding-inline))), 25rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .speciality-section__media::after { display: none; }
+
+  .speciality-section__image {
+    transform: none;
+    transition: none;
+  }
+}

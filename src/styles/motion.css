@@ -1,0 +1,8 @@
+.motion-reveal {
+  transition-duration: var(--motion-duration-reveal);
+  transition-timing-function: var(--motion-ease-standard);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-reveal { transition: none; }
+}

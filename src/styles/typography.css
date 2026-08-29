@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500;600&display=swap');
+
+.type-display,
+.type-page-title,
+.type-section-title,
+.type-subsection-title,
+.type-card-title,
+.type-quote {
+  font-family: var(--font-family-heading);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-heading);
+}
+
+.type-display { font-size: var(--fs-display); letter-spacing: var(--ls-tight); text-wrap: balance; }
+.type-page-title { font-size: var(--fs-page-title); letter-spacing: var(--ls-tight); text-wrap: balance; }
+.type-section-title {
+  font-size: var(--fs-section-title);
+  letter-spacing: var(--ls-tight);
+  text-wrap: balance;
+}
+.type-subsection-title { font-size: var(--fs-subsection-title); letter-spacing: var(--ls-tight); text-wrap: balance; }
+.type-card-title { font-size: var(--fs-card-title); font-weight: var(--fw-medium); }
+.type-quote { font-size: clamp(1.4rem, 1.1rem + .8vw, 2.15rem); line-height: 1.3; }
+
+.type-eyebrow {
+  margin-bottom: var(--space-xs);
+  font-family: var(--font-family-accent);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--eyebrow-weight);
+  letter-spacing: var(--eyebrow-letter-spacing);
+  text-transform: var(--eyebrow-transform);
+}
+
+.type-body-lg,
+.type-body,
+.type-small,
+.type-caption,
+.type-label,
+.type-action,
+.type-nav { font-family: var(--font-family-base); }
+
+.type-body-lg { font-size: var(--fs-lead); line-height: var(--lh-body); }
+.type-body { font-size: var(--fs-p); line-height: var(--lh-body); }
+.type-small { font-size: var(--fs-small); line-height: var(--lh-body); }
+.type-caption { font-size: var(--fs-caption); line-height: var(--lh-body); }
+.type-label { font-size: .75rem; font-weight: var(--fw-medium); letter-spacing: .025em; }
+.type-action { font-size: var(--button-font-size-md); font-weight: var(--button-font-weight); line-height: var(--button-line-height); letter-spacing: .035em; text-transform: uppercase; }
+.type-nav { font-size: .75rem; font-weight: var(--fw-medium); letter-spacing: .035em; text-transform: uppercase; }
+.type-muted { color: var(--color-text-muted); }
+.type-uppercase { text-transform: uppercase; }
+.type-accent { color: var(--color-accent-hover); font-weight: inherit; }
+
+.type-eyebrow--wide {
+  color: var(--color-accent-hover);
+  letter-spacing: .2em;
+}
+
+.type-eyebrow--ruled::after {
+  width: 3rem;
+  height: 1px;
+  margin-top: var(--space-md);
+  display: block;
+  background: currentColor;
+  content: '';
+}
+
+.type-body-lg,
+.type-body,
+.type-small { text-wrap: pretty; }
+
+.type-sr-only {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

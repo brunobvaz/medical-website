@@ -1,6 +1,8 @@
 import clinicalAreas from './clinicalAreas.js'
 import heroContent from './hero.js'
 import siteMedia from './media.js'
+import { getResultsPage } from './resultsPage.js'
+import translations from './translations.js'
 
 export const getHeroContent = (language) => {
   const content = heroContent[language] ?? heroContent.pt
@@ -25,24 +27,58 @@ export const getClinicalAreas = (language) => {
 
       return {
         ...item,
-        image: media.icon.src,
-        imageWidth: media.icon.width,
-        imageHeight: media.icon.height,
-        coverImage: media.cover.desktop,
-        coverMobileImage: media.cover.mobile,
-        coverWidth: media.cover.width,
-        coverHeight: media.cover.height,
+        icon: media.icon,
+        cover: media.cover,
         to: `/treatments/${item.slug}`,
       }
     }),
   }
 }
 
-export const getTestimonials = (content) => content.items.map((item, index) => ({
-  ...item,
-  image: siteMedia.testimonials[index],
-}))
+export const getTestimonialsContent = (language) => {
+  const content = translations[language]?.testimonials ?? translations.pt.testimonials
 
-export const feedMedia = siteMedia.feed
+  return {
+    ...content,
+    items: content.items.map((item) => ({
+      ...item,
+      image: siteMedia.testimonials[item.id],
+    })),
+    identityMark: siteMedia.testimonialsSection.identityMark,
+    pageStatus: ({ current, total, names }) => content.pageStatus
+      .replace('{current}', String(current))
+      .replace('{total}', String(total))
+      .replace('{names}', names),
+  }
+}
+
+export const getFAQContent = (language) =>
+  translations[language]?.faq ?? translations.pt.faq
+
+export const getCTAContent = (language) => ({
+  ...(translations[language]?.cta ?? translations.pt.cta),
+  background: siteMedia.cta,
+})
+
+export const getFeedContent = (language) => {
+  const content = translations[language]?.feed ?? translations.pt.feed
+  const results = getResultsPage(language)
+
+  return {
+    ...content,
+    comparisons: results.items.slice(0, 2),
+    comparisonLabels: {
+      beforeLabel: results.beforeLabel,
+      afterLabel: results.afterLabel,
+      sliderLabel: results.sliderLabel,
+      sliderValueText: results.sliderValueText,
+    },
+    disclaimer: results.disclaimer,
+    featuredMedia: siteMedia.feed.featured,
+  }
+}
+
 export const clinicIntroductionMedia = siteMedia.clinicIntroduction
-export const ctaMedia = siteMedia.cta
+export const positioningMedia = siteMedia.positioning
+export const specialityMedia = siteMedia.speciality
+export const clinicalAreasSectionMedia = siteMedia.clinicalAreasSection

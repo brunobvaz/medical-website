@@ -1,4 +1,5 @@
 export { default as AfterBeforeCard } from './AfterBeforeCard.jsx'
 export { default as ClinicalAreaCard } from './ClinicalAreaCard.jsx'
+export { default as InteractiveClinicalAreaCard } from './InteractiveClinicalAreaCard.jsx'
 export { default as ServiceCard } from './ServiceCard.jsx'
 export { default as TestimonialCard } from './TestimonialCard.jsx'

@@ -11,18 +11,22 @@ const Stars = ({ rating, label }) => (
 )
 
 export default function TestimonialCard({
-  quote,
-  name,
-  treatment,
-  initials,
-  image,
+  testimonial,
   rating = 5,
   ratingLabel,
   isVisible = true,
+  variant = 'default',
   className = '',
 }) {
+  const { quote, name, treatment, initials, image } = testimonial
+  const classes = [
+    'testimonial-card',
+    variant !== 'default' && `testimonial-card--${variant}`,
+    className,
+  ].filter(Boolean).join(' ')
+
   return (
-    <article className={`testimonial-card ${className}`.trim()} aria-hidden={!isVisible} inert={isVisible ? undefined : true}>
+    <article className={classes} aria-hidden={!isVisible} inert={isVisible ? undefined : true}>
       <div className="testimonial-card__top">
         <Stars rating={rating} label={ratingLabel} />
         <svg className="testimonial-card__quote" aria-hidden="true" viewBox="0 0 40 32">

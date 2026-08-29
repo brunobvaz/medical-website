@@ -13,28 +13,33 @@
 .ui-button {
   min-height: var(--button-height-md);
   padding-inline: var(--button-padding-inline-md);
-  border: var(--button-border-width) var(--button-border-style) transparent;
-  border-radius: 0;
+  border: var(--button-border-width) var(--button-border-style) var(--button-border-color);
+  border-radius: var(--button-radius);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: .65rem;
+  font-family: var(--button-font-family);
+  font-size: var(--button-font-size-md);
   letter-spacing: .035em;
   text-transform: uppercase;
 }
 
 .ui-button:hover:not(:disabled) { transform: translateY(-1px); }
 .ui-button:disabled { cursor: not-allowed; opacity: var(--button-disabled-opacity); }
-.ui-button--primary { color: var(--color-text-light); background: var(--color-accent); }
-.ui-button--primary:hover:not(:disabled) { background: var(--color-accent-hover); }
-.ui-button--dark { color: var(--color-text-light); background: var(--color-text); }
-.ui-button--dark:hover:not(:disabled) { background: var(--color-primary-hover); }
-.ui-button--secondary { border-color: var(--color-border-accent); color: var(--color-text); background: transparent; }
-.ui-button--secondary:hover:not(:disabled) { color: var(--color-accent-hover); background: var(--color-accent-soft); }
-.ui-button--ghost { color: var(--color-text); background: transparent; }
-.ui-button--ghost:hover:not(:disabled) { background: var(--color-surface); }
-.ui-button--danger { color: var(--color-danger-contrast); background: var(--color-danger); }
-.ui-button--small { min-height: var(--button-height-sm); padding-inline: var(--button-padding-inline-sm); font-size: .75rem; }
+.ui-button--primary { color: var(--button-primary-color); background: var(--button-primary-bg); }
+.ui-button--primary:hover:not(:disabled) { background: var(--button-primary-hover-bg); }
+.ui-button--dark { color: var(--button-dark-color); background: var(--button-dark-bg); }
+.ui-button--dark:hover:not(:disabled) { background: var(--button-dark-hover-bg); }
+.ui-button--light { color: var(--button-light-color); background: var(--button-light-bg); }
+.ui-button--light:hover:not(:disabled) { color: var(--button-light-hover-color); background: var(--button-light-hover-bg); }
+.ui-button--secondary { border-color: var(--button-secondary-border-color); color: var(--button-secondary-color); background: var(--button-secondary-bg); }
+.ui-button--secondary:hover:not(:disabled) { color: var(--button-secondary-hover-color); background: var(--button-secondary-hover-bg); }
+.ui-button--ghost { color: var(--button-ghost-color); background: var(--button-ghost-bg); }
+.ui-button--ghost:hover:not(:disabled) { background: var(--button-ghost-hover-bg); }
+.ui-button--danger { color: var(--button-danger-color); background: var(--button-danger-bg); }
+.ui-button--danger:hover:not(:disabled) { opacity: var(--button-danger-hover-opacity); }
+.ui-button--small { min-height: var(--button-height-sm); padding-inline: var(--button-padding-inline-sm); font-size: var(--button-font-size-sm); }
 .ui-button--large { min-height: var(--button-height-lg); padding-inline: var(--button-padding-inline-lg); font-size: var(--button-font-size-lg); }
 
 .ui-action__icon { width: 1.15em; height: 1.15em; display: inline-flex; flex: 0 0 auto; }
@@ -49,13 +54,15 @@
   align-items: center;
   justify-content: center;
 }
-.ui-icon-button { width: 2.75rem; }
+.ui-icon-button { width: var(--icon-button-size-md); }
 .ui-icon-button svg,
 .ui-social-link svg { width: 48%; height: 48%; }
 .ui-icon-button--ghost:hover { background: var(--color-surface); }
 .ui-icon-button--outline { border-color: var(--color-border); }
 .ui-icon-button--outline:hover { border-color: var(--color-accent); color: var(--color-accent-hover); }
 .ui-icon-button--primary { color: var(--color-text-light); background: var(--color-accent); }
+.ui-icon-button--accent { border-color: var(--icon-button-accent-border); color: var(--icon-button-accent-color); background: transparent; }
+.ui-icon-button--accent:hover { color: var(--icon-button-accent-hover-color); background: var(--icon-button-accent-hover-bg); }
 
 .ui-text-link { display: inline-flex; align-items: center; gap: .45rem; font-weight: var(--fw-medium); }
 .ui-text-link--default:hover { color: var(--color-accent-hover); }

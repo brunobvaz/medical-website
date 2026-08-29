@@ -1,8 +1,6 @@
 import { lazy, Suspense, useEffect } from 'react'
 import { Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom'
-import NavigationBar from './Sections/NavigationBar.jsx'
-import Footer from './Sections/Footer.jsx'
-import Footer2 from './Sections/footer2.jsx'
+import { Footer, Footer2, NavigationBar } from './componentes/NAVIGATION/index.js'
 import { Loading } from './componentes/LAYOUT/index.js'
 
 const AboutPage = lazy(() => import('./pages/AboutPage.jsx'))

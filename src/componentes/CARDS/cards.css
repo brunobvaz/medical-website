@@ -11,7 +11,7 @@
 }
 
 .service-card:hover {
-  border-color: var(--color-beige-hover);
+  border-color: var(--color-accent-soft);
   box-shadow: var(--shadow-md);
   transform: translateY(calc(var(--space-2xs) * -.5));
 }

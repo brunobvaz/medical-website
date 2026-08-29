@@ -27,16 +27,9 @@ export default function TreatmentsPage() {
           <div className="treatments-page__list">
             {clinicalAreas.items.map((area) => (
               <ClinicalAreaCard
+                area={area}
                 key={area.slug}
-                image={area.image}
-                imageWidth={area.imageWidth}
-                imageHeight={area.imageHeight}
-                imageAlt={area.imageAlt}
-                title={area.title}
-                description={area.description}
                 linkLabel={clinicalAreas.linkLabel}
-                to={area.to}
-                variant="vertical"
               />
             ))}
           </div>

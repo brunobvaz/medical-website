@@ -22,9 +22,9 @@ const resultsPage = {
     bookingLabel: 'Marcar consulta',
     disclaimer: 'As imagens apresentadas são ilustrativas. Os resultados variam de pessoa para pessoa.',
     items: [
-      { title: 'Blefaroplastia Superior', beforeImage: beforeOne, beforeMobileImage: beforeOneMobile, afterImage: afterOne, afterMobileImage: afterOneMobile, imageWidth: 1200, imageHeight: 800 },
-      { title: 'Blefaroplastia Inferior', beforeImage: beforeTwo, beforeMobileImage: beforeTwoMobile, afterImage: afterTwo, afterMobileImage: afterTwoMobile, imageWidth: 1200, imageHeight: 800 },
-      { title: 'Ptose Palpebral', beforeImage: beforeThree, afterImage: afterThree },
+      { id: 'upper-blepharoplasty', title: 'Blefaroplastia Superior', beforeImage: beforeOne, beforeMobileImage: beforeOneMobile, afterImage: afterOne, afterMobileImage: afterOneMobile, imageWidth: 1200, imageHeight: 800 },
+      { id: 'lower-blepharoplasty', title: 'Blefaroplastia Inferior', beforeImage: beforeTwo, beforeMobileImage: beforeTwoMobile, afterImage: afterTwo, afterMobileImage: afterTwoMobile, imageWidth: 1200, imageHeight: 800 },
+      { id: 'eyelid-ptosis', title: 'Ptose Palpebral', beforeImage: beforeThree, afterImage: afterThree },
     ],
   },
   en: {
@@ -39,9 +39,9 @@ const resultsPage = {
     bookingLabel: 'Book an appointment',
     disclaimer: 'Images are illustrative. Results vary from person to person.',
     items: [
-      { title: 'Upper Blepharoplasty', beforeImage: beforeOne, beforeMobileImage: beforeOneMobile, afterImage: afterOne, afterMobileImage: afterOneMobile, imageWidth: 1200, imageHeight: 800 },
-      { title: 'Lower Blepharoplasty', beforeImage: beforeTwo, beforeMobileImage: beforeTwoMobile, afterImage: afterTwo, afterMobileImage: afterTwoMobile, imageWidth: 1200, imageHeight: 800 },
-      { title: 'Eyelid Ptosis', beforeImage: beforeThree, afterImage: afterThree },
+      { id: 'upper-blepharoplasty', title: 'Upper Blepharoplasty', beforeImage: beforeOne, beforeMobileImage: beforeOneMobile, afterImage: afterOne, afterMobileImage: afterOneMobile, imageWidth: 1200, imageHeight: 800 },
+      { id: 'lower-blepharoplasty', title: 'Lower Blepharoplasty', beforeImage: beforeTwo, beforeMobileImage: beforeTwoMobile, afterImage: afterTwo, afterMobileImage: afterTwoMobile, imageWidth: 1200, imageHeight: 800 },
+      { id: 'eyelid-ptosis', title: 'Eyelid Ptosis', beforeImage: beforeThree, afterImage: afterThree },
     ],
   },
 }

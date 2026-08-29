@@ -195,7 +195,7 @@ function CardsShowcase() {
         <h4>TestimonialCard</h4>
         <div className="component-card-preview">
           <TestimonialCard
-            {...testimonial}
+            testimonial={testimonial}
             ratingLabel={t.testimonials.ratingLabel}
           />
         </div>

@@ -28,7 +28,7 @@ export default function ResultsPage() {
 
             <div className="results-page__list" id="resultados-palpebras">
               {content.items.map((item) => (
-                <article className="results-page__result" key={item.title}>
+                <article className="results-page__result" key={item.id}>
                   <h2>{item.title}</h2>
                   <AfterBeforeCard
                     className="results-page__comparison"

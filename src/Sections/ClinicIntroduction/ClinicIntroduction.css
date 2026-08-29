@@ -1,0 +1,204 @@
+.clinic-introduction {
+  padding: var(--section-space-lg) var(--page-padding-inline);
+  background: var(--color-surface-warm);
+}
+
+.clinic-introduction__inner {
+  width: min(100%, var(--container-wide));
+  min-height: clamp(40rem, 61vw, 52rem);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 2fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--section-grid-gap);
+}
+
+.clinic-introduction__profile,
+.clinic-introduction__manifesto {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.clinic-introduction__eyebrow {
+  color: var(--color-accent-hover);
+  letter-spacing: .16em;
+  white-space: nowrap;
+}
+
+.clinic-introduction__eyebrow::after {
+  width: 9.5rem;
+  height: 1px;
+  margin-top: 1.35rem;
+  display: block;
+  background: linear-gradient(to right, var(--color-accent) 0 2.25rem, color-mix(in srgb, var(--color-accent) 22%, transparent) 2.25rem 100%);
+  content: '';
+}
+
+.clinic-introduction__profile h2 {
+  margin-top: clamp(2.25rem, 4vw, 4rem);
+  font-weight: var(--fw-medium);
+}
+
+.clinic-introduction__profile h2 span { display: block; }
+.clinic-introduction__profile h2 span:last-child { white-space: nowrap; }
+
+.clinic-introduction__description {
+  max-width: var(--measure-narrow);
+  margin-top: clamp(2rem, 3vw, 3rem);
+  color: var(--color-text-muted);
+}
+
+.clinic-introduction__profile-rule {
+  width: 2.25rem;
+  height: 1px;
+  margin-top: clamp(2rem, 3vw, 3rem);
+  display: block;
+  background: var(--color-border-accent);
+}
+
+.clinic-introduction__principles {
+  margin-top: var(--space-lg);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .85rem;
+  color: var(--color-text);
+  font-size: .61rem;
+  font-weight: var(--fw-medium);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+.clinic-introduction__principles li + li::before {
+  margin-right: .85rem;
+  color: var(--color-accent);
+  content: '×';
+}
+
+.clinic-introduction__button {
+  margin-top: clamp(2.25rem, 3vw, 3.25rem);
+  border-radius: 0;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  background: var(--color-accent-hover);
+}
+
+.clinic-introduction__button:hover { background: var(--color-accent); }
+
+.clinic-introduction__portrait {
+  width: 100%;
+  height: clamp(38rem, 55vw, 50rem);
+  min-width: 0;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.clinic-introduction__portrait-image {
+  object-position: 50% center;
+  filter: saturate(.88) contrast(1.02);
+  transition: transform var(--motion-duration-media) var(--motion-ease-standard);
+}
+
+.clinic-introduction__manifesto {
+  align-self: center;
+  align-items: center;
+  text-align: center;
+  transform: translateY(-4rem);
+}
+
+.clinic-introduction__identity-mark {
+  width: clamp(15rem, 20vw, 19rem);
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.clinic-introduction__manifesto-rule {
+  width: 2.5rem;
+  height: 1px;
+  margin: 1.5rem auto clamp(2rem, 3vw, 3rem);
+  display: block;
+  background: var(--color-border-accent);
+}
+
+.clinic-introduction__manifesto blockquote {
+  max-width: 12ch;
+  font-style: italic;
+  font-weight: var(--fw-medium);
+  line-height: 1.08;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.clinic-introduction__manifesto blockquote::before { content: '“'; }
+.clinic-introduction__manifesto blockquote::after { content: '”'; }
+
+.clinic-introduction__signature-image {
+  width: min(100%, 14rem);
+  height: auto;
+  margin-top: clamp(2.5rem, 4vw, 4rem);
+  display: block;
+  object-fit: contain;
+}
+
+.clinic-introduction__doctor-name {
+  margin-top: var(--space-sm);
+  font-weight: var(--fw-medium);
+}
+
+.clinic-introduction__doctor-role {
+  margin-top: .25rem;
+  color: var(--color-text-muted);
+}
+
+@media (hover: hover) {
+  .clinic-introduction__portrait:hover .clinic-introduction__portrait-image { transform: scale(1.025); }
+}
+
+@media (max-width: 1199px) {
+  .clinic-introduction__inner { gap: clamp(2rem, 3vw, 3rem); }
+}
+
+@media (max-width: 959px) {
+
+  .clinic-introduction__inner {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .clinic-introduction__profile,
+  .clinic-introduction__manifesto {
+    width: min(100%, 36rem);
+    margin-inline: auto;
+  }
+
+  .clinic-introduction__portrait {
+    width: min(100%, 36rem);
+    height: clamp(29rem, 125vw, 34rem);
+    margin: clamp(3rem, 9vw, 4.5rem) auto;
+  }
+
+  .clinic-introduction__manifesto { transform: none; }
+  .clinic-introduction__manifesto blockquote { max-width: 15ch; }
+  .clinic-introduction__signature-image { margin-top: clamp(2rem, 7vw, 2.75rem); }
+  .clinic-introduction__doctor-name { margin-top: .75rem; }
+  .clinic-introduction__doctor-role { margin-top: .2rem; }
+}
+
+@media (max-width: 479px) {
+  .clinic-introduction__principles {
+    gap: .55rem;
+    font-size: .56rem;
+    letter-spacing: .16em;
+  }
+
+  .clinic-introduction__principles li + li::before { margin-right: .55rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clinic-introduction__portrait-image { transition: none; }
+}

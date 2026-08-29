@@ -1,0 +1,289 @@
+:root {
+  /* Breakpoints: 480 / 640 / 768 / 960 / 1200px.
+     CSS variables cannot be used in native media queries. */
+
+  /* =========================
+     LAYOUT
+  ========================= */
+  --container-narrow: 52rem;
+  --container-default: 82rem;
+  --container-wide: 90rem;
+  --layout-max-width: var(--container-wide);
+  --layout-narrow-width: var(--container-default);
+  --measure-narrow: 28rem;
+  --measure-body: 36rem;
+  --measure-wide: 48rem;
+
+  /* Page padding - mobile first */
+  --page-padding-inline: 1rem;
+
+  /* Section gaps / spacing scale */
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  /* Shared homepage rhythm */
+  --section-space-sm: clamp(4rem, 7vw, 6rem);
+  --section-space-md: clamp(5rem, 9vw, 8rem);
+  --section-space-lg: clamp(6rem, 11vw, 10rem);
+  --section-padding-block: var(--section-space-md);
+  --section-heading-gap: clamp(2.5rem, 5vw, 4.5rem);
+  --section-grid-gap: clamp(1.5rem, 3vw, 3rem);
+
+  /* =========================
+     NAVBAR HEIGHT
+  ========================= */
+  --navbar-height: 4rem;
+
+  /* =========================
+     COLORS
+  ========================= */
+  --color-primary: #263330;
+  --color-primary-hover: #344540;
+
+  --color-accent: #a9783d;
+  --color-accent-hover: #8d642f;
+  --color-accent-soft: #f1e7d9;
+
+  --color-text: #171a19;
+  --color-text-muted: #626966;
+  --color-text-subtle: #858b88;
+  --color-text-light: #ffffff;
+
+  --color-bg: #ffffff;
+  --color-surface: #f7f6f2;
+  --color-surface-alt: #eef2f0;
+  --color-surface-warm: #f3eee6;
+  --color-surface-dark: #252c2a;
+  --color-surface-darker: #1b211f;
+
+  --color-border: #dde1df;
+  --color-border-accent: #c9a476;
+  --color-border-editorial: rgba(151, 123, 83, 0.18);
+
+  --border-width: 1px;
+
+  --color-overlay-light: rgba(255, 255, 255, 0.72);
+  --color-overlay-dark: rgba(20, 24, 22, 0.62);
+
+  /* =========================
+     SEMANTIC COLORS
+  ========================= */
+  --color-success: #31735a;
+  --color-danger: #b54747;
+  --color-danger-contrast: #ffffff;
+
+  /* =========================
+     FONT FAMILY
+  ========================= */
+  --font-family-base: "Inter", sans-serif;
+  --font-family-heading: "Cormorant Garamond", serif;
+  --font-family-accent: "Inter", sans-serif;
+
+  /* =========================
+     FONT WEIGHTS
+  ========================= */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+
+  /* =========================
+     LINE HEIGHT
+  ========================= */
+  --lh-tight: 1.1;
+  --lh-heading: 1.12;
+  --lh-body: 1.5;
+  --lh-loose: 1.7;
+
+  /* =========================
+     LETTER SPACING
+  ========================= */
+  --ls-tight: -0.03em;
+  --ls-wide: 0.02em;
+  --ls-wider: 0.12em;
+
+  /* =========================
+     TYPOGRAPHY SCALE
+  ========================= */
+  --fs-display: clamp(3rem, 2.2rem + 4vw, 6.5rem);
+  --fs-page-title: clamp(2.5rem, 1.8rem + 3.2vw, 5.4rem);
+  --fs-section-title: clamp(2.25rem, 1.65rem + 2.5vw, 4.5rem);
+  --fs-subsection-title: clamp(1.6rem, 1.3rem + 1.3vw, 2.75rem);
+  --fs-card-title: clamp(1.3rem, 1.12rem + 0.9vw, 1.9rem);
+  --fs-h2: var(--fs-section-title);
+  --fs-h3: var(--fs-subsection-title);
+  --fs-h4: var(--fs-card-title);
+  --fs-h5: clamp(1.1rem, 1rem + 0.45vw, 1.5rem);
+
+  --fs-lead: clamp(1.125rem, 1.02rem + 0.45vw, 1.4rem);
+  --fs-p: clamp(1rem, 0.96rem + 0.35vw, 1.125rem);
+  --fs-small: clamp(0.8rem, 0.78rem + 0.15vw, 0.9rem);
+  --fs-caption: clamp(0.78rem, 0.75rem + 0.12vw, 0.88rem);
+  --fs-eyebrow: clamp(0.75rem, 0.7rem + 0.3vw, 0.95rem);
+
+  /* =========================
+     EYEBROW
+  ========================= */
+  --eyebrow-letter-spacing: 0.12em;
+  --eyebrow-transform: uppercase;
+  --eyebrow-color: var(--color-text-muted);
+  --eyebrow-weight: var(--fw-medium);
+
+  /* =========================
+     RADIUS / SHADOW
+  ========================= */
+  --radius-lg: 1.25rem;
+
+  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.18);
+
+  /* =========================
+     MOTION
+  ========================= */
+  --motion-duration-fast: 0.2s;
+  --motion-duration-normal: 0.45s;
+  --motion-duration-medium: var(--motion-duration-normal);
+  --motion-duration-slow: 0.7s;
+  --motion-duration-reveal: 0.8s;
+  --motion-duration-media: 1.2s;
+  --motion-duration-overlay: 1s;
+  --motion-delay-overlay: 0.15s;
+  --motion-ease-standard: cubic-bezier(.22, 1, .36, 1);
+  --motion-ease-emphasized: cubic-bezier(.77, 0, .18, 1);
+
+  /* =========================
+     BUTTON TOKENS
+  ========================= */
+
+  /* Structure */
+  --button-radius: 0;
+  --button-border-width: 1px;
+  --button-border-style: solid;
+  --button-border-color: transparent;
+
+  /* Typography */
+  --button-font-family: var(--font-family-base);
+  --button-font-weight: var(--fw-medium);
+  --button-font-size-sm: 0.75rem;
+  --button-font-size-md: 0.875rem;
+  --button-font-size-lg: 1rem;
+  --button-line-height: 1;
+
+  /* Size */
+  --button-height-sm: 2.5rem;
+  --button-height-md: 3rem;
+  --button-height-lg: 3.5rem;
+
+  --button-padding-inline-sm: 1rem;
+  --button-padding-inline-md: 1.25rem;
+  --button-padding-inline-lg: 1.5rem;
+
+  /* Focus */
+  --button-focus-outline-width: 2px;
+  --button-focus-outline-color: var(--color-text);
+  --button-focus-outline-offset: 2px;
+
+  /* States */
+  --button-disabled-opacity: 0.55;
+  --button-danger-hover-opacity: 0.9;
+
+  /* Variants */
+  --button-primary-bg: var(--color-accent);
+  --button-primary-color: var(--color-text-light);
+  --button-primary-hover-bg: var(--color-accent-hover);
+
+  --button-dark-bg: var(--color-text);
+  --button-dark-color: var(--color-text-light);
+  --button-dark-hover-bg: var(--color-primary-hover);
+
+  --button-light-bg: var(--color-bg);
+  --button-light-color: var(--color-text);
+  --button-light-hover-bg: var(--color-accent-hover);
+  --button-light-hover-color: var(--color-text-light);
+
+  --button-secondary-bg: transparent;
+  --button-secondary-color: var(--color-text);
+  --button-secondary-border-color: var(--color-border-accent);
+  --button-secondary-hover-bg: var(--color-accent-soft);
+  --button-secondary-hover-color: var(--color-accent-hover);
+
+  --button-ghost-bg: transparent;
+  --button-ghost-color: var(--color-text);
+  --button-ghost-hover-bg: var(--color-surface);
+
+  --button-danger-bg: var(--color-danger);
+  --button-danger-color: var(--color-danger-contrast);
+
+  --icon-button-accent-border: var(--color-border-accent);
+  --icon-button-accent-color: var(--color-accent-hover);
+  --icon-button-accent-hover-bg: var(--color-accent-hover);
+  --icon-button-accent-hover-color: var(--color-text-light);
+  --icon-button-size-md: 2.75rem;
+}
+
+/* =========================
+   FLUID PAGE PADDING
+========================= */
+
+@media (min-width: 480px) {
+  :root {
+    --page-padding-inline: clamp(1.5rem, calc(1.5rem + (100vw - 480px) * (0.5 / 288)), 2rem);
+    --lh-body: 1.55;
+    --navbar-height: 4.25rem;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --section-space-sm: clamp(3.5rem, 12vw, 4.5rem);
+    --section-space-md: clamp(4rem, 14vw, 5.5rem);
+    --section-space-lg: clamp(4.75rem, 16vw, 6.5rem);
+    --section-heading-gap: var(--space-xl);
+    --section-grid-gap: var(--space-lg);
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --page-padding-inline: clamp(2rem, calc(2rem + (100vw - 768px) * (1 / 256)), 3rem);
+    --fs-p: clamp(1rem, 0.94rem + 0.4vw, 1.18rem);
+    --fs-small: clamp(0.83rem, 0.8rem + 0.15vw, 0.94rem);
+    --fs-eyebrow: clamp(0.8rem, 0.75rem + 0.25vw, 1rem);
+
+    --navbar-height: 4.5rem;
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --page-padding-inline: clamp(3rem, 5vw, 5rem);
+    --lh-heading: 1.08;
+    --lh-body: 1.6;
+
+    --navbar-height: 5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --page-padding-inline: clamp(4rem, 5vw, 6rem);
+    --fs-page-title: clamp(2.8rem, 2rem + 3vw, 5.75rem);
+    --fs-section-title: clamp(2.4rem, 1.8rem + 2vw, 4.6rem);
+    --fs-subsection-title: clamp(1.75rem, 1.35rem + 1.3vw, 2.9rem);
+    --fs-eyebrow: clamp(0.85rem, 0.8rem + 0.2vw, 1.05rem);
+
+    --navbar-height: 5.5rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --fs-p: clamp(1.05rem, 0.98rem + 0.32vw, 1.22rem);
+  }
+}

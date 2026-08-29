@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
-import CTASection from '../Sections/CTASection.jsx'
-import ClinicIntroduction from '../Sections/ClinicIntroduction.jsx'
-import SpecialitySection from '../Sections/SpecialitySection.jsx'
-import PositioningSection from '../Sections/PositioningSection.jsx'
-import ClinicalAreasSection from '../Sections/ClinicalAreasSection.jsx'
-import FAQSection from '../Sections/FAQSection.jsx'
-import FeedSection from '../Sections/FeedSection.jsx'
-import HeroSection from '../Sections/HeroSection.jsx'
-import TestimonialsSection from '../Sections/TestimonialsSection.jsx'
+import CTASection from '../Sections/CTA/index.js'
+import ClinicIntroduction from '../Sections/ClinicIntroduction/index.js'
+import SpecialitySection from '../Sections/Speciality/index.js'
+import PositioningSection from '../Sections/Positioning/index.js'
+import ClinicalAreasSection from '../Sections/ClinicalAreas/index.js'
+import FAQSection from '../Sections/FAQ/index.js'
+import FeedSection from '../Sections/Feed/index.js'
+import HeroSection from '../Sections/Hero/index.js'
+import TestimonialsSection from '../Sections/Testimonials/index.js'
 import './HomePage.css'
 
 export default function HomePage() {
@@ -15,7 +15,7 @@ export default function HomePage() {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const sections = [...document.querySelectorAll('#inicio > .site-section')]
     const images = [...document.querySelectorAll('.clinic-introduction__portrait')]
-    const cards = [...document.querySelectorAll('.clinical-areas-section__card, .feed-section__comparison, .testimonials-section__card')]
+    const cards = [...document.querySelectorAll('.interactive-clinical-area-card, .feed-section__comparison, .testimonials-section__card')]
 
     if (reduceMotion || !('IntersectionObserver' in window)) {
       sections.forEach((section) => section.classList.add('is-revealed'))
