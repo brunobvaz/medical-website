@@ -39,7 +39,6 @@
   margin-top: clamp(2.5rem, 5vw, 4.5rem);
   padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.5rem, 3.5vw, 3rem);
   border: 1px solid color-mix(in srgb, var(--color-accent) 9%, transparent);
-  border-radius: var(--radius-lg);
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   gap: clamp(1.25rem, 3vw, 2.5rem);
