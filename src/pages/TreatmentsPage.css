@@ -36,21 +36,31 @@
 .treatments-page__card .information-card__icon-wrap { background: var(--color-surface-warm); }
 
 .treatments-page__booking {
-  padding: var(--section-space-sm) var(--page-padding-inline);
-  color: var(--color-text-light);
-  background: var(--color-primary);
-  text-align: center;
-}
-
-.treatments-page__booking .section-container {
-  display: flex;
-  flex-direction: column;
+  margin-top: clamp(2.5rem, 5vw, 4.5rem);
+  padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.5rem, 3.5vw, 3rem);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 9%, transparent);
+  border-radius: var(--radius-lg);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
   align-items: center;
+  background: linear-gradient(105deg, var(--color-surface-warm), color-mix(in srgb, var(--color-surface-warm) 54%, var(--color-bg)));
 }
 
-.treatments-page__booking h2 { max-width: 13ch; }
-.treatments-page__booking .type-body { max-width: var(--measure-body); margin-top: var(--space-md); color: var(--color-overlay-light); }
-.treatments-page__booking .ui-button { margin-top: var(--space-xl); }
+.treatments-page__booking-icon {
+  width: clamp(4.5rem, 7vw, 6rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--color-bg) 42%, transparent);
+}
+
+.treatments-page__booking-icon img { width: 68%; height: 68%; object-fit: contain; }
+.treatments-page__booking-copy { max-width: 40rem; }
+.treatments-page__booking h2 { font-family: var(--font-family-heading); font-size: clamp(1.5rem, 2.25vw, 2rem); font-weight: var(--fw-regular); line-height: var(--lh-heading); }
+.treatments-page__booking .type-small { margin-top: .45rem; line-height: var(--lh-body); }
+.treatments-page__booking .ui-button { white-space: nowrap; }
 
 @media (max-width: 1100px) {
   .treatments-page__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -59,6 +69,13 @@
 
 @media (max-width: 767px) {
   .treatments-page__grid { gap: var(--space-sm); }
+  .treatments-page__booking {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .treatments-page__booking-copy { max-width: var(--measure-narrow); }
 }
 
 @media (max-width: 560px) {

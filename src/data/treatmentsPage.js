@@ -12,8 +12,8 @@ const treatmentsPage = {
       description: 'Conheça as principais áreas da Oculoplástica e encontre cuidados especializados para as pálpebras, órbita, vias lacrimais e região periocular.',
     },
     booking: {
-      title: 'Encontre o cuidado adequado para si',
-      description: 'Agende uma consulta para uma avaliação personalizada e esclarecimento das opções de tratamento.',
+      title: 'O seu bem-estar é a nossa prioridade',
+      description: 'Unimos experiência clínica, tecnologia de ponta e atenção personalizada para oferecer um diagnóstico rigoroso e um acompanhamento de excelência.',
       buttonLabel: 'Agendar consulta',
     },
   },
@@ -30,8 +30,8 @@ const treatmentsPage = {
       description: 'Explore the main areas of Oculoplastics and find specialist care for the eyelids, orbit, lacrimal system and periocular region.',
     },
     booking: {
-      title: 'Find the right care for you',
-      description: 'Book a consultation for a personalised assessment and guidance on the treatment options available to you.',
+      title: 'Your wellbeing is our priority',
+      description: 'We combine clinical experience, advanced technology and personalised attention to provide a precise diagnosis and excellent ongoing care.',
       buttonLabel: 'Book an appointment',
     },
   },

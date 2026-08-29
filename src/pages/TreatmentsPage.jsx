@@ -1,5 +1,6 @@
 import treatmentsHero from '../assets/optimized/treatments.png'
 import treatmentsHeroMobile from '../assets/optimized/treatments_mobile.png'
+import identityMark from '../assets/optimized/speciality-identity-mark.webp'
 import { Button } from '../componentes/ACTION/index.js'
 import { InformationCard } from '../componentes/CARDS/index.js'
 import { PageHeader, Section, SectionContainer } from '../componentes/LAYOUT/index.js'
@@ -7,6 +8,13 @@ import { getClinicalAreas } from '../data/homepage.js'
 import { getTreatmentsPage } from '../data/treatmentsPage.js'
 import { useI18n } from '../i18n/I18nContext.jsx'
 import './TreatmentsPage.css'
+
+const CalendarIcon = () => (
+  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+    <path d="M7 3v3m10-3v3M4.5 9h15M6 5h12a2 2 0 0 1 2 2v12H4V7a2 2 0 0 1 2-2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M8 12h3v3H8z" stroke="currentColor" strokeWidth="1.5" />
+  </svg>
+)
 
 export default function TreatmentsPage() {
   const { language } = useI18n()
@@ -47,16 +55,19 @@ export default function TreatmentsPage() {
               />
             ))}
           </div>
-        </SectionContainer>
-      </Section>
 
-      <Section className="treatments-page__booking" aria-labelledby="treatments-booking-title">
-        <SectionContainer narrow>
-          <h2 className="type-section-title" id="treatments-booking-title">{content.booking.title}</h2>
-          <p className="type-body">{content.booking.description}</p>
-          <Button to="/booking" variant="light" size="large">
-            {content.booking.buttonLabel}
-          </Button>
+          <aside className="treatments-page__booking" aria-labelledby="treatments-booking-title">
+            <div className="treatments-page__booking-icon" aria-hidden="true">
+              <img src={identityMark} alt="" />
+            </div>
+            <div className="treatments-page__booking-copy">
+              <h2 id="treatments-booking-title">{content.booking.title}</h2>
+              <p className="type-small type-muted">{content.booking.description}</p>
+            </div>
+            <Button to="/booking" variant="primary" size="large" leadingIcon={<CalendarIcon />}>
+              {content.booking.buttonLabel}
+            </Button>
+          </aside>
         </SectionContainer>
       </Section>
     </main>
