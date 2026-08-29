@@ -1,7 +1,8 @@
 import consultationRoom from '../assets/optimized/consultation-room.jpg'
 import aboutPhoto from '../assets/optimized/about-office.jpg'
-import doctorPortrait from '../assets/optimized/doctor.jpg'
-import { Section, SectionContainer } from '../componentes/LAYOUT/index.js'
+import doctorSection from '../assets/optimized/doctor_section.png'
+import doctorSectionMobile from '../assets/optimized/doctor_section_mobile.png'
+import { PageHeader, Section, SectionContainer } from '../componentes/LAYOUT/index.js'
 import { getAboutPage } from '../data/aboutPage.js'
 import { useI18n } from '../i18n/I18nContext.jsx'
 import './AboutPage.css'
@@ -12,19 +13,15 @@ export default function AboutPage() {
 
   return (
     <main className="about-page">
-      <Section className="about-page__hero" aria-labelledby="about-title">
-        <div className="about-page__hero-content">
-          <div>
-            <p className="type-eyebrow">{content.eyebrow}</p>
-            <h1 className="type-page-title" id="about-title">{content.title}</h1>
-            <p className="type-body type-muted">{content.introduction}</p>
-          </div>
-        </div>
-
-        <figure className="about-page__portrait">
-          <img src={doctorPortrait} alt={content.portraitAlt} />
-        </figure>
-      </Section>
+      <PageHeader
+        eyebrow={content.eyebrow}
+        title={content.title}
+        description={content.introduction}
+        image={doctorSection}
+        mobileImage={doctorSectionMobile}
+        imageAlt={content.portraitAlt}
+        titleId="about-title"
+      />
 
 
       <Section className="about-page__presentation" aria-labelledby="presentation-title">
