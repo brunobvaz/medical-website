@@ -35,6 +35,62 @@
 .treatments-page__card { min-height: 25rem; }
 .treatments-page__card .information-card__icon-wrap { background: var(--color-surface-warm); }
 
+.treatments-page__equipment {
+  margin-top: clamp(4.5rem, 8vw, 8rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: center;
+}
+
+.treatments-page__equipment-media {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-warm);
+}
+
+.treatments-page__equipment-media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1.25 / 1;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.treatments-page__equipment-copy { max-width: 36rem; }
+.treatments-page__equipment-copy .type-eyebrow { margin-bottom: 0; color: var(--color-accent-hover); }
+
+.treatments-page__equipment-rule {
+  width: 3rem;
+  height: var(--border-width);
+  margin-block: var(--space-sm) var(--space-lg);
+  display: block;
+  background: var(--color-accent);
+}
+
+.treatments-page__equipment-copy h2 { max-width: 14ch; }
+.treatments-page__equipment-copy > .type-small { max-width: var(--measure-body); margin-top: var(--space-md); line-height: var(--lh-body); }
+.treatments-page__equipment-list { display: grid; gap: .65rem; margin: var(--space-lg) 0 0; padding: 0; list-style: none; }
+.treatments-page__equipment-list li { position: relative; padding-left: 1.8rem; color: var(--color-text-muted); font-size: var(--fs-small); line-height: 1.45; }
+
+.treatments-page__equipment-list li::before {
+  content: '✓';
+  width: 1.1rem;
+  height: 1.1rem;
+  position: absolute;
+  top: .1rem;
+  left: 0;
+  border: 1px solid var(--color-accent);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--color-accent-hover);
+  font-size: .7rem;
+  line-height: 1;
+}
+
 .treatments-page__booking {
   margin-top: clamp(2.5rem, 5vw, 4.5rem);
   padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.5rem, 3.5vw, 3rem);
@@ -68,6 +124,12 @@
 
 @media (max-width: 767px) {
   .treatments-page__grid { gap: var(--space-sm); }
+  .treatments-page__equipment {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .treatments-page__equipment-copy { max-width: 100%; }
+  .treatments-page__equipment-media img { aspect-ratio: 4 / 3; }
   .treatments-page__booking {
     grid-template-columns: 1fr;
     justify-items: center;

@@ -1,5 +1,6 @@
 import treatmentsHero from '../assets/optimized/treatments.png'
 import treatmentsHeroMobile from '../assets/optimized/treatments_mobile.png'
+import equipmentImage from '../assets/optimized/equipamento.png'
 import identityMark from '../assets/optimized/speciality-identity-mark.webp'
 import { Button } from '../componentes/ACTION/index.js'
 import { InformationCard } from '../componentes/CARDS/index.js'
@@ -55,6 +56,22 @@ export default function TreatmentsPage() {
               />
             ))}
           </div>
+
+          <section className="treatments-page__equipment" aria-labelledby="treatments-equipment-title">
+            <figure className="treatments-page__equipment-media">
+              <img src={equipmentImage} alt={content.equipment.imageAlt} loading="lazy" decoding="async" />
+            </figure>
+
+            <div className="treatments-page__equipment-copy">
+              <p className="type-eyebrow type-eyebrow--wide">{content.equipment.eyebrow}</p>
+              <span className="treatments-page__equipment-rule" aria-hidden="true" />
+              <h2 className="type-section-title" id="treatments-equipment-title">{content.equipment.title}</h2>
+              <p className="type-small type-muted">{content.equipment.description}</p>
+              <ul className="treatments-page__equipment-list">
+                {content.equipment.items.map((item) => <li key={item}>{item}</li>)}
+              </ul>
+            </div>
+          </section>
 
           <aside className="treatments-page__booking" aria-labelledby="treatments-booking-title">
             <div className="treatments-page__booking-icon" aria-hidden="true">
