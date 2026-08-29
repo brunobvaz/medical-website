@@ -1,7 +1,7 @@
 .treatments-page { background: var(--color-bg); }
 
 .treatments-page__hero {
-  min-height: calc(100svh - var(--navbar-height));
+  min-height: clamp(34rem, 68svh, 46rem);
   position: relative;
   z-index: 0;
   overflow: hidden;
@@ -116,7 +116,7 @@
 }
 
 @media (max-width: 767px) {
-  .treatments-page__hero { min-height: calc(100svh - var(--navbar-height)); }
+  .treatments-page__hero { min-height: clamp(34rem, 72svh, 40rem); }
   .treatments-page__hero-content {
     min-height: inherit;
     padding-block: var(--section-space-sm);
