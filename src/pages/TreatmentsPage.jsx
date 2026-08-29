@@ -2,7 +2,7 @@ import treatmentsHero from '../assets/optimized/treatments.png'
 import treatmentsHeroMobile from '../assets/optimized/treatments_mobile.png'
 import { Button } from '../componentes/ACTION/index.js'
 import { InformationCard } from '../componentes/CARDS/index.js'
-import { Section, SectionContainer } from '../componentes/LAYOUT/index.js'
+import { PageHeader, Section, SectionContainer } from '../componentes/LAYOUT/index.js'
 import { getClinicalAreas } from '../data/homepage.js'
 import { getTreatmentsPage } from '../data/treatmentsPage.js'
 import { useI18n } from '../i18n/I18nContext.jsx'
@@ -15,27 +15,14 @@ export default function TreatmentsPage() {
 
   return (
     <main className="treatments-page">
-      <Section className="treatments-page__hero" aria-labelledby="treatments-title">
-        <picture className="treatments-page__hero-media" aria-hidden="true">
-          <source media="(max-width: 767px)" srcSet={treatmentsHeroMobile} />
-          <img
-            className="treatments-page__hero-image"
-            src={treatmentsHero}
-            alt=""
-            width="1536"
-            height="1024"
-            fetchPriority="high"
-          />
-        </picture>
-        <span className="treatments-page__hero-overlay" aria-hidden="true" />
-
-        <div className="treatments-page__hero-content">
-          <p className="type-eyebrow type-eyebrow--wide">{content.hero.eyebrow}</p>
-          <span className="treatments-page__hero-rule" aria-hidden="true" />
-          <h1 className="type-page-title" id="treatments-title">{content.hero.title}</h1>
-          <p className="type-body type-muted">{content.hero.description}</p>
-        </div>
-      </Section>
+      <PageHeader
+        eyebrow={content.hero.eyebrow}
+        title={content.hero.title}
+        description={content.hero.description}
+        image={treatmentsHero}
+        mobileImage={treatmentsHeroMobile}
+        titleId="treatments-title"
+      />
 
       <Section className="treatments-page__areas" aria-labelledby="treatments-areas-title">
         <SectionContainer size="wide">

@@ -1,4 +1,5 @@
 export { default as Section } from './Section.jsx'
 export { default as SectionContainer } from './SectionContainer.jsx'
 export { default as SectionHeader } from './SectionHeader.jsx'
+export { default as PageHeader } from './PageHeader.jsx'
 export { default as Loading } from './Loading.jsx'
